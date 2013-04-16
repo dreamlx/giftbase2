@@ -1,0 +1,119 @@
+body {
+  padding-top: 42px;
+}
+
+dl {
+  overflow: hidden;
+}
+
+.dl-horizontal {
+  dt, dd {
+    margin-bottom: $baseLineHeight;
+  }
+
+  dd {
+    float: left;
+    margin-left: 20px;
+  }
+}
+
+.container {
+
+  > .content {
+    background: #FFF;
+    padding: 0;
+    margin: 0;
+    @include border-radius(0 0 6px 6px);
+    border: 1px solid #DDD;
+    border-top: 0 none;
+    @include box-shadow(0 1px 3px rgba(0, 0, 0, .1));
+
+    > .page-header {
+      @include gradient-vertical(#FFF, #EBEBEB);
+      padding: 10px 20px;
+      margin: 0;
+      @include box-shadow(0 1px 2px rgba(0, 0, 0, .05));
+      border-bottom: 1px solid #DADADA;
+
+      .titlebar {
+        display: block;
+
+        h1 {
+          float: left;
+          font-size: 18px;
+          line-height: 30px;
+
+          small {
+            font-size: 13px;
+          }
+        }
+
+        .toolbar {
+          float: right;
+          line-height: 30px;
+
+          > * {
+            float: left;
+            margin-left: 5px;
+          }
+        }
+
+        &::after {
+          clear: both;
+        }
+
+        &::before, &::after {
+          display: table;
+          content: "";
+        }
+      }
+
+      ul.nav-tabs {
+        clear: both;
+        float: none;
+        margin: 5px -20px 0 -20px;
+        padding-left: 20px;
+        width: auto;
+      }
+    }
+
+    .with-tabs {
+      border-bottom: 0 none;
+      padding-bottom: 0;
+    }
+
+    > .page-content {
+      background: #FFF;
+      @include border-radius(0 0 6px 6px);
+
+      .content-main {
+        background: #FFF;
+        padding: 20px;
+        @include clearfix;
+        @include box-shadow(1px 0 1px rgba(0, 0, 0, .1));
+        min-height: 500px;
+      }
+
+      .span9 { 
+        > .content-main {
+          @include border-radius(0 0 6px 0);
+          padding: 0px 20px 20px 0;
+        }
+      }
+
+      .span12 > .content-main {
+        @include border-radius(0 0 6px 6px);
+      }
+
+      .sidebar {
+        padding: 0;
+        @include clearfix;
+      }
+    }
+  }
+
+  > footer {
+    text-align: center;
+    padding: 20px 0 0 0;
+  }
+}

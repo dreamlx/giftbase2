@@ -1,0 +1,7 @@
+<%= f.simple_fields_for :multiple_choice_options do |b| %>
+  <%= render admin_question_by_type_path(f.object, 'fields'), { b: b } %>
+<% end -%>
+
+<%= question_add_fields(t('add_fields'), f, :multiple_choice_options) do |b| %>
+  <%= render admin_question_by_type_path(f.object, 'fields'), { b: b } %>
+<% end -%>

@@ -1,0 +1,14 @@
+<fieldset>
+  <div class="row-fliud">
+    <div class="span8">
+      <%= b.input :content, input_html: { class: 'span12 can_preview', rows: 1, data: { preview: b.object.object_id } } %>
+    </div>
+    <div class="span3" id="<%= b.object.object_id %>">
+      <%= t('asciimath_preview') %>
+    </div>
+    <div class="span1">
+      <%= b.hidden_field :_destroy %>
+      <%= link_to raw('&times;'), '#', class: 'close remove_fields' %>
+    </div>
+  </div>
+</fieldset>

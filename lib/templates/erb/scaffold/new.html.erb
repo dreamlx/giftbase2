@@ -1,0 +1,8 @@
+<%% content_for :title_bar do %>
+  <h1><%%= t("creating", <%= key_value(:scope, '"crud"') %>, <%= key_value :model, "#{class_name}.model_name.human" %>) %></h1>
+  <div class="toolbar">
+    <%%= link_to t("back", <%= key_value(:scope, '"crud"') %>), <%= index_helper %>_path, <%= key_value :class, "'btn'" %> %>
+  </div>
+<%% end %>
+
+<%%= render 'form' %>

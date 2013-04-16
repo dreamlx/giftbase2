@@ -1,0 +1,28 @@
+<% content_for :title_bar do %>
+  <h1><%= Question.model_name.human %></h1>
+  <div class="toolbar">
+    <%= link_to t("edit", scope: "crud"), edit_admin_question_path(@question), class: 'btn btn-primary' %>
+    <div class="btn-group">
+      <button class="btn dropdown-toggle" data-toggle="dropdown"><%= t("more", scope: "crud") %> <span class="caret"></span></button>
+      <ul class="dropdown-menu pull-right">
+        <li><%= link_to t("destroy", scope: "crud"), admin_question_path(@question), confirm: t("destroy", scope: "crud.confirmation"), method: :delete %></li>
+      </ul>
+    </div>
+    <%= link_to t("back", scope: "crud"), admin_questions_path, class: 'btn' %>
+  </div>
+<% end %>
+
+<%= simple_format(h(@question.subject)) %>
+
+<%= render "/admin/questions/#{@question.class.name.underscore}/show", { question: @question } %>
+
+<hr>
+
+<dl class="dl-horizontal">
+  <dt><%= Question.human_attribute_name(:hint) %></dt>
+  <dd><%= @question.hint %></dd>
+  <dt><%= Question.human_attribute_name(:level) %></dt>
+  <dd><%= @question.human_level %></dd>
+</dl>
+
+<%= javascript_include_tag "asciimathml" %>

@@ -1,0 +1,7 @@
+<ol type="A">
+  <% question.multiple_choice_options.each do |multiple_choice_option| %>
+    <li class="<%= 'text-success' if multiple_choice_option.correct %>">
+      <%= simple_format(h(multiple_choice_option.content)) %>
+    </li>
+  <% end -%>
+</ol>

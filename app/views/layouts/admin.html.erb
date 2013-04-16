@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title><%= t('app_name') %></title>
+  <%= stylesheet_link_tag    "admin/application", media: 'all' %>
+  <%= javascript_include_tag "admin/application" %>
+  <%= csrf_meta_tags %>
+</head>
+<body>
+  <div id="wrapper">
+    <%= render '/admin/shared/topnav' %>
+
+    <div class="container">
+
+      <div class="content">
+
+        <% if content_for?(:title_bar) || content_for?(:tabs) %>
+          <div class="page-header <%= content_for?(:tabs) ? 'with-tabs' : '' %>">
+            <div class="titlebar">
+              <%= yield :title_bar %>
+            </div>
+            <%= yield :tabs %>
+          </div>
+        <% end %>
+
+        <div class="page-content">
+          <div class="row-fluid">
+            <% if content_for?(:sidebar) %>
+              <div class="span3">
+                <div class="sidebar">
+                  <%= yield :sidebar %>
+                </div>
+              </div>
+              <div class="span9">
+                <div class="content-main">
+                  <% unless alert.blank? %>
+                    <div class="alert alert-error fade in">
+                      <a class="close" data-dismiss="alert">&times;</a>
+                      <%= alert %>
+                    </div>
+                  <% end %>
+
+                  <% unless notice.blank? %>
+                    <div class="alert alert-success fade in">
+                      <a class="close" data-dismiss="alert">&times;</a>
+                      <%= notice %>
+                    </div>
+                  <% end %>
+
+                  <%= yield %>
+                </div>
+              </div>
+            <% else %>
+              <div class="span12">
+                <div class="content-main">
+                  <% unless alert.blank? %>
+                    <div class="alert alert-error fade in">
+                      <a class="close" data-dismiss="alert">&times;</a>
+                      <%= alert %>
+                    </div>
+                  <% end %>
+
+                  <% unless notice.blank? %>
+                    <div class="alert alert-success fade in">
+                      <a class="close" data-dismiss="alert">&times;</a>
+                      <%= notice %>
+                    </div>
+                  <% end %>
+
+                  <%= yield %>
+                </div>
+              </div>
+            <% end %>
+          </div>
+        </div>
+          
+      </div>
+
+      <footer>
+        <p class="powered_by"><%== t :powered_by %></p>
+      </footer>
+
+    </div>
+  </div>
+</body>
+</html>

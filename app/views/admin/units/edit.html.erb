@@ -1,0 +1,8 @@
+<% content_for :title_bar do %>
+  <h1><%= t("editing", scope: "crud", model: Unit.model_name.human) %></h1>
+  <div class="toolbar">
+    <%= link_to t("back", scope: "crud"), admin_units_path, class: 'btn' %>
+  </div>
+<% end %>
+
+<%= render 'form' %>

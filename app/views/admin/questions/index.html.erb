@@ -1,0 +1,37 @@
+<% content_for :title_bar do %>
+  <h1><%= t("listing", scope: "crud", model: Question.model_name.human) %></h1>
+  <div class="toolbar">
+    <div class="btn-group">
+      <button class="btn btn-primary dropdown-toggle" data-toggle="dropdown"><%= t("new", scope: "crud") %> <span class="caret"></span></button>
+      <ul class="dropdown-menu pull-right">
+        <% Question.instanceable_classes.each do |klass| %>
+          <li><%= link_to klass.model_name.human, new_admin_question_path(type: klass.name) %></li>
+        <% end -%>
+      </ul>
+    </div>
+  </div>
+<% end %>
+
+<table class="table table-bordered table-striped">
+  <thead>
+    <tr>
+      <th><%= Question.human_attribute_name(:type) %></th>
+      <th><%= Question.human_attribute_name(:subject) %></th>
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @questions.each do |question| %>
+      <tr>
+        <td><%= question.class.model_name.human %></td>
+        <td><%= question.subject %></td>
+        <td class="control span2">
+          <%= link_to t("show", scope: "crud"), admin_question_path(question) %>
+          <%= link_to t("edit", scope: "crud"), edit_admin_question_path(question) %>
+        </td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<%= javascript_include_tag "asciimathml" %>

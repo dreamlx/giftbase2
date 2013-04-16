@@ -1,0 +1,28 @@
+<div class="clearfix">
+  <div class="pull-left">
+    <%= question_group.name %>
+  </div>
+  <div class="pull-right">
+    <div class="btn-group">
+      <%= link_to t("choose_question"), admin_unit_question_group_path(question_group.unit, question_group), class: 'btn btn-primary' %>
+      <% if question_group.first? %>
+        <%= link_to t("move_higher", scope: "crud"), '#', class: 'btn disabled' %>
+      <% else %>
+        <%= link_to t("move_higher", scope: "crud"), move_higher_admin_unit_question_group_path(question_group.unit, question_group), method: :post, class: 'btn' %>
+      <% end -%>
+
+      <% if question_group.last? %>
+        <%= link_to t("move_lower", scope: "crud"), '#', class: 'btn disabled' %>
+      <% else %>
+        <%= link_to t("move_lower", scope: "crud"), move_lower_admin_unit_question_group_path(question_group.unit, question_group), method: :post, class: 'btn' %>
+      <% end -%>
+      <%= link_to t("edit", scope: "crud"), edit_admin_unit_question_group_path(question_group.unit, question_group), class: 'btn' %>
+      <%= link_to t("destroy", scope: "crud"), admin_unit_question_group_path(question_group.unit, question_group), confirm: t("destroy", scope: "crud.confirmation"), method: :delete, class: 'btn' %>
+    </div>
+  </div>
+</div>
+<%= simple_format(h(question_group.description)) %>
+
+<%= render '/admin/question_groups/selected', { unit: unit, question_group: question_group, question_line_items: question_group.question_line_items } %>
+
+<hr/>

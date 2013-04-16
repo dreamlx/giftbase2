@@ -1,0 +1,7 @@
+<ol type="A">
+  <% question.single_choice_options.each do |single_choice_option| %>
+    <li class="<%= 'text-success' if single_choice_option.correct %>">
+      <%= simple_format(h(single_choice_option.content)) %>
+    </li>
+  <% end -%>
+</ol>

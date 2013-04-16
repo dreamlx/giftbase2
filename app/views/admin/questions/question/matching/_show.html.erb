@@ -1,0 +1,18 @@
+<table class="table table-bordered table-striped">
+  <thead>
+    <tr>
+      <th><%= MatchingSolution.human_attribute_name(:source) %></th>
+      <th></th>
+      <th><%= MatchingSolution.human_attribute_name(:target) %></th>
+    </tr>
+  </thead>
+  <tbody>
+    <% question.matching_solutions.each do |matching_solution| %>
+      <tr>
+        <td><%= simple_format(h(matching_solution.source)) %></td>
+        <td><i class="icon-resize-horizontal"></i></td>
+        <td><%= simple_format(h(matching_solution.target)) %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>

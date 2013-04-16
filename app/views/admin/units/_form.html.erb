@@ -1,0 +1,13 @@
+<%= simple_form_for([:admin, @unit], html: { class: 'form-horizontal' }) do |f| %>
+  <%= f.error_notification %>
+
+  <div class="form-inputs">
+    <%= f.input :name, input_html: { class: 'span12' } %>
+    <%= f.input :description, input_html: { class: 'span12' } %>
+    <%= f.input :exam_minutes %>
+  </div>
+
+  <div class="form-actions">
+    <%= f.button :submit, class: 'btn btn-primary' %>
+  </div>
+<% end %>

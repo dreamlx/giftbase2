@@ -1,0 +1,30 @@
+<%% content_for :title_bar do %>
+  <h1><%%= t("listing", <%= key_value(:scope, '"crud"') %>, <%= key_value :model, "#{class_name}.model_name.human" %>) %></h1>
+  <div class="toolbar">
+    <%%= link_to t("new", <%= key_value(:scope, '"crud"') %>), new_<%= singular_table_name %>_path, <%= key_value :class, "'btn btn-primary'" %> %>
+  </div>
+<%% end %>
+
+<table class="table table-bordered table-striped">
+  <thead>
+    <tr>
+<% attributes.each do |attribute| -%>
+      <th><%%= <%= class_name %>.human_attribute_name(:<%= attribute.name %>) %></th>
+<% end -%>
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+    <%% @<%= plural_table_name %>.each do |<%= singular_table_name %>| %>
+      <tr>
+<% attributes.each do |attribute| -%>
+        <td><%%= <%= singular_table_name %>.<%= attribute.name %> %></td>
+<% end -%>
+        <td class="control span2">
+          <%%= link_to t("show", <%= key_value(:scope, '"crud"') %>), <%= singular_table_name %> %>
+          <%%= link_to t("edit", <%= key_value(:scope, '"crud"') %>), edit_<%= singular_table_name %>_path(<%= singular_table_name %>) %>
+        </td>
+      </tr>
+    <%% end %>
+  </tbody>
+</table>

@@ -1,0 +1,10 @@
+<% content_for :title_bar do %>
+  <h1><%= t("creating", scope: "crud", model: Question.model_name.human) %></h1>
+  <div class="toolbar">
+    <%= link_to t("back", scope: "crud"), admin_questions_path, class: 'btn' %>
+  </div>
+<% end %>
+
+<%= simple_form_for([:admin, @question], as: :question, url: admin_questions_path, html: { class: 'form-horizontal question' }) do |f| %>
+  <%= render 'form', { f: f } %>
+<% end -%>

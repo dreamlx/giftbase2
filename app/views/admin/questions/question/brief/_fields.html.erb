@@ -1,0 +1,10 @@
+<fieldset>
+  <div class="row-fluid">
+    <div class="span8">
+      <%= b.input :content, input_html: { class: 'span12 can_preview', rows: 5, data: { preview: b.object.object_id } } %>
+    </div>
+    <div class="span4" id="<%= b.object.object_id %>">
+      <%= t('asciimath_preview') %>
+    </div>
+  </div>
+</fieldset>

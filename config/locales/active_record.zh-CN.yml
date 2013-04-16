@@ -1,0 +1,74 @@
+# -*- coding: utf-8 -*-
+zh-CN:
+  activerecord:
+    attributes:
+      user:
+        created_at: 注册时间
+        email: 邮箱
+        login: 帐号
+        current_password: 旧密码
+        password: 密码
+        password_confirmation: 确认密码
+        remember_me: 记住密码
+        username: 用户名
+      question:
+        type: 类型
+        subject: 题干
+        hint: 解题提示
+        level: 难度
+      question/brief:
+        brief_solution: 解答
+      question/single_choice:
+        single_choice_options: 选项
+      question/multiple_choice:
+        multiple_choice_options: 选项
+      question/fill_in_blank:
+        fill_in_blank_solutions: 填空解答
+      question/matching:
+        matching_solutions: 配对解答
+      brief_solution:
+        content: 解答内容
+      single_choice_option:
+        content: 选项内容
+        correct: 正确
+        sequence: 选项名
+        position: 位置
+      multiple_choice_option:
+        content: 选项内容
+        correct: 正确
+        sequence: 选项名
+        position: 位置
+      fill_in_blank_solution:
+        content: 解答内容
+        position: 位置
+      matching_solution:
+        source: 源头
+        target: 目标
+      unit:
+        name: 名称
+        description: 描述
+        exam_minutes: 考试时间(分)
+      question_group:
+        name: 名称
+        description: 描述
+    models:
+      user: 用户
+      question: 题目
+      question/brief: '问答题'
+      question/single_choice: '单选题'
+      question/multiple_choice: '多选题'
+      question/fill_in_blank: '填空题'
+      question/matching: '配对题'
+      brief_solution: 问答题解答
+      single_choice_option: 选项
+      fill_in_blank_solution: 填空题解答
+      matching_solution: 配对题解答
+      unit: 试卷
+      question_group: 试题分组
+
+    # state_machines:
+    #   order:
+    #     state:
+    #       states:
+    #         placed: '等待付款'
+    #         paid: '已付款'

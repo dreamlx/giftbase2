@@ -1,0 +1,19 @@
+<% content_for :title_bar do %>
+  <h1><%= @question_group.name %></h1>
+  <div class="toolbar">
+    <%= link_to t("back", scope: "crud"), admin_unit_path(@unit), class: 'btn' %>
+  </div>
+<% end %>
+
+<%= simple_format(h(@question_group.description)) %>
+
+<div class="row-fluid">
+  <div class="span6">
+    <%= render 'selected', { unit: @unit, question_group: @question_group, question_line_items: @question_group.question_line_items } %>
+  </div>
+  <div class="span6">
+    <%= render 'selectable', { unit: @unit, question_group: @question_group, questions: @questions } %>
+  </div>
+</div>
+
+<%= javascript_include_tag "asciimathml" %>

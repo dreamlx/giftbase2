@@ -1,0 +1,7 @@
+<ol>
+  <% question.fill_in_blank_solutions.each do |fill_in_blank_solution| %>
+    <li>
+      <%= simple_format(h(fill_in_blank_solution.content)) %>
+    </li>
+  <% end -%>
+</ol>

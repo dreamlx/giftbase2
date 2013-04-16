@@ -1,0 +1,28 @@
+<% content_for :title_bar do %>
+  <h1><%= t("listing", scope: "crud", model: Unit.model_name.human) %></h1>
+  <div class="toolbar">
+    <%= link_to t("new", scope: "crud"), new_admin_unit_path, class: 'btn btn-primary' %>
+  </div>
+<% end %>
+
+<table class="table table-bordered table-striped">
+  <thead>
+    <tr>
+      <th><%= Unit.human_attribute_name(:name) %></th>
+      <th><%= Unit.human_attribute_name(:exam_minutes) %></th>
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @units.each do |unit| %>
+      <tr>
+        <td><%= unit.name %></td>
+        <td><%= unit.exam_minutes %></td>
+        <td class="control span2">
+          <%= link_to t("show", scope: "crud"), admin_unit_path(unit) %>
+          <%= link_to t("edit", scope: "crud"), edit_admin_unit_path(unit) %>
+        </td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>

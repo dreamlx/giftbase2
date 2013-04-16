@@ -1,0 +1,52 @@
+# -*- coding: utf-8 -*-
+
+zh-CN:
+  app_name: Giftbase天才训练营
+
+  crud: 
+    back: 返回
+    back_to: "返回%{model}"
+    confirmation: 
+      destroy: 确定要删除吗？删除后不能恢复！
+    creating: "新增%{model}"
+    destroy: 删除
+    edit: 编辑
+    editing: "编辑%{model}"
+    listing: "%{model}列表"
+    more: 更多操作
+    move_higher: 上移
+    move_lower: 下移
+    new: 新增
+    show: 查看
+    showing: "%{model}详细信息"
+    add: "添加更多%{model}"
+
+  flash: 
+    controller: 
+      create: 
+        failure: "新建%{model}失败"
+        success: "新建%{model}成功"
+      destroy: 
+        failure: "删除%{model}失败"
+        success: "删除%{model}成功"
+      update: 
+        failure: "更新%{model}失败"
+        success: "更新%{model}成功"
+
+  dashboard: 信息中心
+  powered_by: "&copy; 2013 Giftbase天才训练营"
+  account: 帐户
+  sign_out: 退出
+  add_fields: 添加更多
+  asciimath_preview: "输入公式：amath a^2 endamath"
+  choose_question: 选题
+  add_to_unit: 选入
+  remove_from_unit: 移除
+  all_question_type: 所有题型
+  search_by: '搜索%{attr_name}'
+  search: 搜索
+  question_level:
+    '1': '简单'
+    '2': '一般'
+    '3': '困难'
+    '4': '非常难'

@@ -1,0 +1,41 @@
+<div class="item">
+  <div class="header clearfix">
+    <div class="type pull-left">
+      <%= question.class.model_name.human %>
+    </div>
+
+    <div class="actions pull-right">
+      <div class="btn-group">
+        <% if actions[:add_to_unit] %>
+          <%= link_to t('add_to_unit'), add_question_admin_unit_question_group_path(unit, question_group, question_id: question.id), method: :post, class: 'btn btn-small btn-success' %>
+        <% end -%>
+
+        <% if actions[:remove_from_unit] %>
+          <% if question_line_item.first? %>
+            <%= link_to t("move_higher", scope: "crud"), '#', class: 'btn btn-small disabled' %>
+          <% else %>
+            <%= link_to t("move_higher", scope: "crud"), move_higher_admin_unit_question_group_question_line_item_path(unit, question_group, question_line_item), method: :post, class: 'btn btn-small' %>
+          <% end -%>
+
+          <% if question_line_item.last? %>
+            <%= link_to t("move_lower", scope: "crud"), '#', class: 'btn btn-small disabled' %>
+          <% else %>
+            <%= link_to t("move_lower", scope: "crud"), move_lower_admin_unit_question_group_question_line_item_path(unit, question_group, question_line_item), method: :post, class: 'btn btn-small' %>
+          <% end -%>
+
+          <%= link_to t('remove_from_unit'), remove_question_admin_unit_question_group_path(unit, question_group, question_id: question.id), method: :post, class: 'btn btn-small' %>
+        <% end -%>
+      </div>
+    </div>
+  </div>
+
+  <div class="content">
+    <%= simple_format(h(question.subject)) %>
+    <%= render "/admin/questions/#{question.class.name.underscore}/show", { question: question } %>
+  </div>
+
+  <div class="clearfix footer">
+    <div class="pull-left"><%= Question.human_attribute_name(:hint) %>:<%= question.hint %></div>
+    <div class="pull-right"><%= Question.human_attribute_name(:level) %>:<%= question.human_level %></div>
+  </div>
+</div>

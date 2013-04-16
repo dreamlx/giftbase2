@@ -1,0 +1,3 @@
+<%= f.simple_fields_for :brief_solution do |b| %>
+  <%= render admin_question_by_type_path(f.object, 'fields'), { b: b } %>
+<% end -%>

@@ -1,0 +1,25 @@
+<%= f.error_notification %>
+
+<div class="form-inputs">
+  <%= f.hidden_field :type, value: @question.class.name %>
+  <div class="row-fluid">
+    <div class="span8">
+      <%= f.input :subject, input_html: { class: 'span12 can_preview', rows: 5, data: { preview: @question.object_id } } %>
+    </div>
+    <div class="span4" id="<%= @question.object_id %>">
+      Preview
+    </div>
+  </div>
+  
+  <%= render admin_question_by_type_path(@question, 'form'), { f: f } %>
+
+  <hr />
+  <%= f.input :hint, input_html: { class: 'span12', rows: 5 } %>
+  <%= f.input :level, as: :select, collection: options_for_question_level %>
+</div>
+
+<div class="form-actions">
+  <%= f.button :submit, class: 'btn btn-primary' %>
+</div>
+
+<%= render 'preview_js' %>
