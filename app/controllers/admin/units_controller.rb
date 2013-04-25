@@ -1,7 +1,8 @@
 module Admin
   class UnitsController < BaseController
     def index
-      @units = Unit.all
+      @units = Unit.only_owner(current_user).all
+      #todo, need cancan 
     end
 
     def show

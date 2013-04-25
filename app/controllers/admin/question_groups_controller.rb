@@ -7,7 +7,7 @@ module Admin
 
       @question_level_gteq = (params[:q] && params[:q][:level_gteq]) ? params[:q][:level_gteq].to_i : 1
       @question_level_lteq = (params[:q] && params[:q][:level_lteq]) ? params[:q][:level_lteq].to_i : 4
-      @q = Question.not_in_unit(@unit).search(params[:q])
+      @q = Question.not_in_unit(@unit).only_owner(current_user).search(params[:q])
       @questions = @q.result(distinct: true).order("updated_at DESC")
     end
 
