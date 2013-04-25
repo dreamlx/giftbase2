@@ -1,12 +1,20 @@
 class Question < ActiveRecord::Base
   has_many :question_line_items
+  has_one :user_question
+  has_one :user, through: :user_question
   
   attr_accessible :hint, :level, :subject
 
   validates :subject, :level, presence: true
 
   scope :not_in_unit, lambda { |unit| unit.question_ids.blank? ? scoped : where('id NOT IN (?)', unit.question_ids) }
-
+  scope :only_owner, lambda { |user| user.question_ids.blank? ? where('id is null') : where('id IN (?)', user.question_ids) }
+  
+  def belong_user(user)
+    item = UserQuestion.new(user_id: user.id, question_id: self.id) 
+    item.save
+  end
+  
   def self.new_by_type(type_name, attrs = {})
     result = safe_type_name(type_name).constantize.new(attrs)
     result.build_relative

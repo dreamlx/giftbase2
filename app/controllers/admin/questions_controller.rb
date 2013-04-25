@@ -1,7 +1,7 @@
 module Admin
   class QuestionsController < BaseController
     def index
-      @questions = Question.all
+      @questions = Question.only_owner(current_user).all
     end
 
     def show
@@ -23,6 +23,9 @@ module Admin
       @question = Question.new_by_type(type, params[:question])
 
       if @question.save
+        
+        @question.belong_user(current_user)
+        
         if session[:unit_id].blank? #判断是否从unit添加的题目
           redirect_to admin_question_path(@question), 
                     notice: t("success", 
