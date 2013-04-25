@@ -1,24 +1,24 @@
 <% content_for :title_bar do %>
-  <h1>
-    <%= @unit.name %>
-    <small><%= @unit.exam_minutes %></small>
-  </h1>
-  <div class="toolbar">
-    <%= link_to t("edit", scope: "crud"), edit_admin_unit_path(@unit), class: 'btn btn-primary' %>
-    <div class="btn-group">
-      <button class="btn dropdown-toggle" data-toggle="dropdown"><%= t("more", scope: "crud") %> <span class="caret"></span></button>
-      <ul class="dropdown-menu pull-right">
-        <li><%= link_to t("destroy", scope: "crud"), admin_unit_path(@unit), confirm: t("destroy", scope: "crud.confirmation"), method: :delete %></li>
-      </ul>
-    </div>
-    <%= link_to t("back", scope: "crud"), admin_units_path, class: 'btn' %>
+<h1>
+  <%= @unit.name %>
+  <small><%= @unit.exam_minutes %></small>
+</h1>
+<div class="toolbar">
+  <%= link_to t("edit", scope: "crud"), edit_admin_unit_path(@unit), class: 'btn btn-primary' %>
+  <div class="btn-group">
+    <button class="btn dropdown-toggle" data-toggle="dropdown"><%= t("more", scope: "crud") %> <span class="caret"></span></button>
+    <ul class="dropdown-menu pull-right">
+      <li><%= link_to t("destroy", scope: "crud"), admin_unit_path(@unit), confirm: t("destroy", scope: "crud.confirmation"), method: :delete %></li>
+    </ul>
   </div>
+  <%= link_to t("back", scope: "crud"), admin_units_path, class: 'btn' %>
+</div>
 <% end %>
 
 <%= @unit.description %>
 
 <% @unit.question_groups.each do |question_group| %>
-  <%= render 'question_group', { unit: @unit, question_group: question_group } %>
+<%= render 'question_group', { unit: @unit, question_group: question_group } %>
 <% end -%>
 
 <%= link_to t("add", scope: "crud", model: QuestionGroup.model_name.human), new_admin_unit_question_group_path(@unit), class: 'btn btn-block' %>

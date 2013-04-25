@@ -12,6 +12,8 @@ gem 'acts_as_list', '~> 0.2.0'
 gem 'state_machine', '~> 1.1.2'
 gem 'friendly_id', '~> 4.0.9'
 gem 'ransack', '~> 0.7.2'
+gem "cancan"
+gem 'haml'
 
 group :assets do
   gem 'sass-rails',   '~> 3.2'
@@ -30,4 +32,8 @@ group :development do
   gem 'binding_of_caller', '~> 0.7.1'
   gem "rvm-capistrano"
   gem 'capistrano', '~> 2.12.0'
+end
+
+group :production do
+  gem 'thin'
 end
