@@ -15,6 +15,7 @@
               <b class="caret"></b>
             </a>
             <ul class="dropdown-menu">
+              <li><%= current_user.email%></li>
               <li><%= link_to t('sign_out'), destroy_user_session_path, :method => :delete, :id => "sign-out" %></li>
             </ul>
           </li>

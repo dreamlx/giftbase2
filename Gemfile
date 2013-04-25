@@ -2,7 +2,7 @@ source 'https://rubygems.org'
 
 gem 'rails', '3.2.12'
 #gem 'mysql2'
-#gem "cancan"
+gem "cancan"
 #gem 'haml'
 gem 'pg'
 gem 'jquery-rails', '~> 2.2.1'
