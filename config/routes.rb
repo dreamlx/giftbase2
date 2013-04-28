@@ -19,6 +19,8 @@ Giftbase::Application.routes.draw do
     end
 
     resources :questions
+    
+    resources :reports, only: [:index]
 
     match '/', to: 'dashboard#index'
   end
