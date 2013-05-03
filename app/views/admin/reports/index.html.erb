@@ -1,13 +1,16 @@
-<table>
-  <tr>
-    <th>User name</th>
-    <th>Units count</th>
-  </tr>
-<%- @users.each do |user|%>
-<tr>
-  <td><%= user.email%></td>
-  <td><%= user.units.count%></td>
-</tr>
-<%- end %>
-
+<table class="table table-bordered table-striped">
+  <thead>
+    <tr>
+      <th>User name</th>
+      <th>Units count</th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @users.each do |user| %>
+      <tr>
+        <td><%= user.email%></td>
+        <td><%= user.units.count%></td>
+      </tr>
+    <% end %>
+  </tbody>
 </table>

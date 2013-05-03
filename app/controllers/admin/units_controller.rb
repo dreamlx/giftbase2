@@ -1,12 +1,12 @@
 module Admin
-  class UnitsController < BaseController
+  class UnitsController < Admin::BaseController
     def index
       if current_user.role == 'admin'
         @units = Unit.all
       else
         @units = Unit.only_owner(current_user).all
       end
-      #todo, need cancan 
+      # TODO: need cancan 
     end
 
     def show

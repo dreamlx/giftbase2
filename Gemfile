@@ -1,10 +1,8 @@
 source 'https://rubygems.org'
 
 gem 'rails', '3.2.12'
-#gem 'mysql2'
-gem "cancan"
-#gem 'haml'
-gem 'pg'
+gem 'mysql2'
+gem 'cancan'
 gem 'jquery-rails', '~> 2.2.1'
 gem 'devise', '~> 2.2.3'
 gem 'simple_form', '~> 2.1.0'
@@ -14,7 +12,7 @@ gem 'acts_as_list', '~> 0.2.0'
 gem 'state_machine', '~> 1.1.2'
 gem 'friendly_id', '~> 4.0.9'
 gem 'ransack', '~> 0.7.2'
-gem 'heroku'
+gem 'rabl', '~> 0.8.4'
 
 group :assets do
   gem 'sass-rails',   '~> 3.2'
@@ -33,8 +31,4 @@ group :development do
   gem 'binding_of_caller', '~> 0.7.1'
   gem "rvm-capistrano"
   gem 'capistrano', '~> 2.12.0'
-end
-
-group :production do
-  gem 'thin'
 end

@@ -1,5 +1,5 @@
 module Admin
-  class QuestionsController < BaseController
+  class QuestionsController < Admin::BaseController
     def index
       @questions = Question.only_owner(current_user).all
     end
@@ -26,16 +26,15 @@ module Admin
         
         @question.belong_user(current_user)
         
-        if session[:unit_id].blank? #判断是否从unit添加的题目
+        if session[:unit_id].blank? # Assert add question to unit
           redirect_to admin_question_path(@question), 
                     notice: t("success", 
                     scope: "flash.controller.create", 
                     model: Question.model_name.human) 
         else
           @unit = Unit.find(session[:unit_id])
-          session[:unit_id] = ""    #todo
-                                    #用status_machine 改写
-          # add questiongroup
+          session[:unit_id] = ""    # TODO: Refactor with state_machine
+          # add question group
           @question_group = @unit.question_groups.find(session[:group_id])
           session[:group_id] = ""
           @question_group.add_question(@question)

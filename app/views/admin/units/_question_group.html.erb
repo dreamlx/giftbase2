@@ -3,15 +3,17 @@
     <%= question_group.name %>
   </div>
   <div class="pull-right">
+
     <div class="btn-group">
+      <button class="btn btn-primary dropdown-toggle" data-toggle="dropdown"><%= t("new", scope: "crud") %> <span class="caret"></span></button>
+      <ul class="dropdown-menu">
+        <% Question.instanceable_classes.each do |klass| %>
+          <li><%= link_to klass.model_name.human, new_admin_question_path(type: klass.name, unit_id: @unit.id, group_id: question_group.id) %></li>
+        <% end -%>
+      </ul>
+    </div>
 
-        <button class="btn btn-primary dropdown-toggle" data-toggle="dropdown"><%= t("new", scope: "crud") %> <span class="caret"></span></button>
-        <ul class="dropdown-menu pull-left">
-          <% Question.instanceable_classes.each do |klass| %>
-            <li><%= link_to klass.model_name.human, new_admin_question_path(type: klass.name, unit_id: @unit.id, group_id: question_group.id) %></li>
-          <% end -%>
-        </ul>
-
+    <div class="btn-group">
       <%= link_to t("choose_question"), admin_unit_question_group_path(question_group.unit, question_group), class: 'btn btn-primary' %>
       <% if question_group.first? %>
         <%= link_to t("move_higher", scope: "crud"), '#', class: 'btn disabled' %>

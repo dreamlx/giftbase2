@@ -10,7 +10,7 @@
     <tr>
       <th><%= Unit.human_attribute_name(:name) %></th>
       <th><%= Unit.human_attribute_name(:exam_minutes) %></th>
-      <th>email</th>
+      <th><%= User.human_attribute_name(:email) %></th>
       <th></th>
     </tr>
   </thead>
@@ -19,7 +19,7 @@
       <tr>
         <td><%= unit.name %></td>
         <td><%= unit.exam_minutes %></td>
-        <td><%= unit.user.email unless unit.user.nil?%></td>
+        <td><%= unit.user.try(:email) %></td>
         <td class="control span2">
           <%= link_to t("show", scope: "crud"), admin_unit_path(unit) %>
           <%= link_to t("edit", scope: "crud"), edit_admin_unit_path(unit) %>

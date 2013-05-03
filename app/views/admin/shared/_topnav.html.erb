@@ -6,7 +6,7 @@
         <li class="<%= 'active' if controller.class.to_s == 'Admin::DashboardController' %>"><%= link_to t('dashboard'), admin_path %></li>
         <li class="<%= 'active' if controller.class.to_s == 'Admin::QuestionsController' %>"><%= link_to Question.model_name.human, admin_questions_path %></li>
         <li class="<%= 'active' if controller.class.to_s == 'Admin::UnitsController' %>"><%= link_to Unit.model_name.human, admin_units_path %></li>
-        <li class="<%= 'active' if controller.class.to_s == 'Admin::UnitsController' %>"><%= link_to t('report'), admin_reports_path %></li>
+        <li class="<%= 'active' if controller.class.to_s == 'Admin::ReportsController' %>"><%= link_to t('report'), admin_reports_path %></li>
       </ul>
       <ul class="nav pull-right">
         <% if user_signed_in? %>
@@ -16,7 +16,7 @@
               <b class="caret"></b>
             </a>
             <ul class="dropdown-menu">
-              <li><%= current_user.email%></li>
+              <li><%= link_to current_user.email, '#' %></li>
               <li><%= link_to t('sign_out'), destroy_user_session_path, :method => :delete, :id => "sign-out" %></li>
             </ul>
           </li>

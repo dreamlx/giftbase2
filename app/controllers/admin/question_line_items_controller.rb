@@ -1,5 +1,5 @@
 module Admin
-  class QuestionLineItemsController < BaseController
+  class QuestionLineItemsController < Admin::BaseController
     before_filter :load_unit_and_question_group
 
     def create

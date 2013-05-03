@@ -1,5 +1,5 @@
 module Admin
-  class QuestionGroupsController < BaseController
+  class QuestionGroupsController < Admin::BaseController
     before_filter :load_unit
 
     def show
