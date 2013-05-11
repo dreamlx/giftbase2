@@ -16,6 +16,17 @@ class Question::MultipleChoice < Question
     self
   end
 
+  def auto_review(answer)
+    if multiple_choice_options.corrects.map(&:id).sort == answer.option_ids.sort
+      answer.point = answer.max_point
+    else
+      answer.point = 0
+    end
+    answer.save
+    
+    answer.mark_as_reviewed!
+  end
+
   private
 
   def mass_assignment_authorizer(role = :default)

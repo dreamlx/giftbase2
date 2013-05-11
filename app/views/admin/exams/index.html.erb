@@ -1,0 +1,30 @@
+<% content_for :title_bar do %>
+  <h1><%= t("listing", scope: "crud", model: Exam.model_name.human) %></h1>
+  <div class="toolbar">
+  </div>
+<% end %>
+
+<table class="table table-bordered table-striped">
+  <thead>
+    <tr>
+      <th><%= Exam.human_attribute_name(:unit) %></th>
+      <th><%= Exam.human_attribute_name(:user) %></th>
+      <th><%= Exam.human_attribute_name(:stopped_at) %></th>
+      <th><%= Exam.human_attribute_name(:duration) %></th>
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @exams.each do |exam| %>
+      <tr>
+        <td><%= exam.unit.name %></td>
+        <td></td>
+        <td><%= l(exam.stopped_at.to_date, format: :long) %></td>
+        <td><%= exam.duration.to_i / 60 %> min</td>
+        <td class="control span2">
+          <%= link_to t("show", scope: "crud"), admin_exam_path(exam) %>
+        </td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>

@@ -11,6 +11,7 @@ class User < ActiveRecord::Base
   
   has_many :user_questions
   has_many :questions, through: :user_questions
+  has_many :exams, dependent: :destroy
   
   has_many :user_units
   has_many :units, through: :user_units

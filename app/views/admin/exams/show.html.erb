@@ -1,0 +1,23 @@
+<% content_for :title_bar do %>
+  <h1><%= Exam.model_name.human %></h1>
+  <div class="toolbar">
+    <%= link_to t("back", scope: "crud"), admin_exams_path, class: 'btn' %>
+  </div>
+<% end %>
+
+<dl class="dl-horizontal">
+  <dt><%= Exam.human_attribute_name(:unit) %></dt>
+  <dd><%= @exam.unit.name %></dd>
+  <dt><%= Exam.human_attribute_name(:user) %></dt>
+  <dd></dd>
+  <dt><%= Exam.human_attribute_name(:started_at) %></dt>
+  <dd><%= l(@exam.started_at, format: :long) %></dd>
+  <dt><%= Exam.human_attribute_name(:stopped_at) %></dt>
+  <dd><%= l(@exam.stopped_at, format: :long) %></dd>
+  <dt><%= Exam.human_attribute_name(:duration) %></dt>
+  <dd><%= @exam.duration.to_i / 60 %> min</dd>
+  <dt><%= Exam.human_attribute_name(:point) %></dt>
+  <dd><%= @exam.total_point %> / <%= @exam.max_point %></dd>
+  <dt><%= Exam.human_attribute_name(:unreviewed_count) %></dt>
+  <dd><%= @exam.unreviewed_count %></dd>
+</dl>

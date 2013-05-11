@@ -1,5 +1,7 @@
 Giftbase::Application.routes.draw do
   namespace :api do
+    resources :exams
+    
     resources :units, only: [:index, :show] do
       resources :question_groups, only: [:index, :show] do
         resources :question_line_items, only: [:index, :show]
@@ -8,6 +10,8 @@ Giftbase::Application.routes.draw do
   end
 
   namespace :admin do
+    resources :exams, only: [:index, :show]
+    
     resources :units do
       resources :question_groups, except: [:index] do
         resources :question_line_items, only: [:create, :update, :destroy] do

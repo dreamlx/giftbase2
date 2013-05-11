@@ -1,6 +1,8 @@
 class Unit < ActiveRecord::Base
   has_many :question_groups, dependent: :destroy, order: 'position'
-  has_many :questions, through: :question_groups
+  has_many :question_line_items, through: :question_groups
+  has_many :questions, through: :question_line_items
+  has_many :exams, dependent: :destroy
 
   attr_accessible :description, :exam_minutes, :name
 
