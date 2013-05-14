@@ -17,11 +17,11 @@ ActiveRecord::Schema.define(:version => 20130507172528) do
     t.integer  "exam_id"
     t.integer  "question_line_item_id"
     t.text     "data"
-    t.decimal  "point",                 :precision => 10, :scale => 0
+    t.decimal  "point"
     t.text     "comment"
     t.datetime "reviewed_at"
-    t.datetime "created_at",                                           :null => false
-    t.datetime "updated_at",                                           :null => false
+    t.datetime "created_at",            :null => false
+    t.datetime "updated_at",            :null => false
   end
 
   add_index "answers", ["exam_id"], :name => "index_answers_on_exam_id"

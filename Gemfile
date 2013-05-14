@@ -15,6 +15,7 @@ gem 'state_machine', '~> 1.1.2'
 gem 'friendly_id', '~> 4.0.9'
 gem 'ransack', '~> 0.7.2'
 gem 'rabl', '~> 0.8.4'
+gem 'thin'
 
 group :assets do
   gem 'sass-rails',   '~> 3.2'
