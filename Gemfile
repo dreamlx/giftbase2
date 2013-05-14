@@ -1,7 +1,9 @@
 source 'https://rubygems.org'
 
 gem 'rails', '3.2.12'
-gem 'mysql2'
+#gem 'mysql2'
+gem 'pg'
+gem 'heroku'
 gem 'cancan'
 gem 'jquery-rails', '~> 2.2.1'
 gem 'devise', '~> 2.2.3'
