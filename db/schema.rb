@@ -11,7 +11,22 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130425044643) do
+ActiveRecord::Schema.define(:version => 20130507172528) do
+
+  create_table "answers", :force => true do |t|
+    t.integer  "exam_id"
+    t.integer  "question_line_item_id"
+    t.text     "data"
+    t.decimal  "point",                 :precision => 10, :scale => 0
+    t.text     "comment"
+    t.datetime "reviewed_at"
+    t.datetime "created_at",                                           :null => false
+    t.datetime "updated_at",                                           :null => false
+  end
+
+  add_index "answers", ["exam_id"], :name => "index_answers_on_exam_id"
+  add_index "answers", ["question_line_item_id"], :name => "index_answers_on_question_line_item_id"
+  add_index "answers", ["reviewed_at"], :name => "index_answers_on_reviewed_at"
 
   create_table "brief_solutions", :force => true do |t|
     t.integer  "question_id"
@@ -21,6 +36,18 @@ ActiveRecord::Schema.define(:version => 20130425044643) do
   end
 
   add_index "brief_solutions", ["question_id"], :name => "index_brief_solutions_on_question_id"
+
+  create_table "exams", :force => true do |t|
+    t.integer  "unit_id"
+    t.integer  "user_id"
+    t.datetime "started_at"
+    t.datetime "stopped_at"
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
+  end
+
+  add_index "exams", ["unit_id"], :name => "index_exams_on_unit_id"
+  add_index "exams", ["user_id"], :name => "index_exams_on_user_id"
 
   create_table "fill_in_blank_solutions", :force => true do |t|
     t.integer  "question_id"

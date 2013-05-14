@@ -51,6 +51,14 @@ zh-CN:
       question_group:
         name: 名称
         description: 描述
+      exam:
+        started_at: 开始时间
+        stopped_at: 结束时间
+        duration: 耗时
+        unit: 试卷
+        user: 学生
+        point: 分数
+        unreviewed_count: 待批回答数
     models:
       user: 用户
       question: 题目
@@ -65,6 +73,7 @@ zh-CN:
       matching_solution: 配对题解答
       unit: 试卷
       question_group: 试题分组
+      exam: 答卷
 
     # state_machines:
     #   order:

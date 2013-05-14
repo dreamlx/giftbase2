@@ -16,6 +16,10 @@ class Question::Brief < Question
     self
   end
 
+  def auto_review(answer)
+    # Can not auto review
+  end
+
   private
 
   def mass_assignment_authorizer(role = :default)

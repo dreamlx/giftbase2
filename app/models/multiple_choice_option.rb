@@ -1,6 +1,8 @@
 class MultipleChoiceOption < ActiveRecord::Base
   belongs_to :question, class_name: 'Question::MultipleChoice'
 
+  scope :corrects, lambda { where(correct: true) }
+
   acts_as_list
 
   attr_accessible :content, :correct, :position, :sequence, :_destroy

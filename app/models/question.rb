@@ -21,6 +21,10 @@ class Question < ActiveRecord::Base
     result
   end
 
+  def auto_review(answer)
+    
+  end
+
   def self.instanceable?
     false
   end
