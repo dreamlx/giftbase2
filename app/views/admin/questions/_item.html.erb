@@ -30,6 +30,7 @@
   </div>
 
   <div class="content">
+    <%= "#{question_group.name}: #{item_index.to_i + 1}" %>
     <%= simple_format(h(question.subject)) %>
     <%= render "/admin/questions/#{question.class.name.underscore}/show", { question: question } %>
   </div>
