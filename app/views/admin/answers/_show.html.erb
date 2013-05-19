@@ -1,0 +1,2 @@
+<h3><%= Answer.model_name.human %></h3>
+<%= render "/admin/answers/#{question.class.name.underscore}/show", { question: question, answer: answer } %>

@@ -1,0 +1,26 @@
+<div class="navbar navbar-fixed-top" data-dropdown="dropdown">
+  <div class="navbar-inner">
+    <div class="container">
+      <%= link_to t('app_name'), root_path, class: 'brand' %>
+      <ul class="nav">
+        <li class="<%= 'active' if controller.class.to_s == 'HomeController' %>"><%= link_to t('home'), root_path %></li>
+        <li class="<%= 'active' if controller.class.to_s == 'CreditsController' %>"><%= link_to Credit.model_name.human, credits_path %></li>
+        <li class="<%= 'active' if controller.class.to_s == 'OrdersController' %>"><%= link_to Order.model_name.human, orders_path %></li>
+      </ul>
+      <ul class="nav pull-right">
+        <% if user_signed_in? %>
+          <li class="dropdown">
+            <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+              <%= t('account') %>
+              <b class="caret"></b>
+            </a>
+            <ul class="dropdown-menu">
+              <li><%= link_to current_user.email, '#' %></li>
+              <li><%= link_to t('sign_out'), destroy_user_session_path, :method => :delete, :id => "sign-out" %></li>
+            </ul>
+          </li>
+        <% end %>
+      </ul>
+    </div>
+  </div>
+</div>

@@ -21,7 +21,7 @@ child(:question => :question) do |question|
 
   when 'Question::Matching'
     child(:matching_solutions) do
-      attributes :source, :target
+      attributes :source, :target, :hashed_source, :hashed_target
     end
 
   when 'Question::MultipleChoice'

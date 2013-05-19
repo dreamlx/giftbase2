@@ -29,6 +29,10 @@ class Exam < ActiveRecord::Base
     answers.unreviewed.count
   end
 
+  def can_finish_review?
+    unreviewed_count == 0
+  end
+
   def auto_review
     answers.each(&:auto_review)
   end

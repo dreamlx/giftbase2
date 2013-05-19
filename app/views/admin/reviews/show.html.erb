@@ -1,0 +1,58 @@
+<% content_for :title_bar do %>
+  <h1><%= t('review') %> <%= @unit.name %></h1>
+  <div class="toolbar">
+    <%= link_to t("finish_review"), finish_review_admin_exam_path(@exam), class: 'btn btn-success', method: :post %>
+    <%= link_to t("back", scope: "crud"), admin_exam_path(@exam), class: 'btn' %>
+  </div>
+<% end %>
+
+<%= simple_format(h(@question.subject)) %>
+<%= render "/admin/questions/#{@question.class.name.underscore}/show", { question: @question } %>
+
+<dl class="dl-horizontal">
+  <dt><%= Question.human_attribute_name(:hint) %></dt>
+  <dd><%= @question.hint %></dd>
+  <dt><%= Question.human_attribute_name(:level) %></dt>
+  <dd><%= @question.human_level %></dd>
+</dl>
+
+<hr/>
+
+<%= render '/admin/answers/show', { question: @question, answer: @answer } %>
+
+<hr/>
+
+<%= simple_form_for @answer, url: admin_exam_review_path(exam_id: @exam, question_group_id: @question_group, question_line_item_id: @question_line_item), html: { class: 'form-horizontal' } do |f| %>
+  <%= f.error_notification %>
+
+  <div class="form-inputs">
+    <%= f.input :point, input_html: { class: 'span1' }, hint: "#{Answer.human_attribute_name(:max_point)}: #{@answer.max_point}", disabled: !@answer.can_change_point? %>
+    <%= f.input :comment, input_html: { class: 'span12', rows: 3 } %>
+  </div>
+
+  <div class="form-actions text-center">
+    <div class="pull-left">
+      <%= link_to_if(@previous_question_group.blank?, t('previous_question_group'), '#', class: 'btn disabled') do
+        link_to(t('previous_question_group'), admin_exam_review_path(exam_id: @exam, question_group_id: @previous_question_group, question_line_item_id: @previous_question_group.question_line_items.first), class: 'btn')
+      end %>
+
+      <%= link_to_if(@previous_question_line_item.blank?, t('previous_question_line_item'), '#', class: 'btn disabled') do
+        link_to(t('previous_question_line_item'), admin_exam_review_path(exam_id: @exam, question_group_id: @question_group, question_line_item_id: @previous_question_line_item), class: 'btn')
+      end %>
+    </div>
+    
+    <%= f.button :submit, value: t('save', scope: 'crud'), class: 'btn btn-primary' %>
+
+    <div class="pull-right">
+      <%= link_to_if(@next_question_line_item.blank?, t('next_question_line_item'), '#', class: 'btn disabled') do
+        link_to(t('next_question_line_item'), admin_exam_review_path(exam_id: @exam, question_group_id: @question_group, question_line_item_id: @next_question_line_item), class: 'btn')
+      end %>
+
+      <%= link_to_if(@next_question_group.blank?, t('next_question_group'), '#', class: 'btn disabled') do
+        link_to(t('next_question_group'), admin_exam_review_path(exam_id: @exam, question_group_id: @next_question_group, question_line_item_id: @next_question_group.question_line_items.first), class: 'btn')
+      end %>
+    </div>
+  </div>
+<% end -%>
+
+<%= javascript_include_tag "asciimathml" %>

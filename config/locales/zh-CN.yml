@@ -20,6 +20,7 @@ zh-CN:
     show: 查看
     showing: "%{model}详细信息"
     add: "添加更多%{model}"
+    save: 保存
 
   flash: 
     controller: 
@@ -32,6 +33,15 @@ zh-CN:
       update: 
         failure: "更新%{model}失败"
         success: "更新%{model}成功"
+      admin:
+        reviews:
+          update:
+            failure: "批阅失败"
+            success: "批阅成功"
+        exams:
+          finish_review:
+            failure: "结算失败，可能还有回答没有批阅"
+            success: "结算完成"
 
   dashboard: 信息中心
   powered_by: "&copy; 2013 Giftbase天才训练营"
@@ -51,3 +61,12 @@ zh-CN:
     '3': '困难'
     '4': '非常难'
   report: 报表
+  previous_question_group: '<< 上一试题分组'
+  next_question_group: '下一试题分组 >>'
+  previous_question_line_item: '< 上一题'
+  next_question_line_item: '下一题 >'
+  no_point: '未评分'
+  review: '批阅'
+  start_review: '开始批阅'
+  finish_review: '结算答卷'
+  home: 首页

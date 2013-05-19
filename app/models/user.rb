@@ -15,4 +15,16 @@ class User < ActiveRecord::Base
   
   has_many :user_units
   has_many :units, through: :user_units
+
+  has_one :credit
+
+  after_create :create_its_credit
+
+  has_many :orders
+
+protected
+
+  def create_its_credit
+    self.create_credit
+  end
 end

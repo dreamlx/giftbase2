@@ -6,6 +6,10 @@ class Question::MultipleChoice < Question
   def self.instanceable?
     true
   end
+  
+  def can_auto_review?
+    true
+  end
 
   def build_relative
     super

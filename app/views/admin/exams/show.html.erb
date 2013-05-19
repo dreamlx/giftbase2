@@ -1,6 +1,7 @@
 <% content_for :title_bar do %>
   <h1><%= Exam.model_name.human %></h1>
   <div class="toolbar">
+    <%= link_to t('start_review'), start_review_admin_exam_path(@exam), class: 'btn btn-primary', method: :post %>
     <%= link_to t("back", scope: "crud"), admin_exams_path, class: 'btn' %>
   </div>
 <% end %>

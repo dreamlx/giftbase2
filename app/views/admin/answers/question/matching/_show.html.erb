@@ -1,0 +1,18 @@
+<table class="table table-bordered table-striped">
+  <thead>
+    <tr>
+      <th><%= MatchingSolution.human_attribute_name(:source) %></th>
+      <th></th>
+      <th><%= MatchingSolution.human_attribute_name(:target) %></th>
+    </tr>
+  </thead>
+  <tbody>
+    <% answer.matches.each do |match| %>
+      <tr>
+        <td><%= question.matching_solutions.find_by_hashed_source(match[0]).source %></td>
+        <td><i class="icon-resize-horizontal"></i></td>
+        <td><%= question.matching_solutions.find_by_hashed_target(match[1]).target %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>

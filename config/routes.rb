@@ -1,4 +1,8 @@
 Giftbase::Application.routes.draw do
+  resources :orders, only: [:index, :show, :create]
+  
+  resources :credits, only: [:index]
+
   namespace :api do
     resources :exams
     
@@ -10,7 +14,15 @@ Giftbase::Application.routes.draw do
   end
 
   namespace :admin do
-    resources :exams, only: [:index, :show]
+    resources :exams, only: [:index, :show] do
+      member do
+        post :start_review
+        post :finish_review
+      end
+
+      get 'question_groups/:question_group_id/question_line_items/:question_line_item_id/review' => 'reviews#show', as: 'review'
+      put 'question_groups/:question_group_id/question_line_items/:question_line_item_id/review' => 'reviews#update'
+    end
     
     resources :units do
       resources :question_groups, except: [:index] do
