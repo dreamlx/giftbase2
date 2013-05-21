@@ -1,0 +1,10 @@
+你的点数：<%= current_user.credit.balance %>
+<hr>
+<h3>购买点数</h3>
+
+<% Credit.bundles.each do |credit_quantity| %>
+  <%= link_to orders_path(credit_quantity: credit_quantity), method: :post, class: 'btn btn-large' do %>
+    <%= credit_quantity %>点<br>
+    <%= number_to_currency Credit.price_of(credit_quantity) %>
+  <% end -%>
+<% end -%>

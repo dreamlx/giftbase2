@@ -1,0 +1,4 @@
+<% option = @question.single_choice_options.where(id: option_id) %>
+<% if option %>
+  <%= ('A'.ord + option.position).chr %>
+<% end -%>

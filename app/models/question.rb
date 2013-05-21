@@ -21,6 +21,10 @@ class Question < ActiveRecord::Base
     result
   end
 
+  def can_auto_review?
+    false
+  end
+
   def auto_review(answer)
     
   end

@@ -1,0 +1,7 @@
+<ol>
+  <% answer.contents.each do |content| %>
+    <li>
+      <%= simple_format(h(content)) %>
+    </li>
+  <% end -%>
+</ol>

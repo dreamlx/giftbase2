@@ -7,6 +7,10 @@ class Question::SingleChoice < Question
     true
   end
 
+  def can_auto_review?
+    true
+  end
+
   def build_relative
     super
 

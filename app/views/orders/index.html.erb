@@ -1,0 +1,26 @@
+<h1><%= t("listing", scope: "crud", model: Order.model_name.human) %></h1>
+
+<table class="table table-bordered table-striped">
+  <thead>
+    <tr>
+      <th><%= Order.human_attribute_name(:number) %></th>
+      <th><%= Order.human_attribute_name(:credit_quantity) %></th>
+      <th><%= Order.human_attribute_name(:total) %></th>
+      <th><%= Order.human_attribute_name(:state) %></th>
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @orders.each do |order| %>
+      <tr>
+        <td><%= order.number %></td>
+        <td><%= order.credit_quantity %></td>
+        <td><%= order.total %></td>
+        <td><%= order.human_state_name %></td>
+        <td class="control span2">
+          <%= link_to t("show", scope: "crud"), order %>
+        </td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>

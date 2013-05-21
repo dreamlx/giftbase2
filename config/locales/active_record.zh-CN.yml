@@ -59,6 +59,16 @@ zh-CN:
         user: 学生
         point: 分数
         unreviewed_count: 待批回答数
+      answer:
+        point: 分数
+        comment: 评语
+        max_point: 满分
+      order:
+        number: 编号
+        credit_quantity: 点数
+        total: 总价
+        user: 用户
+        state: 状态
     models:
       user: 用户
       question: 题目
@@ -74,10 +84,14 @@ zh-CN:
       unit: 试卷
       question_group: 试题分组
       exam: 答卷
+      answer: 回答
+      credit: 点数
+      order: 订单
 
-    # state_machines:
-    #   order:
-    #     state:
-    #       states:
-    #         placed: '等待付款'
-    #         paid: '已付款'
+    state_machines:
+      order:
+        state:
+          states:
+            placed: '等待付款'
+            paid: '已付款'
+            canceled: '已取消'

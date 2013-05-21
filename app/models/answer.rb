@@ -13,8 +13,16 @@ class Answer < ActiveRecord::Base
 
   default_value_for :point, 0
 
+  validates :point, presence: true
+
+  before_save :fix_point
+
   def max_point
     question_line_item.point
+  end
+
+  def max_point?
+    self.point == max_point
   end
 
   def reviewed?
@@ -27,5 +35,19 @@ class Answer < ActiveRecord::Base
 
   def mark_as_reviewed!
     self.update_attribute(:reviewed_at, Time.zone.now) unless reviewed?
+  end
+
+  def can_change_point?
+    !question.can_auto_review?
+  end
+
+protected
+
+  def fix_point
+    if self.point.blank? || self.point < 0
+      self.point = 0
+    elsif self.point > self.max_point
+      self.point = self.max_point
+    end
   end
 end

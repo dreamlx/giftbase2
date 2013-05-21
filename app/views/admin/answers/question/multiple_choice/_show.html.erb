@@ -1,0 +1,1 @@
+<%= @question.multiple_choice_options.where(id: option_ids).map { |option| ('A'.ord + option.position).chr }.join(', ') %>

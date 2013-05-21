@@ -11,17 +11,17 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130507172528) do
+ActiveRecord::Schema.define(:version => 20130517140454) do
 
   create_table "answers", :force => true do |t|
     t.integer  "exam_id"
     t.integer  "question_line_item_id"
     t.text     "data"
-    t.decimal  "point"
+    t.decimal  "point",                 :precision => 8, :scale => 1
     t.text     "comment"
     t.datetime "reviewed_at"
-    t.datetime "created_at",            :null => false
-    t.datetime "updated_at",            :null => false
+    t.datetime "created_at",                                          :null => false
+    t.datetime "updated_at",                                          :null => false
   end
 
   add_index "answers", ["exam_id"], :name => "index_answers_on_exam_id"
@@ -36,6 +36,16 @@ ActiveRecord::Schema.define(:version => 20130507172528) do
   end
 
   add_index "brief_solutions", ["question_id"], :name => "index_brief_solutions_on_question_id"
+
+  create_table "credits", :force => true do |t|
+    t.integer  "user_id"
+    t.decimal  "start_balance", :precision => 10, :scale => 0
+    t.decimal  "balance",       :precision => 10, :scale => 0
+    t.datetime "created_at",                                   :null => false
+    t.datetime "updated_at",                                   :null => false
+  end
+
+  add_index "credits", ["user_id"], :name => "index_credits_on_user_id"
 
   create_table "exams", :force => true do |t|
     t.integer  "unit_id"
@@ -64,10 +74,14 @@ ActiveRecord::Schema.define(:version => 20130507172528) do
     t.integer  "question_id"
     t.text     "source"
     t.text     "target"
-    t.datetime "created_at",  :null => false
-    t.datetime "updated_at",  :null => false
+    t.datetime "created_at",    :null => false
+    t.datetime "updated_at",    :null => false
+    t.string   "hashed_source"
+    t.string   "hashed_target"
   end
 
+  add_index "matching_solutions", ["hashed_source"], :name => "index_matching_solutions_on_hashed_source"
+  add_index "matching_solutions", ["hashed_target"], :name => "index_matching_solutions_on_hashed_target"
   add_index "matching_solutions", ["question_id"], :name => "index_matching_solutions_on_question_id"
 
   create_table "multiple_choice_options", :force => true do |t|
@@ -83,6 +97,20 @@ ActiveRecord::Schema.define(:version => 20130507172528) do
   add_index "multiple_choice_options", ["correct"], :name => "index_multiple_choice_options_on_correct"
   add_index "multiple_choice_options", ["position"], :name => "index_multiple_choice_options_on_position"
   add_index "multiple_choice_options", ["question_id"], :name => "index_multiple_choice_options_on_question_id"
+
+  create_table "orders", :force => true do |t|
+    t.string   "number"
+    t.decimal  "credit_quantity", :precision => 10, :scale => 0
+    t.decimal  "total",           :precision => 8,  :scale => 2
+    t.string   "state"
+    t.integer  "user_id"
+    t.datetime "created_at",                                     :null => false
+    t.datetime "updated_at",                                     :null => false
+  end
+
+  add_index "orders", ["number"], :name => "index_orders_on_number"
+  add_index "orders", ["state"], :name => "index_orders_on_state"
+  add_index "orders", ["user_id"], :name => "index_orders_on_user_id"
 
   create_table "question_groups", :force => true do |t|
     t.string   "name"
