@@ -1,9 +1,21 @@
 Giftbase::Application.routes.draw do
-  resources :orders, only: [:index, :show, :create]
+  resources :stages, only: [:index, :show] do
+    member do
+      post 'purchase'
+    end
+  end
+  
+  resources :orders, only: [:index, :show, :create] do
+    member do
+      post 'pay'
+    end
+  end
   
   resources :credits, only: [:index]
 
   namespace :api do
+    resources :stages
+    
     resources :exams
     
     resources :units, only: [:index, :show] do
@@ -14,6 +26,17 @@ Giftbase::Application.routes.draw do
   end
 
   namespace :admin do
+    resources :credit_line_items, only: [:index, :show] do
+      collection do
+        get 'with_order'
+        get 'with_stage'
+      end
+    end
+
+    resources :orders, only: [:index, :show]
+    
+    resources :stages
+
     resources :exams, only: [:index, :show] do
       member do
         post :start_review

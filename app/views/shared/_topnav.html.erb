@@ -4,6 +4,7 @@
       <%= link_to t('app_name'), root_path, class: 'brand' %>
       <ul class="nav">
         <li class="<%= 'active' if controller.class.to_s == 'HomeController' %>"><%= link_to t('home'), root_path %></li>
+        <li class="<%= 'active' if controller.class.to_s == 'StagesController' %>"><%= link_to Stage.model_name.human, stages_path %></li>
         <li class="<%= 'active' if controller.class.to_s == 'CreditsController' %>"><%= link_to Credit.model_name.human, credits_path %></li>
         <li class="<%= 'active' if controller.class.to_s == 'OrdersController' %>"><%= link_to Order.model_name.human, orders_path %></li>
       </ul>

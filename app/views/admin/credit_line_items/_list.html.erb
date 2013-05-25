@@ -1,0 +1,26 @@
+<table class="table table-bordered table-striped">
+  <thead>
+    <tr>
+      <th><%= CreditLineItem.human_attribute_name(:created_at) %></th>
+      <th><%= CreditLineItem.human_attribute_name(:amount) %></th>
+      <th>用户</th>
+      <th>原因</th>
+    </tr>
+  </thead>
+  <tbody>
+    <% credit_line_items.each do |credit_line_item| %>
+      <tr>
+        <td><%= l(credit_line_item.created_at, format: :long) %></td>
+        <td><%= credit_line_item.amount %></td>
+        <td><%= credit_line_item.credit.user.email %></td>
+        <td>
+          <% if credit_line_item.order %>
+            充值，订单：<%= link_to credit_line_item.order.number, admin_order_path(credit_line_item.order) %>
+          <% elsif credit_line_item.stage %>
+            购买试卷套装：<%= link_to credit_line_item.stage.name, admin_stage_path(credit_line_item.stage) %>
+          <% end -%>
+        </td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>

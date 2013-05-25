@@ -33,6 +33,12 @@ zh-CN:
       update: 
         failure: "更新%{model}失败"
         success: "更新%{model}成功"
+      orders:
+        pay:
+          success: "付款成功"
+      stages:
+        purchase:
+          success: "购买成功"
       admin:
         reviews:
           update:

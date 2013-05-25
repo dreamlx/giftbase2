@@ -1,0 +1,8 @@
+<% content_for :title_bar do %>
+  <h1><%= t("listing", scope: "crud", model: CreditLineItem.model_name.human) %></h1>
+  <div class="toolbar">
+  </div>
+<% end %>
+
+<%= render 'tabs' %>
+<%= render 'list', { credit_line_items: @credit_line_items } %>

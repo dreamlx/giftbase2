@@ -8,6 +8,7 @@
 <table class="table table-bordered table-striped">
   <thead>
     <tr>
+      <th><%= Unit.human_attribute_name(:stage) %></th>
       <th><%= Unit.human_attribute_name(:name) %></th>
       <th><%= Unit.human_attribute_name(:exam_minutes) %></th>
       <th><%= User.human_attribute_name(:email) %></th>
@@ -17,6 +18,7 @@
   <tbody>
     <% @units.each do |unit| %>
       <tr>
+        <td><%= unit.stage.try(:name) %></td>
         <td><%= unit.name %></td>
         <td><%= unit.exam_minutes %></td>
         <td><%= unit.user.try(:email) %></td>

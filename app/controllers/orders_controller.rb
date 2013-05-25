@@ -19,4 +19,14 @@ class OrdersController < ApplicationController
       redirect_to credits_path, alert: t("failure", scope: "flash.controller.create", model: Order.model_name.human)
     end
   end
+
+  def pay
+    @order = current_user.orders.find(params[:id])
+
+    if @order.can_pay?
+      @order.fire_state_event(:pay)
+    end
+    
+    redirect_to @order, notice: t("success", scope: "flash.controller.orders.pay")
+  end
 end

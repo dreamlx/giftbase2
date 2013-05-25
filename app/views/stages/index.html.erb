@@ -1,0 +1,24 @@
+<h1><%= t("listing", scope: "crud", model: Stage.model_name.human) %></h1>
+
+<table class="table table-bordered table-striped">
+  <thead>
+    <tr>
+      <th><%= Stage.human_attribute_name(:name) %></th>
+      <th>试卷数量</th>
+      <th><%= Stage.human_attribute_name(:price) %></th>
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @stages.each do |stage| %>
+      <tr>
+        <td><%= stage.name %></td>
+        <td><%= stage.units.count %></td>
+        <td><%= stage.price %></td>
+        <td class="control span2">
+          <%= link_to t("show", scope: "crud"), stage %>
+        </td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>

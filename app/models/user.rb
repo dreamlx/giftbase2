@@ -18,6 +18,8 @@ class User < ActiveRecord::Base
 
   has_one :credit
 
+  has_and_belongs_to_many :stages
+
   after_create :create_its_credit
 
   has_many :orders

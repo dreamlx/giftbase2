@@ -1,13 +1,17 @@
 <% content_for :title_bar do %>
   <h1><%= Order.model_name.human %></h1>
   <div class="toolbar">
-    <%= link_to t("back", scope: "crud"), orders_path, class: 'btn' %>
+    <%= link_to t("back", scope: "crud"), admin_orders_path, class: 'btn' %>
   </div>
 <% end %>
 
 <dl class="dl-horizontal">
+  <dt><%= Order.human_attribute_name(:created_at) %></dt>
+  <dd><%= l(@order.created_at, format: :long) %></dd>
   <dt><%= Order.human_attribute_name(:number) %></dt>
   <dd><%= @order.number %></dd>
+  <dt><%= Order.human_attribute_name(:user) %></dt>
+  <dd><%= @order.user.email %></dd>
   <dt><%= Order.human_attribute_name(:credit_quantity) %></dt>
   <dd><%= @order.credit_quantity %></dd>
   <dt><%= Order.human_attribute_name(:total) %></dt>
@@ -15,7 +19,3 @@
   <dt><%= Order.human_attribute_name(:state) %></dt>
   <dd><%= @order.human_state_name %></dd>
 </dl>
-
-<% if @order.can_pay? %>
-  <%= link_to '支付宝付款 (直接完成)', pay_order_path(@order), method: :post, class: 'btn btn-primary' %>
-<% end -%>

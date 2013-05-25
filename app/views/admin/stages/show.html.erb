@@ -1,0 +1,22 @@
+<% content_for :title_bar do %>
+  <h1><%= Stage.model_name.human %></h1>
+  <div class="toolbar">
+    <%= link_to t("edit", scope: "crud"), edit_admin_stage_path(@stage), class: 'btn btn-primary' %>
+    <div class="btn-group">
+      <button class="btn dropdown-toggle" data-toggle="dropdown"><%= t("more", scope: "crud") %> <span class="caret"></span></button>
+      <ul class="dropdown-menu pull-right">
+        <li><%= link_to t("destroy", scope: "crud"), admin_stage_path(@stage), confirm: t("destroy", scope: "crud.confirmation"), method: :delete %></li>
+      </ul>
+    </div>
+    <%= link_to t("back", scope: "crud"), admin_stages_path, class: 'btn' %>
+  </div>
+<% end %>
+
+<dl class="dl-horizontal">
+  <dt><%= Stage.human_attribute_name(:name) %></dt>
+  <dd><%= @stage.name %></dd>
+  <dt><%= Stage.human_attribute_name(:description) %></dt>
+  <dd><%= @stage.description %></dd>
+  <dt><%= Stage.human_attribute_name(:price) %></dt>
+  <dd><%= @stage.price %></dd>
+</dl>

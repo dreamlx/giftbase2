@@ -3,8 +3,9 @@ class Unit < ActiveRecord::Base
   has_many :question_line_items, through: :question_groups
   has_many :questions, through: :question_line_items
   has_many :exams, dependent: :destroy
+  belongs_to :stage
 
-  attr_accessible :description, :exam_minutes, :name
+  attr_accessible :description, :exam_minutes, :name, :stage_id
 
   validates :name, :exam_minutes, presence: true
   
