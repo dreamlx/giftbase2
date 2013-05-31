@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130517140454) do
+ActiveRecord::Schema.define(:version => 20130523081813) do
 
   create_table "answers", :force => true do |t|
     t.integer  "exam_id"
@@ -36,6 +36,19 @@ ActiveRecord::Schema.define(:version => 20130517140454) do
   end
 
   add_index "brief_solutions", ["question_id"], :name => "index_brief_solutions_on_question_id"
+
+  create_table "credit_line_items", :force => true do |t|
+    t.decimal  "amount",     :precision => 8, :scale => 2
+    t.integer  "credit_id"
+    t.integer  "order_id"
+    t.integer  "stage_id"
+    t.datetime "created_at",                               :null => false
+    t.datetime "updated_at",                               :null => false
+  end
+
+  add_index "credit_line_items", ["credit_id"], :name => "index_credit_line_items_on_credit_id"
+  add_index "credit_line_items", ["order_id"], :name => "index_credit_line_items_on_order_id"
+  add_index "credit_line_items", ["stage_id"], :name => "index_credit_line_items_on_stage_id"
 
   create_table "credits", :force => true do |t|
     t.integer  "user_id"
@@ -162,13 +175,32 @@ ActiveRecord::Schema.define(:version => 20130517140454) do
   add_index "single_choice_options", ["position"], :name => "index_single_choice_options_on_position"
   add_index "single_choice_options", ["question_id"], :name => "index_single_choice_options_on_question_id"
 
+  create_table "stages", :force => true do |t|
+    t.string   "name"
+    t.text     "description"
+    t.decimal  "price",       :precision => 8, :scale => 2
+    t.datetime "created_at",                                :null => false
+    t.datetime "updated_at",                                :null => false
+  end
+
+  create_table "stages_users", :id => false, :force => true do |t|
+    t.integer "stage_id"
+    t.integer "user_id"
+  end
+
+  add_index "stages_users", ["stage_id"], :name => "index_stages_users_on_stage_id"
+  add_index "stages_users", ["user_id"], :name => "index_stages_users_on_user_id"
+
   create_table "units", :force => true do |t|
     t.string   "name"
     t.text     "description"
     t.integer  "exam_minutes"
     t.datetime "created_at",   :null => false
     t.datetime "updated_at",   :null => false
+    t.integer  "stage_id"
   end
+
+  add_index "units", ["stage_id"], :name => "index_units_on_stage_id"
 
   create_table "user_questions", :force => true do |t|
     t.integer  "user_id"

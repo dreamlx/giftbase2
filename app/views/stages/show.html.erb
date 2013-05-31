@@ -1,0 +1,13 @@
+<% content_for :title_bar do %>
+  <h1><%= @stage.name %></h1>
+  <div class="toolbar">
+    <% unless current_user.stages.include?(@stage) %>
+      <%= link_to "使用#{@stage.price}点购买", purchase_stage_path(@stage), method: :post, class: 'btn btn-success' %>
+    <% else %>
+      <%= link_to '已购买', '#', class: 'btn btn-success disabled' %>
+    <% end -%>
+    <%= link_to t("back", scope: "crud"), stages_path, class: 'btn' %>
+  </div>
+<% end %>
+
+<%= simple_format(h(@stage.description)) %>

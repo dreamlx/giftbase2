@@ -45,6 +45,7 @@ zh-CN:
         source: 源头
         target: 目标
       unit:
+        stage: 试卷套装
         name: 名称
         description: 描述
         exam_minutes: 考试时间(分)
@@ -69,6 +70,14 @@ zh-CN:
         total: 总价
         user: 用户
         state: 状态
+        created_at: 下单时间
+      stage:
+        name: 名称
+        description: 描述
+        price: 价格
+      credit_line_item:
+        created_at: 时间
+        amount: 点数
     models:
       user: 用户
       question: 题目
@@ -87,6 +96,8 @@ zh-CN:
       answer: 回答
       credit: 点数
       order: 订单
+      stage: 试卷套装
+      credit_line_item: 消费记录
 
     state_machines:
       order:

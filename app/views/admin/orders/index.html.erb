@@ -1,9 +1,15 @@
-<h1><%= t("listing", scope: "crud", model: Order.model_name.human) %></h1>
+<% content_for :title_bar do %>
+  <h1><%= t("listing", scope: "crud", model: Order.model_name.human) %></h1>
+  <div class="toolbar">
+  </div>
+<% end %>
 
 <table class="table table-bordered table-striped">
   <thead>
     <tr>
+      <th><%= Order.human_attribute_name(:created_at) %></th>
       <th><%= Order.human_attribute_name(:number) %></th>
+      <th><%= Order.human_attribute_name(:user) %></th>
       <th><%= Order.human_attribute_name(:credit_quantity) %></th>
       <th><%= Order.human_attribute_name(:total) %></th>
       <th><%= Order.human_attribute_name(:state) %></th>
@@ -13,12 +19,14 @@
   <tbody>
     <% @orders.each do |order| %>
       <tr>
+        <td><%= l(order.created_at, format: :long) %></td>
         <td><%= order.number %></td>
+        <td><%= order.user.email %></td>
         <td><%= order.credit_quantity %></td>
         <td><%= number_to_currency order.total %></td>
         <td><%= order.human_state_name %></td>
         <td class="control span2">
-          <%= link_to t("show", scope: "crud"), order %>
+          <%= link_to t("show", scope: "crud"), admin_order_path(order) %>
         </td>
       </tr>
     <% end %>

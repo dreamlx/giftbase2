@@ -8,3 +8,29 @@
     <%= number_to_currency Credit.price_of(credit_quantity) %>
   <% end -%>
 <% end -%>
+
+<h3>消费记录</h3>
+<table class="table table-bordered table-striped">
+  <thead>
+    <tr>
+      <th><%= CreditLineItem.human_attribute_name(:created_at) %></th>
+      <th><%= CreditLineItem.human_attribute_name(:amount) %></th>
+      <th>原因</th>
+    </tr>
+  </thead>
+  <tbody>
+    <% current_user.credit.credit_line_items.each do |credit_line_item| %>
+      <tr>
+        <td><%= l(credit_line_item.created_at, format: :long) %></td>
+        <td><%= credit_line_item.amount %></td>
+        <td>
+          <% if credit_line_item.order %>
+            充值，订单：<%= link_to credit_line_item.order.number, order_path(credit_line_item.order) %>
+          <% elsif credit_line_item.stage %>
+            购买试卷套装：<%= link_to credit_line_item.stage.name, stage_path(credit_line_item.stage) %>
+          <% end -%>
+        </td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>

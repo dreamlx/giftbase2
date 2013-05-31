@@ -1,7 +1,7 @@
 <% content_for :title_bar do %>
   <h1>
     <%= @unit.name %>
-    <small><%= @unit.exam_minutes %></small>
+    <small><%= @unit.stage.try(:name) %> <%= @unit.exam_minutes %></small>
   </h1>
   <div class="toolbar">
     <%= link_to t("edit", scope: "crud"), edit_admin_unit_path(@unit), class: 'btn btn-primary' %>

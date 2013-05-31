@@ -37,7 +37,7 @@ protected
   end
 
   def update_credit
-    # TODO
+    self.user.credit.add_income(self)
   end
 
   def update_total

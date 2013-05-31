@@ -1,0 +1,5 @@
+<ul class="nav nav-tabs">
+  <li class="<%= 'active' if action_name == 'index' %>"><%= link_to '全部', admin_credit_line_items_path %></li>
+  <li class="<%= 'active' if action_name == 'with_order' %>"><%= link_to '充值', with_order_admin_credit_line_items_path %></li>
+  <li class="<%= 'active' if action_name == 'with_stage' %>"><%= link_to '消费', with_stage_admin_credit_line_items_path %></li>
+</ul>
