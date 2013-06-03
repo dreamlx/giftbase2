@@ -1,8 +1,7 @@
 $sansFontFamily: "Helvetica Neue", Helvetica, "Heiti SC", "Segoe UI", "Microsoft YaHei", Arial, sans-serif;
-$gridColumnWidth: 70px;
-$gridGutterWidth: 30px;
 
 @import "bootstrap";
+@import "bootstrap-responsive";
 
 @import "layout";
 @import "question";

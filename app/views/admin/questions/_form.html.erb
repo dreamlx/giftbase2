@@ -10,6 +10,22 @@
       Preview
     </div>
   </div>
+
+  <div class="control-group question_image">
+    <label class="control-label" for="question_image"><%= Question.human_attribute_name(:image) %></label>
+    <div class="controls">
+      <div class="image">
+        <% if @question.image? %>
+          <%= image_tag(@question.image_url(:thumb)) %>
+        <% end -%>
+        <span class="upload-image">
+          <%= f.file_field :image %>
+        </span>
+        <%= f.hidden_field :image_cache %>
+      </div>
+    </div>
+  </div>
+
   
   <%= render admin_question_by_type_path(@question, 'form'), { f: f } %>
 

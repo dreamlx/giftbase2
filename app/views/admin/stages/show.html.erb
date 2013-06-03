@@ -20,3 +20,9 @@
   <dt><%= Stage.human_attribute_name(:price) %></dt>
   <dd><%= @stage.price %></dd>
 </dl>
+
+<% if @stage.video? %>
+  <link href="http://vjs.zencdn.net/4.0/video-js.css" rel="stylesheet">
+  <script src="http://vjs.zencdn.net/4.0/video.js"></script>
+  <%= video_tag(@stage.video_url, controls: true, poster: @stage.video_poster_url, class: 'video-js vjs-default-skin') %>
+<% end -%>

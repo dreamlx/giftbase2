@@ -5,6 +5,30 @@
     <%= f.input :name %>
     <%= f.input :description %>
     <%= f.input :price %>
+
+    <div class="control-group stage_video">
+      <label class="control-label" for="stage_video"><%= Stage.human_attribute_name(:video) %></label>
+      <div class="controls">
+        <div class="video">
+          <span class="upload-video">
+            <%= f.file_field :video %>
+          </span>
+          <%= f.hidden_field :video_cache %>
+        </div>
+      </div>
+    </div>
+
+    <div class="control-group stage_video_poster">
+      <label class="control-label" for="stage_video_poster"><%= Stage.human_attribute_name(:video_poster) %></label>
+      <div class="controls">
+        <div class="video_poster">
+          <span class="upload-video_poster">
+            <%= f.file_field :video_poster %>
+          </span>
+          <%= f.hidden_field :video_poster_cache %>
+        </div>
+      </div>
+    </div>
   </div>
 
   <div class="form-actions">

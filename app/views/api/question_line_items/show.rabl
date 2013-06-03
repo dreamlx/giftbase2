@@ -8,6 +8,11 @@ end
 child(:question => :question) do |question|
   attributes :id, :subject, :hint, :type, :level
 
+  if question.image?
+    node(:image_url) { |question| url_with_protocol_and_host(question.image_url) }
+    node(:thumb_image_url) { |question| url_with_protocol_and_host(question.image_url(:thumb)) }
+  end
+
   case question.type
   when 'Question::Brief'
     child(:brief_solution) do
