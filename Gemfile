@@ -1,7 +1,6 @@
 source 'https://rubygems.org'
 
 gem 'rails', '3.2.12'
-gem 'mysql2'
 gem 'cancan'
 gem 'jquery-rails', '~> 2.2.1'
 gem 'devise', '~> 2.2.3'
@@ -15,6 +14,14 @@ gem 'ransack', '~> 0.7.2'
 gem 'rabl', '~> 0.8.4'
 gem 'carrierwave', '~> 0.8.0'
 gem 'mini_magick', '~> 3.5.0'
+
+# on default
+gem 'mysql2'
+
+# on heroku
+# gem 'thin'
+# gem 'pg'
+# gem 'heroku'
 
 group :assets do
   gem 'sass-rails',   '~> 3.2'
