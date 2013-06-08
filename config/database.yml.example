@@ -1,0 +1,30 @@
+development:
+  adapter: postgresql
+  encoding: unicode
+  database: giftbase_development
+  pool: 5
+  host: localhost
+  port: 5432
+  username: postgres
+  password: 791126
+
+test:
+  adapter: postgresql
+  encoding: unicode
+  database: giftbase_test
+  pool: 5
+  host: localhost
+  port: 5432
+  username: postgres
+  password: 791126
+
+production:
+  adapter: postgresql
+  encoding: unicode
+  database: giftbase_production
+  pool: 5
+  host: localhost
+  port: 5432
+  username: postgres
+  password: 791126
+

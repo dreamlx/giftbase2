@@ -1,9 +1,11 @@
 class Question < ActiveRecord::Base
+  mount_uploader :image, ImageUploader
+
   has_many :question_line_items
   has_one :user_question
   has_one :user, through: :user_question
   
-  attr_accessible :hint, :level, :subject
+  attr_accessible :hint, :level, :subject, :image, :image_cache
 
   validates :subject, :level, presence: true
 

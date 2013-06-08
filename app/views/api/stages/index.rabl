@@ -1,3 +1,3 @@
 collection @stages
 
-extends '/api/stages/show'
+extends '/api/stages/item'

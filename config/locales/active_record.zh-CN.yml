@@ -16,6 +16,7 @@ zh-CN:
         subject: 题干
         hint: 解题提示
         level: 难度
+        image: 附图
       question/brief:
         brief_solution: 解答
       question/single_choice:
@@ -75,6 +76,8 @@ zh-CN:
         name: 名称
         description: 描述
         price: 价格
+        video: 视频
+        video_poster: 视频预览图
       credit_line_item:
         created_at: 时间
         amount: 点数

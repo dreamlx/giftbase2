@@ -1,7 +1,10 @@
 <div class="item">
   <div class="header clearfix">
     <div class="type pull-left">
-      <%= question_line_item.position %>. <%= question.class.model_name.human %>
+      <% if actions[:remove_from_unit] %>
+        <%= question_line_item.position %>.
+      <% end -%>
+      <%= question.class.model_name.human %>
     </div>
 
     <div class="actions pull-right">
@@ -30,8 +33,17 @@
   </div>
 
   <div class="content">
-    <%= "#{question_group.name}: #{item_index.to_i + 1}" %>
-    <%= simple_format(h(question.subject)) %>
+    <div class="clearfix">
+      <div class="pull-left">
+        <%= simple_format(h(question.subject)) %>
+      </div>
+      <div>
+        <% if question.image? %>
+          <%= link_to image_tag(question.image_url(:thumb)), question.image_url, class: 'pull-right' %>
+        <% end -%>
+      </div>
+    </div>
+
     <%= render "/admin/questions/#{question.class.name.underscore}/show", { question: question } %>
   </div>
 
