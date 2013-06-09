@@ -23,10 +23,8 @@ class OrdersController < ApplicationController
   def pay
     @order = current_user.orders.find(params[:id])
 
-    if @order.can_pay?
-      @order.fire_state_event(:pay)
+    unless @order.can_pay?
+      redirect_to @order
     end
-    
-    redirect_to @order, notice: t("success", scope: "flash.controller.orders.pay")
   end
 end

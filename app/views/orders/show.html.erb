@@ -17,5 +17,5 @@
 </dl>
 
 <% if @order.can_pay? %>
-  <%= link_to '支付宝付款 (直接完成)', pay_order_path(@order), method: :post, class: 'btn btn-primary' %>
+  <%= link_to '支付宝付款', pay_order_path(@order), method: :post, class: 'btn btn-primary' %>
 <% end -%>

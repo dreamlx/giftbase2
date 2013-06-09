@@ -13,6 +13,10 @@
 <% end %>
 
 <dl class="dl-horizontal">
+  <% if @stage.grade %>
+    <dt><%= Stage.human_attribute_name(:grade) %></dt>
+    <dd><%= link_to @stage.grade.name, admin_grade_path(@stage.grade) %></dd>
+  <% end -%>
   <dt><%= Stage.human_attribute_name(:name) %></dt>
   <dd><%= @stage.name %></dd>
   <dt><%= Stage.human_attribute_name(:description) %></dt>
@@ -22,7 +26,13 @@
 </dl>
 
 <% if @stage.video? %>
-  <link href="http://vjs.zencdn.net/4.0/video-js.css" rel="stylesheet">
-  <script src="http://vjs.zencdn.net/4.0/video.js"></script>
-  <%= video_tag(@stage.video_url, controls: true, poster: @stage.video_poster_url, class: 'video-js vjs-default-skin') %>
+  <div class="clearfix">
+    <link href="http://vjs.zencdn.net/4.0/video-js.css" rel="stylesheet">
+    <script src="http://vjs.zencdn.net/4.0/video.js"></script>
+    <%= video_tag(@stage.video_url, controls: true, poster: @stage.video_poster_url, class: 'video-js vjs-default-skin') %>
+  </div>
 <% end -%>
+
+<hr>
+
+<%= render '/admin/units/list', { units: @stage.units } %>

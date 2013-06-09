@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130529055856) do
+ActiveRecord::Schema.define(:version => 20130606024621) do
 
   create_table "answers", :force => true do |t|
     t.integer  "exam_id"
@@ -82,6 +82,13 @@ ActiveRecord::Schema.define(:version => 20130529055856) do
 
   add_index "fill_in_blank_solutions", ["position"], :name => "index_fill_in_blank_solutions_on_position"
   add_index "fill_in_blank_solutions", ["question_id"], :name => "index_fill_in_blank_solutions_on_question_id"
+
+  create_table "grades", :force => true do |t|
+    t.string   "name"
+    t.text     "description"
+    t.datetime "created_at",  :null => false
+    t.datetime "updated_at",  :null => false
+  end
 
   create_table "matching_solutions", :force => true do |t|
     t.integer  "question_id"
@@ -184,7 +191,10 @@ ActiveRecord::Schema.define(:version => 20130529055856) do
     t.datetime "updated_at",                                 :null => false
     t.string   "video"
     t.string   "video_poster"
+    t.integer  "grade_id"
   end
+
+  add_index "stages", ["grade_id"], :name => "index_stages_on_grade_id"
 
   create_table "stages_users", :id => false, :force => true do |t|
     t.integer "stage_id"

@@ -7,6 +7,7 @@
         <li class="<%= 'active' if controller.class.to_s == 'Admin::QuestionsController' %>"><%= link_to Question.model_name.human, admin_questions_path %></li>
         <li class="<%= 'active' if controller.class.to_s == 'Admin::UnitsController' %>"><%= link_to Unit.model_name.human, admin_units_path %></li>
         <li class="<%= 'active' if controller.class.to_s == 'Admin::StagesController' %>"><%= link_to Stage.model_name.human, admin_stages_path %></li>
+        <li class="<%= 'active' if controller.class.to_s == 'Admin::GradesController' %>"><%= link_to Grade.model_name.human, admin_grades_path %></li>
         <li class="<%= 'active' if (controller.class.to_s == 'Admin::ExamsController') || (controller.class.to_s == 'Admin::ReviewsController') %>"><%= link_to Exam.model_name.human, admin_exams_path %></li>
         <li class="<%= 'active' if controller.class.to_s == 'Admin::ReportsController' %>"><%= link_to t('report'), admin_reports_path %></li>
         <li class="<%= 'active' if controller.class.to_s == 'Admin::OrdersController' %>"><%= link_to Order.model_name.human, admin_orders_path %></li>

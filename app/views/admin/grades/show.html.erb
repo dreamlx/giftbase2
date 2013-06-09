@@ -1,0 +1,22 @@
+<% content_for :title_bar do %>
+  <h1><%= Grade.model_name.human %></h1>
+  <div class="toolbar">
+    <%= link_to t("edit", scope: "crud"), edit_admin_grade_path(@grade), class: 'btn btn-primary' %>
+    <div class="btn-group">
+      <button class="btn dropdown-toggle" data-toggle="dropdown"><%= t("more", scope: "crud") %> <span class="caret"></span></button>
+      <ul class="dropdown-menu pull-right">
+        <li><%= link_to t("destroy", scope: "crud"), admin_grade_path(@grade), confirm: t("destroy", scope: "crud.confirmation"), method: :delete %></li>
+      </ul>
+    </div>
+    <%= link_to t("back", scope: "crud"), admin_grades_path, class: 'btn' %>
+  </div>
+<% end %>
+
+<dl class="dl-horizontal">
+  <dt><%= Grade.human_attribute_name(:name) %></dt>
+  <dd><%= @grade.name %></dd>
+  <dt><%= Grade.human_attribute_name(:description) %></dt>
+  <dd><%= @grade.description %></dd>
+</dl>
+
+<%= render '/admin/stages/list', { stages: @grade.stages } %>
