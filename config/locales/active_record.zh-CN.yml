@@ -78,6 +78,11 @@ zh-CN:
         price: 价格
         video: 视频
         video_poster: 视频预览图
+        grade_id: 所属年级
+        grade: 所属年级
+      grade:
+        name: 名称
+        description: 描述
       credit_line_item:
         created_at: 时间
         amount: 点数
@@ -100,6 +105,7 @@ zh-CN:
       credit: 点数
       order: 订单
       stage: 试卷套装
+      grade: 年级
       credit_line_item: 消费记录
 
     state_machines:

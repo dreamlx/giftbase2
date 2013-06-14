@@ -1,4 +1,7 @@
 Giftbase::Application.routes.draw do
+  get '/alipay/done/:order_number' => 'alipay#done', as: :done_alipay
+  post '/alipay/notify/:order_number' => 'alipay#notify', as: :notify_alipay
+
   resources :stages, only: [:index, :show] do
     member do
       post 'purchase'
@@ -14,6 +17,8 @@ Giftbase::Application.routes.draw do
   resources :credits, only: [:index]
 
   namespace :api do
+    resources :grades
+    
     resources :stages
     
     resources :exams
@@ -26,6 +31,8 @@ Giftbase::Application.routes.draw do
   end
 
   namespace :admin do
+    resources :grades
+    
     resources :credit_line_items, only: [:index, :show] do
       collection do
         get 'with_order'

@@ -1,0 +1,20 @@
+正在转到支付宝...
+
+<% payment_service_for order.number, ActiveMerchant::Billing::Integrations::Alipay::ACCOUNT, service: :alipay, html: { id: 'alipay-form', method: :get } do |service| %>
+  <% service.total_fee order.total %>
+  <% service.seller email: ActiveMerchant::Billing::Integrations::Alipay::EMAIL %>
+  <% service.notify_url notify_alipay_url(order.number) %>
+  <% service.return_url done_alipay_url(order.number) %>
+  <% service.charset "utf-8" %>
+  <% service.service ActiveMerchant::Billing::Integrations::Alipay::Helper::CREATE_DIRECT_PAY_BY_USER %>
+  <% service.payment_type 1 %>
+  <% service.subject "#{Order.model_name.human} #{order.number}" %>
+  <% service.sign %>
+<% end -%>
+
+<%= javascript_tag do %>
+  $(function() {
+    $('#alipay-form div:first-child').remove();
+    $('#alipay-form').submit();
+  });
+<% end %>

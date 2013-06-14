@@ -5,28 +5,4 @@
   </div>
 <% end %>
 
-<table class="table table-bordered table-striped">
-  <thead>
-    <tr>
-      <th><%= Unit.human_attribute_name(:stage) %></th>
-      <th><%= Unit.human_attribute_name(:name) %></th>
-      <th><%= Unit.human_attribute_name(:exam_minutes) %></th>
-      <th><%= User.human_attribute_name(:email) %></th>
-      <th></th>
-    </tr>
-  </thead>
-  <tbody>
-    <% @units.each do |unit| %>
-      <tr>
-        <td><%= unit.stage.try(:name) %></td>
-        <td><%= unit.name %></td>
-        <td><%= unit.exam_minutes %></td>
-        <td><%= unit.user.try(:email) %></td>
-        <td class="control span2">
-          <%= link_to t("show", scope: "crud"), admin_unit_path(unit) %>
-          <%= link_to t("edit", scope: "crud"), edit_admin_unit_path(unit) %>
-        </td>
-      </tr>
-    <% end %>
-  </tbody>
-</table>
+<%= render 'list', { units: @units } %>

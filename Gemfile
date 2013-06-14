@@ -14,6 +14,9 @@ gem 'ransack', '~> 0.7.2'
 gem 'rabl', '~> 0.8.4'
 gem 'carrierwave', '~> 0.8.0'
 gem 'mini_magick', '~> 3.5.0'
+gem 'ruby-hmac'
+gem 'activemerchant', '~> 1.21.0', require: "active_merchant"
+gem 'activemerchant_patch_for_china', '~> 0.2.0'
 
 # on default
 gem 'mysql2'
