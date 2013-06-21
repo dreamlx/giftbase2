@@ -17,7 +17,7 @@
   <tbody>
     <% @exams.each do |exam| %>
       <tr>
-        <td><%= exam.unit.name %></td>
+        <td><%= exam.unit.name unless exam.unit.nil?%></td>
         <td></td>
         <td><%= l(exam.stopped_at.to_date, format: :long) unless exam.stopped_at.nil?%></td>
         <td><%= exam.duration.to_i / 60 %> min</td>
