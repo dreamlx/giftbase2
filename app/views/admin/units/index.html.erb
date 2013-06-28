@@ -5,4 +5,15 @@
   </div>
 <% end %>
 
+<%= search_form_for([:admin, @q], html: { class: 'well' }) do |f| %>
+  <div class="controls-row">
+    <%= f.select :stage_grade_id_eq, [[t('all'), '']] + Grade.all.map { |g| [g.name, g.id] }, {}, { class: 'span3' } %>
+    <%= f.text_field :name_cont, placeholder: t('search_by', attr_name: Unit.human_attribute_name(:name)), class: 'span6' %>
+    <div class="text-right">
+      <%= f.submit t('search'), class: 'btn btn-primary' %>
+    </div>
+  </div>
+<% end %>
+
+
 <%= render 'list', { units: @units } %>

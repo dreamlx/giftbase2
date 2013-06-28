@@ -53,15 +53,15 @@ class Exam < ActiveRecord::Base
     unit.question_line_items.each do |question_line_item|
       params[:exam][:answers_attributes] << case question_line_item.question.type
       when 'Question::SingleChoice'
-        { question_line_item_id: question_line_item.id, option_id: question_line_item.question.single_choice_options.first.id }
+        { question_line_item_id: question_line_item.id, image: nil, option_id: question_line_item.question.single_choice_options.first.id }
       when 'Question::MultipleChoice'
-        { question_line_item_id: question_line_item.id, option_ids: question_line_item.question.multiple_choice_option_ids }
+        { question_line_item_id: question_line_item.id, image: nil, option_ids: question_line_item.question.multiple_choice_option_ids }
       when 'Question::Brief'
-        { question_line_item_id: question_line_item.id, content: 'Lorem test data for brief question.' }
+        { question_line_item_id: question_line_item.id, image: nil, content: 'Lorem test data for brief question.' }
       when 'Question::FillInBlank'
-        { question_line_item_id: question_line_item.id, contents: question_line_item.question.fill_in_blank_solutions.count.times.map { |i| "Test fill in blank #{i}" } }
+        { question_line_item_id: question_line_item.id, image: nil, contents: question_line_item.question.fill_in_blank_solutions.count.times.map { |i| "Test fill in blank #{i}" } }
       when 'Question::Matching'
-        { question_line_item_id: question_line_item.id, matches: [] }
+        { question_line_item_id: question_line_item.id, image: nil, matches: [] }
       end
     end
 

@@ -49,6 +49,7 @@ zh-CN:
             failure: "结算失败，可能还有回答没有批阅"
             success: "结算完成"
 
+  all: 全部
   dashboard: 信息中心
   powered_by: "&copy; 2013 Giftbase天才训练营"
   account: 帐户
