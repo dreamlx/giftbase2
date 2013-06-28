@@ -34,10 +34,10 @@ class Question::Matching < Question
   private
 
   def compare_answer_matches(answer)
-    return false unless answer.matches.size == matching_solutions.count
+    return false unless answer.matches.size == matching_solutions.connected.count
 
     hashed_matching_solutions = Hash.new { |h, k| h[k] = [] }
-    matching_solutions.each do |matching_solution|
+    matching_solutions.connected.each do |matching_solution|
       hashed_matching_solutions[matching_solution.hashed_source] << matching_solution.hashed_target
     end
 

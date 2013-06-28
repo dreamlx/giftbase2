@@ -1,2 +1,7 @@
 <h3><%= Answer.model_name.human %></h3>
+
 <%= render "/admin/answers/#{question.class.name.underscore}/show", { question: question, answer: answer } %>
+
+<% if answer.image? %>
+  <%= link_to image_tag(answer.image_url), answer.image_url, class: 'pull-right' %>
+<% end -%>

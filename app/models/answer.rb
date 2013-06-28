@@ -6,7 +6,7 @@ class Answer < ActiveRecord::Base
 
   store :data, accessors: [ :option_id, :option_ids, :content, :contents, :matches ]
 
-  attr_accessible :comment, :point, :reviewed_at, :question_line_item_id, :option_id, :option_ids, :content, :contents, :matches
+  attr_accessible :comment, :point, :reviewed_at, :image, :image_cache, :question_line_item_id, :option_id, :option_ids, :content, :contents, :matches
 
   scope :unreviewed, lambda { where('reviewed_at IS NULL') }
   scope :reviewed, lambda { where('reviewed_at NOT NULL') }

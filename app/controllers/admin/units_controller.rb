@@ -1,12 +1,13 @@
 module Admin
   class UnitsController < Admin::BaseController
     def index
-      if current_user.role == 'admin'
-        @units = Unit.all
+      @units = if current_user.role == 'admin'
+        Unit.scoped
       else
-        @units = Unit.only_owner(current_user).all
+        Unit.only_owner(current_user)
       end
-      # TODO: need cancan 
+      @q = @units.search(params[:q])
+      @units = @q.result(distinct: true).order("updated_at DESC")
     end
 
     def show
