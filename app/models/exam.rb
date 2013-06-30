@@ -3,7 +3,7 @@ class Exam < ActiveRecord::Base
   belongs_to :user
   has_many :answers, dependent: :destroy
 
-  attr_accessible :started_at, :stopped_at, :unit_id, :answers_attributes
+  attr_accessible :started_at, :stopped_at, :unit_id, :user_id, :answers_attributes
 
   accepts_nested_attributes_for :answers
 
