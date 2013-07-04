@@ -1,5 +1,5 @@
 module Api
-  class QuestionLineItemsController < ApplicationController
+  class QuestionLineItemsController < Api::BaseController
     before_filter :load_unit, :load_question_group
 
     def index
