@@ -1,3 +1,3 @@
 collection @units
 
-extends '/api/units/show'
+extends '/api/units/item'

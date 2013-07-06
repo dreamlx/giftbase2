@@ -1,4 +1,6 @@
 class Answer < ActiveRecord::Base
+  mount_uploader :image, ImageUploader
+
   belongs_to :exam
   belongs_to :question_line_item
 

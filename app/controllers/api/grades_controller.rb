@@ -1,5 +1,5 @@
 module Api
-  class GradesController < ApplicationController
+  class GradesController < Api::BaseController
     def index
       @grades = Grade.all
     end

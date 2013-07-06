@@ -17,13 +17,25 @@ Giftbase::Application.routes.draw do
   resources :credits, only: [:index]
 
   namespace :api do
+    resource :credit
+
+    resource :profile
+    
     resources :grades
     
-    resources :stages
+    resources :stages do
+      collection do
+        get 'mine'
+      end
+    end
     
     resources :exams
     
     resources :units, only: [:index, :show] do
+      collection do
+        get 'mine'
+      end
+      
       resources :question_groups, only: [:index, :show] do
         resources :question_line_items, only: [:index, :show]
       end
@@ -79,7 +91,10 @@ Giftbase::Application.routes.draw do
     match '/', to: 'dashboard#index'
   end
 
-  devise_for :users
+  devise_for :users, controllers: {
+    sessions: 'sessions',
+    registrations: 'registrations'
+  }
 
   root :to => 'home#index'
 end

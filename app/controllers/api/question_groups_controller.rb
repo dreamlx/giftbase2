@@ -1,5 +1,5 @@
 module Api
-  class QuestionGroupsController < ApplicationController
+  class QuestionGroupsController < Api::BaseController
     before_filter :load_unit
 
     def index
