@@ -9,8 +9,9 @@ module Api
     def create
       @exam = Exam.new(params[:exam])
       @exam.user = current_user
-
-      if @exam.save
+      if @exam.unit_id.nil?
+        render json: {:errors =>"unit id can't null"}, status: :unprocessable_entity
+      elsif @exam.save
         render json: @exam, status: :created, location: api_exam_path(@exam)
       else
         render json: @exam.errors, status: :unprocessable_entity
