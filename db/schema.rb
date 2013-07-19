@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130701043152) do
+ActiveRecord::Schema.define(:version => 20130719032420) do
 
   create_table "answers", :force => true do |t|
     t.integer  "exam_id"
@@ -68,8 +68,10 @@ ActiveRecord::Schema.define(:version => 20130701043152) do
     t.datetime "stopped_at"
     t.datetime "created_at", :null => false
     t.datetime "updated_at", :null => false
+    t.string   "state"
   end
 
+  add_index "exams", ["state"], :name => "index_exams_on_state"
   add_index "exams", ["unit_id"], :name => "index_exams_on_unit_id"
   add_index "exams", ["user_id"], :name => "index_exams_on_user_id"
 

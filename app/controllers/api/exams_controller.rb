@@ -20,5 +20,14 @@ module Api
     def show
       @exam = current_user.exams.find(params[:id])
     end
+
+    def finish_uploading
+      @exam = current_user.exams.find(params[:id])
+
+      if @exam.can_finish_uploading?
+        @exam.fire_state_event(:finish_uploading)
+      end
+      render json: @exam
+    end
   end
 end
