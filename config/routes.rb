@@ -29,7 +29,13 @@ Giftbase::Application.routes.draw do
       end
     end
     
-    resources :exams
+    resources :exams do
+      member do
+        post :finish_uploading
+      end
+
+      resources :answers, only: [:update, :show]
+    end
     
     resources :units, only: [:index, :show] do
       collection do

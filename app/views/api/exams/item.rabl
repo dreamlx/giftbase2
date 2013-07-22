@@ -1,4 +1,4 @@
-attributes :id, :started_at, :stopped_at
+attributes :id, :started_at, :stopped_at, :state
 
 child(:unit) do
   extends '/api/units/item'

@@ -3,8 +3,8 @@
 
   <div class="form-inputs">
     <%= f.association :grade %>
-    <%= f.input :name %>
-    <%= f.input :description %>
+    <%= f.input :name, input_html: { class: 'span12' } %>
+    <%= f.input :description, input_html: { class: 'span12' } %>
     <%= f.input :price %>
 
     <div class="control-group stage_video">

@@ -7,7 +7,20 @@ class Exam < ActiveRecord::Base
 
   accepts_nested_attributes_for :answers
 
-  after_create :auto_review
+  validates :unit, :user, presence: true
+
+  state_machine :state, initial: :uploading do
+    state :uploading, :placed, :reviewed
+
+    event :finish_uploading do
+      transition :uploading => :placed
+    end
+    after_transition :uploading => :placed, :do => [:auto_review]
+
+    event :finish_review do
+      transition :placed => :reviewed
+    end
+  end
 
   def duration
     if started_at.blank? or stopped_at.blank?
