@@ -7,7 +7,7 @@ class User < ActiveRecord::Base
          :token_authenticatable
 
   # Setup accessible (or protected) attributes for your model
-  attr_accessible :email, :password, :password_confirmation, :remember_me, :role
+  attr_accessible :email, :password, :password_confirmation, :remember_me, :role, :avatar
   # attr_accessible :title, :body
   
   has_many :user_questions
@@ -25,6 +25,8 @@ class User < ActiveRecord::Base
   after_create :create_its_credit
 
   has_many :orders
+
+  mount_uploader :avatar, ImageUploader
 
 protected
 
