@@ -1,4 +1,4 @@
-                                             done_alipay GET    /alipay/done/:order_number(.:format)                                                                                 alipay#done
+                                             dadfsdfone_alipay GET    /alipay/done/:order_number(.:format)                                                                                 alipay#done
                                            notify_alipay POST   /alipay/notify/:order_number(.:format)                                                                               alipay#notify
                                           purchase_stage POST   /stages/:id/purchase(.:format)                                                                                       stages#purchase
                                                   stages GET    /stages(.:format)                                                                                                    stages#index
