@@ -4,6 +4,7 @@ module Api
 
     def show
       @user = current_user
+      render json: @user
     end
 
     def update
