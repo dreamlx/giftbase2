@@ -21,6 +21,7 @@ zh-CN:
     showing: "%{model}详细信息"
     add: "添加更多%{model}"
     save: 保存
+    upload: 上传
 
   flash: 
     controller: 

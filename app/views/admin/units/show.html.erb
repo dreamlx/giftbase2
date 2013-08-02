@@ -22,3 +22,13 @@
 <% end -%>
 
 <%= link_to t("add", scope: "crud", model: QuestionGroup.model_name.human), new_admin_unit_question_group_path(@unit), class: 'btn btn-block' %>
+
+<h3><%= MapPlace.model_name.human %></h3>
+
+<div>
+  <%= render '/admin/map_places/list', { map_places: @unit.map_places } %>
+</div>
+
+<div id="new-map-place-container">
+  <%= link_to t('crud.add', model: MapPlace.model_name.human), new_admin_unit_map_place_path(@unit), remote: true, class: 'btn btn-primary' %>
+</div>

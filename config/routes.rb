@@ -49,7 +49,9 @@ Giftbase::Application.routes.draw do
   end
 
   namespace :admin do
-    resources :grades
+    resources :grades do
+      resources :pictures, only: [:new, :create, :destroy]
+    end
     
     resources :credit_line_items, only: [:index, :show] do
       collection do
@@ -60,7 +62,9 @@ Giftbase::Application.routes.draw do
 
     resources :orders, only: [:index, :show]
     
-    resources :stages
+    resources :stages do
+      resources :map_places, only: [:new, :create, :destroy]
+    end
 
     resources :exams, only: [:index, :show] do
       member do
@@ -88,6 +92,8 @@ Giftbase::Application.routes.draw do
           post 'remove_question'
         end
       end
+
+      resources :map_places, only: [:new, :create, :destroy]
     end
 
     resources :questions

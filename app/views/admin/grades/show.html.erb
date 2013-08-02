@@ -20,3 +20,11 @@
 </dl>
 
 <%= render '/admin/stages/list', { stages: @grade.stages } %>
+
+<div class="">
+  <%= render '/admin/pictures/list', { pictures: @grade.pictures } %>
+</div>
+
+<div id="new-picture-container">
+  <%= link_to t('crud.add', model: Picture.model_name.human), new_admin_grade_picture_path(@grade), remote: true, class: 'btn btn-primary' %>
+</div>

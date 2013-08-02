@@ -36,3 +36,11 @@
 <hr>
 
 <%= render '/admin/units/list', { units: @stage.units } %>
+
+<div>
+  <%= render '/admin/map_places/list', { map_places: @stage.map_places } %>
+</div>
+
+<div id="new-map-place-container">
+  <%= link_to t('crud.add', model: MapPlace.model_name.human), new_admin_stage_map_place_path(@stage), remote: true, class: 'btn btn-primary' %>
+</div>
