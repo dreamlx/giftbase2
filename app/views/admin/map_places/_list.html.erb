@@ -1,0 +1,22 @@
+<table class="table table-bordered table-striped">
+  <thead>
+    <tr>
+      <th><%= MapPlace.human_attribute_name(:x) %></th>
+      <th><%= MapPlace.human_attribute_name(:y) %></th>
+      <th><%= MapPlace.human_attribute_name(:version) %></th>
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+    <% map_places.each do |map_place| %>
+      <tr>
+        <td><%= map_place.x %></td>
+        <td><%= map_place.y %></td>
+        <td><%= map_place.version %></td>
+        <td class="control span2">
+          <%= link_to t('crud.destroy'), [:admin, map_place.placeable, map_place], confirm: t("destroy", scope: "crud.confirmation"), method: :delete %>
+        </td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>

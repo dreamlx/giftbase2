@@ -1,0 +1,18 @@
+<div class="row-fluid">
+  <ul class="thumbnails">
+    <% pictures.each do |picture| %>
+      <li class="span2">
+        <div class="thumbnail">
+          <%= link_to picture.image_url, target: '_blank' do %>
+            <%= image_tag(picture.image_url(:thumb)) %>
+          <% end -%>
+          <div class="caption text-center">
+            <strong><%= picture.name %></strong>
+            <p><%= picture.version %></p>
+            <%= link_to t('crud.destroy'), [:admin, picture.imageable, picture], confirm: t("destroy", scope: "crud.confirmation"), method: :delete, class: 'btn btn-mini' %>
+          </div>
+        </div>
+      </li>
+    <% end -%>
+  </ul>
+</div>

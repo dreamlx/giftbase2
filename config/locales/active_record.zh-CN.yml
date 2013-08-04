@@ -86,6 +86,14 @@ zh-CN:
       credit_line_item:
         created_at: 时间
         amount: 点数
+      picture:
+        name: 名称
+        version: 版本
+        image: 图片
+      map_place:
+        x: X坐标
+        y: Y坐标
+        version: 版本
     models:
       user: 用户
       question: 题目
@@ -107,6 +115,8 @@ zh-CN:
       stage: 试卷套装
       grade: 年级
       credit_line_item: 消费记录
+      picture: 图片
+      map_place: 地图位置
 
     state_machines:
       order:

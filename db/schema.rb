@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130731085915) do
+ActiveRecord::Schema.define(:version => 20130731065943) do
 
   create_table "answers", :force => true do |t|
     t.integer  "exam_id"
@@ -93,6 +93,18 @@ ActiveRecord::Schema.define(:version => 20130731085915) do
     t.datetime "updated_at",  :null => false
   end
 
+  create_table "map_places", :force => true do |t|
+    t.integer  "x"
+    t.integer  "y"
+    t.string   "version"
+    t.integer  "placeable_id"
+    t.string   "placeable_type"
+    t.datetime "created_at",     :null => false
+    t.datetime "updated_at",     :null => false
+  end
+
+  add_index "map_places", ["placeable_id", "placeable_type"], :name => "index_map_places_on_placeable_id_and_placeable_type"
+
   create_table "matching_solutions", :force => true do |t|
     t.integer  "question_id"
     t.text     "source"
@@ -134,6 +146,18 @@ ActiveRecord::Schema.define(:version => 20130731085915) do
   add_index "orders", ["number"], :name => "index_orders_on_number"
   add_index "orders", ["state"], :name => "index_orders_on_state"
   add_index "orders", ["user_id"], :name => "index_orders_on_user_id"
+
+  create_table "pictures", :force => true do |t|
+    t.string   "name"
+    t.string   "version"
+    t.string   "image"
+    t.integer  "imageable_id"
+    t.string   "imageable_type"
+    t.datetime "created_at",     :null => false
+    t.datetime "updated_at",     :null => false
+  end
+
+  add_index "pictures", ["imageable_id", "imageable_type"], :name => "index_pictures_on_imageable_id_and_imageable_type"
 
   create_table "question_groups", :force => true do |t|
     t.string   "name"
@@ -247,8 +271,6 @@ ActiveRecord::Schema.define(:version => 20130731085915) do
     t.datetime "updated_at",                             :null => false
     t.string   "role"
     t.string   "authentication_token"
-    t.string   "avatar"
-    t.string   "gender"
   end
 
   add_index "users", ["authentication_token"], :name => "index_users_on_authentication_token", :unique => true

@@ -11,6 +11,7 @@ class Unit < ActiveRecord::Base
   
   has_one :user_unit
   has_one :user, through: :user_unit
+  has_many :map_places, as: :placeable, dependent: :destroy
   
   scope :only_owner, lambda { |user| user.unit_ids.blank? ? where("#{Unit.table_name}.id is null") : where("#{Unit.table_name}.id IN (?)", user.unit_ids) }
   
