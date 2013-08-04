@@ -10,8 +10,11 @@ module Api
     def update
       @user = current_user
       @user.avatar = params[:avatar]
-      @user.save!
-      render json: @user
+      if @user.save!
+        render json: @user
+      else
+        render json: @user.errors
+      end
     end
   end
 end
