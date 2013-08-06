@@ -17,7 +17,7 @@ gem 'mini_magick', '~> 3.5.0'
 gem 'ruby-hmac'
 gem 'activemerchant', '~> 1.21.0', require: "active_merchant"
 gem 'activemerchant_patch_for_china', '~> 0.2.0'
-
+gem 'yaml_db'
 # on default
 #gem 'mysql2'
 
