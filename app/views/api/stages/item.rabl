@@ -12,3 +12,7 @@ end
 child(:units) do
   extends '/api/units/index'
 end
+
+child(:map_places) do
+  extends '/api/map_places/index'
+end
