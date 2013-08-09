@@ -19,7 +19,11 @@ Giftbase::Application.routes.draw do
   namespace :api do
     resource :credit
 
-    resource :profile
+    resource :profiles do
+      collection do 
+        post :upload_avatar
+      end
+    end
     
     resources :grades
     
@@ -91,6 +95,10 @@ Giftbase::Application.routes.draw do
           post 'add_question'
           post 'remove_question'
         end
+      end
+
+      member do
+        post 'update_by_ajax'
       end
 
       resources :map_places, only: [:new, :create, :destroy]
