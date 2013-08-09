@@ -7,27 +7,28 @@ development:
   adapter: mysql2
   host: dreamlx2.mysql.rds.aliyuncs.com 
   port: 3306
-  database: exam001
-  username: exam001
-  password: exam2014
+  database: gifted_center
+  username: gifted_center
+  password: gifted2014
+
   encoding: utf8
 
 test:
   adapter: mysql2
   host: dreamlx2.mysql.rds.aliyuncs.com 
   port: 3306
-  database: exam001
-  username: exam001
-  password: exam2014
+  database: gifted_center
+  username: gifted_center
+  password: gifted2014
   encoding: utf8
 
 production:
   adapter: mysql2
   host: dreamlx2.mysql.rds.aliyuncs.com 
   port: 3306
-  database: exam001
-  username: exam001
-  password: exam2014
+  database: gifted_center
+  username: gifted_center
+  password: gifted2014
   encoding: utf8
 
 
