@@ -1,0 +1,3 @@
+$("#unit_<%= @unit.id%>").parent().append("<%= @unit.stage.try(:name)%>")
+$("#unit_<%= @unit.id%>").remove()
+
