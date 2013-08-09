@@ -1,4 +1,4 @@
-source 'https://rubygems.org'
+source 'http://ruby.taobao.org'
 
 gem 'rails', '3.2.12'
 gem 'cancan'
@@ -43,4 +43,5 @@ group :development do
   gem 'binding_of_caller', '~> 0.7.1'
   gem "rvm-capistrano"
   gem 'capistrano', '~> 2.12.0'
+  gem 'capistrano-ext'
 end
