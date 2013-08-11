@@ -22,9 +22,9 @@ gem 'yaml_db'
 gem 'mysql2'
 
 # on heroku
-# gem 'thin'
-# gem 'pg'
-# gem 'heroku'
+gem 'thin'
+gem 'pg'
+gem 'heroku'
 
 group :assets do
   gem 'sass-rails',   '~> 3.2'
