@@ -1,6 +1,7 @@
 module Admin
   class UnitsController < Admin::BaseController
     def index
+      @stages = Stage.all
       @units = if current_user.role == 'admin'
         Unit.scoped
       else
@@ -52,6 +53,18 @@ module Admin
       @unit.destroy
 
       redirect_to admin_units_url, notice: t("success", scope: "flash.controller.destroy", model: Unit.model_name.human)
+    end
+
+    def update_by_ajax
+      @unit = Unit.find(params[:id])
+      @unit.stage_id = params[:stage_id]
+      if @unit.save
+        respond_to do |format|
+          format.js
+        end
+      else
+        render action: "edit"
+      end
     end
   end
 end

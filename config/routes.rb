@@ -93,6 +93,10 @@ Giftbase::Application.routes.draw do
         end
       end
 
+      member do
+        post 'update_by_ajax'
+      end
+
       resources :map_places, only: [:new, :create, :destroy]
     end
 
