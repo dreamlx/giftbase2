@@ -18,13 +18,7 @@ gem 'ruby-hmac'
 gem 'activemerchant', '~> 1.21.0', require: "active_merchant"
 gem 'activemerchant_patch_for_china', '~> 0.2.0'
 gem 'yaml_db'
-# on default
-gem 'mysql2'
-
-# on heroku
 gem 'thin'
-gem 'pg'
-gem 'heroku'
 
 group :assets do
   gem 'sass-rails',   '~> 3.2'
@@ -44,4 +38,10 @@ group :development do
   gem "rvm-capistrano"
   gem 'capistrano', '~> 2.12.0'
   gem 'capistrano-ext'
+  gem 'pg'
+end
+
+group :production do
+  # on default
+  gem 'mysql2'
 end

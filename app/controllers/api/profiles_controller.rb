@@ -16,5 +16,15 @@ module Api
         render json: @user.errors
       end
     end
+
+    def upload_avatar
+      @user = current_user
+      @user.avatar = params[:avatar]
+      if @user.save!
+        render json: @user
+      else
+        render json: @user.errors
+      end
+    end
   end
 end
