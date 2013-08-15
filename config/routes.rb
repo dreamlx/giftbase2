@@ -19,7 +19,11 @@ Giftbase::Application.routes.draw do
   namespace :api do
     resource :credit
 
-    resource :profile
+    resource :profiles do
+      collection do 
+        post :upload_avatar
+      end
+    end
     
     resources :grades
     
