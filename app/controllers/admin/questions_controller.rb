@@ -4,11 +4,16 @@ module Admin
       @question_level_gteq = (params[:q] && params[:q][:level_gteq]) ? params[:q][:level_gteq].to_i : 1
       @question_level_lteq = (params[:q] && params[:q][:level_lteq]) ? params[:q][:level_lteq].to_i : 4
       @q = Question.only_owner(current_user).search(params[:q])
-      @questions = @q.result(distinct: true).order("updated_at DESC")
+      if !params[:question_id].blank?
+        @questions = Question.where("id = #{params[:question_id]}")
+      else
+        @questions = @q.result(distinct: true).order("updated_at DESC")
+      end
     end
 
     def show
       @question = Question.find(params[:id])
+      @units = @question.question_line_items.map{ |item| item.question_group.unit }
     end
 
     def new
@@ -66,5 +71,6 @@ module Admin
 
       redirect_to admin_questions_url, notice: t("success", scope: "flash.controller.destroy", model: Question.model_name.human)
     end
+
   end
 end
