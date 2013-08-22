@@ -13,7 +13,7 @@ class PosterUploader < CarrierWave::Uploader::Base
   include Sprockets::Helpers::IsolatedHelper
 
   # Choose what kind of storage to use for this uploader:
-  storage :file
+  storage :aliyun
   # storage :fog
 
   # Override the directory where uploaded files will be stored.
@@ -24,7 +24,7 @@ class PosterUploader < CarrierWave::Uploader::Base
 
   # Provide a default URL as a default if there hasn't been a file uploaded:
   def default_url
-    asset_path("fallback/default.png")
+    asset_path("fallback/" + model.class.to_s.underscore + '/' + [version_name, "default.png"].compact.join('_'))
   end
 
   # Process files as they are uploaded:

@@ -20,4 +20,4 @@
 
 /.rvmrc
 /config/database.yml
-/public/assets
+/config/initializers/carrierwave.rb
