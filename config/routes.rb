@@ -51,6 +51,9 @@ Giftbase::Application.routes.draw do
   namespace :admin do
     resources :grades do
       resources :pictures, only: [:new, :create, :destroy]
+      member do
+        post 'ranking'
+      end
     end
     
     resources :credit_line_items, only: [:index, :show] do
@@ -64,6 +67,9 @@ Giftbase::Application.routes.draw do
     
     resources :stages do
       resources :map_places, only: [:new, :create, :destroy]
+      member do
+        post 'ranking'
+      end
     end
 
     resources :exams, only: [:index, :show] do
@@ -95,8 +101,8 @@ Giftbase::Application.routes.draw do
 
       member do
         post 'update_by_ajax'
+        get  'order_by_point'
       end
-
       resources :map_places, only: [:new, :create, :destroy]
     end
 

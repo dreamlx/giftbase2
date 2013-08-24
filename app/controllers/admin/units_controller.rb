@@ -66,5 +66,12 @@ module Admin
         render action: "edit"
       end
     end
+
+    def order_by_point
+      @i = 0
+      @unit = Unit.find(params[:id])
+      @exams = Exam.all
+      @exams.sort!{|a,b| [b.total_point,b.duration.to_i] <=>  [a.total_point,b.duration.to_i]}
+    end
   end
 end

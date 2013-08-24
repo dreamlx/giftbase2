@@ -4,6 +4,8 @@ class Stage < ActiveRecord::Base
 
   belongs_to :grade
   has_many :units
+  has_many :exams, through: :units
+  has_many :answers, through: :exams
   has_and_belongs_to_many :users
   has_many :map_places, as: :placeable, dependent: :destroy
   

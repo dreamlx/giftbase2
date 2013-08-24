@@ -25,6 +25,8 @@ gem 'mysql2'
 gem 'thin'
 gem 'pg'
 gem 'heroku'
+gem 'pry-nav'
+gem 'pry'
 
 group :assets do
   gem 'sass-rails',   '~> 3.2'
