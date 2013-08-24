@@ -23,6 +23,7 @@
         <td class="control span2">
           <%= link_to t("show", scope: "crud"), admin_unit_path(unit) %>
           <%= link_to t("edit", scope: "crud"), edit_admin_unit_path(unit) %>
+          <%= link_to t("order", scope: "crud"), order_by_point_admin_unit_path(unit) %>
         </td>
       </tr>
     <% end %>
