@@ -1,3 +1,9 @@
+###updated 2013-08-26
+
+## 对于exam的错题统计
+curl -X GET "http://127.0.0.1:3000/api/exams/135/error.json/?auth_token=L1M1NXGpFayafaQasky7"
+135为exam的id
+
 ###updated 2013-07-30
 
 ## 注册用户, 指定性别 gender
