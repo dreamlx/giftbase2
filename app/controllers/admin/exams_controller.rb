@@ -25,5 +25,16 @@ module Admin
     def show
       @exam = Exam.find(params[:id])
     end
+
+    def error
+      @errors = Array.new
+      @exam = Exam.find(params[:id])
+      answers = Answer.where("exam_id = #{@exam.id}")
+      answers.each do |answer|
+        if answer.point < answer.question_line_item.point
+          @errors.push(answer)
+        end
+      end
+    end
   end
 end
