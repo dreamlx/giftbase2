@@ -1,3 +1,12 @@
+###updated 2013-08-27
+## unit,stage,grade的排名
+
+http://127.0.0.1:3000/api/grades/ranking.json/?id=1&order_type=1
+id为grade的id,order_type为排序的方式，1 是avg_ponit根据平均分排名 2.accuracy根据正确率来排名 3.avg_duration 根据评价时间来排名
+
+http://127.0.0.1:3000/api/grades/ranking.json/?id=1&order_type=1
+http://127.0.0.1:3000/api/units/order.json/?auth_token=L1M1NXGpFayafaQasky7&id=10
+
 ###updated 2013-08-26
 
 ## 对于exam的错题统计
