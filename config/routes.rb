@@ -25,17 +25,23 @@ Giftbase::Application.routes.draw do
       end
     end
     
-    resources :grades
-    
+    resources :grades do
+      collection do
+        get 'ranking'
+      end
+    end
+
     resources :stages do
       collection do
         get 'mine'
+        get 'ranking'
       end
     end
     
     resources :exams do
       member do
         post :finish_uploading
+        get  :error 
       end
 
       resources :answers, only: [:update, :show]
@@ -44,6 +50,7 @@ Giftbase::Application.routes.draw do
     resources :units, only: [:index, :show] do
       collection do
         get 'mine'
+        get 'order'
       end
       
       resources :question_groups, only: [:index, :show] do
@@ -80,6 +87,7 @@ Giftbase::Application.routes.draw do
       member do
         post :start_review
         post :finish_review
+        get  :error 
       end
 
       get 'question_groups/:question_group_id/question_line_items/:question_line_item_id/review' => 'reviews#show', as: 'review'
@@ -122,5 +130,9 @@ Giftbase::Application.routes.draw do
     registrations: 'registrations'
   }
 
+  scope "/admin" do
+    resources :users
+  end
+  
   root :to => 'home#index'
 end

@@ -23,6 +23,7 @@ zh-CN:
     save: 保存
     upload: 上传
     order: 排序
+    error: 错题
 
   order_type:
     order: 排名方式  
