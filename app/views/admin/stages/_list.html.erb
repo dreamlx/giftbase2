@@ -22,6 +22,7 @@
         <td class="control span2">
           <%= link_to t("show", scope: "crud"), admin_stage_path(stage) %>
           <%= link_to t("edit", scope: "crud"), edit_admin_stage_path(stage) %>
+          <%= link_to t("order",scope: "crud"), ranking_admin_stage_path(stage), :method => 'post'%>
         </td>
       </tr>
     <% end %>

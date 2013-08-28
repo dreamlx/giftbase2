@@ -1,0 +1,22 @@
+<table class="table table-bordered table-striped">
+  <thead>
+    <tr>
+      <th><%= Exam.human_attribute_name(:unit) %></th>
+      <th><%= Exam.human_attribute_name(:user) %></th>
+      <th><%= Exam.human_attribute_name(:duration) %></th>
+      <th><%= Exam.human_attribute_name(:point) %></th>
+      <th>排名</th>
+    </tr>
+  </thead>
+  <tbody>
+    <%= @exams.each do |exam| %>
+      <tr>
+        <td><%= exam.unit.try(:name)%></td>s
+        <td><%= exam.user.try(:id) %></td>
+        <td><%= exam.duration.to_i / 60 %></td>
+        <td><%= exam.total_point %></td>
+        <td><%= @i+=1%>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
