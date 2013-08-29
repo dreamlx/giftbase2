@@ -7,9 +7,16 @@ class User < ActiveRecord::Base
          :token_authenticatable
 
   # Setup accessible (or protected) attributes for your model
-  attr_accessible :email, :password, :password_confirmation, :remember_me, :role, :avatar, :gender
+  attr_accessible :username, :email, :password, :password_confirmation, 
+                  :remember_me, :role, :avatar, :gender, :useravatar
   # attr_accessible :title, :body
-  
+  attr_accessor :login
+
+  validates :username,
+    :uniqueness => {
+      :case_sensitive => false
+    }
+
   has_many :user_questions
   has_many :questions, through: :user_questions
   has_many :exams, dependent: :destroy
@@ -28,7 +35,16 @@ class User < ActiveRecord::Base
 
   mount_uploader :avatar, ImageUploader
 
-protected
+  def self.find_first_by_auth_conditions(warden_conditions)
+    conditions = warden_conditions.dup
+    if login = conditions.delete(:login)
+      where(conditions).where(["lower(username) = :value OR lower(email) = :value", { :value => login.downcase }]).first
+    else
+      where(conditions).first
+    end
+  end
+
+  protected
 
   def create_its_credit
     self.create_credit

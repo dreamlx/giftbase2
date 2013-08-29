@@ -130,5 +130,9 @@ Giftbase::Application.routes.draw do
     registrations: 'registrations'
   }
 
+  scope "/admin" do
+    resources :users
+  end
+  
   root :to => 'home#index'
 end

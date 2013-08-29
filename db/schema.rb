@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130731085915) do
+ActiveRecord::Schema.define(:version => 20130829065151) do
 
   create_table "answers", :force => true do |t|
     t.integer  "exam_id"
@@ -273,10 +273,13 @@ ActiveRecord::Schema.define(:version => 20130731085915) do
     t.string   "authentication_token"
     t.string   "avatar"
     t.string   "gender"
+    t.string   "username"
+    t.integer  "avatar_id"
   end
 
   add_index "users", ["authentication_token"], :name => "index_users_on_authentication_token", :unique => true
   add_index "users", ["email"], :name => "index_users_on_email", :unique => true
   add_index "users", ["reset_password_token"], :name => "index_users_on_reset_password_token", :unique => true
+  add_index "users", ["username"], :name => "index_users_on_username", :unique => true
 
 end
