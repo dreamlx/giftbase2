@@ -26,15 +26,11 @@ module Admin
       @exam = Exam.find(params[:id])
     end
 
-    def error
-      @errors = Array.new
+    def wrong_answer
+      @wrong_answers_array = Array.new
       @exam = Exam.find(params[:id])
-      answers = Answer.where("exam_id = #{@exam.id}")
-      answers.each do |answer|
-        if answer.point < answer.question_line_item.point
-          @errors.push(answer)
-        end
-      end
+      @wrong_answers_array.push(wrong_item(@exam))
+      render "/admin/answers/wrong_answers", :object => @wrong_answers_array
     end
   end
 end

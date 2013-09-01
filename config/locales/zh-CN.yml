@@ -9,7 +9,7 @@ zh-CN:
     confirmation: 
       destroy: 确定要删除吗？删除后不能恢复！
     creating: "新增%{model}"
-    destroy: 删除
+    destroy: 删除   
     edit: 编辑
     editing: "编辑%{model}"
     listing: "%{model}列表"
@@ -21,15 +21,17 @@ zh-CN:
     showing: "%{model}详细信息"
     add: "添加更多%{model}"
     save: 保存
-    upload: 上传
-    order: 排序
-    error: 错题
+    upload: 上传 
+    
 
-  order_type:
-    order: 排名方式  
+  ranking_type:
+    ranking: 排名
+    ranking_type: 排名方式  
     avg_point: 平均分数
     accuracy: 正确率
     avg_duration: 平均耗时  
+
+  wrong_answer: 错题
 
   flash: 
     controller: 

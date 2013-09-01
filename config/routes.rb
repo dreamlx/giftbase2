@@ -27,30 +27,34 @@ Giftbase::Application.routes.draw do
     
     resources :grades do
       collection do
-        get 'ranking'
+        get 'grade_ranking'
+        get 'wrong_answers' 
       end
     end
 
     resources :stages do
       collection do
         get 'mine'
-        get 'ranking'
+        get 'stage_ranking'
+        get 'wrong_answers'
       end
     end
     
     resources :exams do
       member do
         post :finish_uploading
-        get  :error 
       end
-
+      collection do
+        get  :wrong_answers 
+      end
       resources :answers, only: [:update, :show]
     end
     
     resources :units, only: [:index, :show] do
       collection do
         get 'mine'
-        get 'order'
+        get 'unit_ranking'
+        get 'wrong_answers' 
       end
       
       resources :question_groups, only: [:index, :show] do
@@ -63,7 +67,8 @@ Giftbase::Application.routes.draw do
     resources :grades do
       resources :pictures, only: [:new, :create, :destroy]
       member do
-        post 'ranking'
+        get 'grade_ranking'
+        get 'wrong_answer'
       end
     end
     
@@ -79,7 +84,8 @@ Giftbase::Application.routes.draw do
     resources :stages do
       resources :map_places, only: [:new, :create, :destroy]
       member do
-        post 'ranking'
+        get 'stage_ranking'
+        get 'wrong_answer'
       end
     end
 
@@ -87,7 +93,7 @@ Giftbase::Application.routes.draw do
       member do
         post :start_review
         post :finish_review
-        get  :error 
+        get  :wrong_answer 
       end
 
       get 'question_groups/:question_group_id/question_line_items/:question_line_item_id/review' => 'reviews#show', as: 'review'
@@ -109,11 +115,13 @@ Giftbase::Application.routes.draw do
           post 'add_question'
           post 'remove_question'
         end
+
       end
 
       member do
         post 'update_by_ajax'
-        get  'order_by_point'
+        get  'unit_ranking'
+        get 'wrong_answer'
       end
       resources :map_places, only: [:new, :create, :destroy]
     end

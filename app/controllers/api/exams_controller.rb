@@ -31,15 +31,11 @@ module Api
       render json: @exam
     end
 
-    def error
-      @errors = Array.new
+    def wrong_answers
       @exam = Exam.find(params[:id])
-      answers = Answer.where("exam_id = #{@exam.id}")
-      answers.each do |answer|
-        if answer.point < answer.question_line_item.point
-          @errors.push(answer)
-        end
-      end
+      @wrong_answers = Array.new
+      wrong_item(@exam)
+      render "/api/exams/wrong_answers"
     end
   end
 end

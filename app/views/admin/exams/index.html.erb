@@ -23,7 +23,7 @@
         <td><%= exam.duration.to_i / 60 %> min</td>
         <td class="control span2">
           <%= link_to t("show", scope: "crud"), admin_exam_path(exam) %>
-          <%= link_to t("error", scope: "crud"), error_admin_exam_path(exam)%>
+          <%= link_to t("wrong_answer"), wrong_answer_admin_exam_path(exam)%>
         </td>
       </tr>
     <% end %>
