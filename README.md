@@ -1,17 +1,16 @@
-###updated 2013-08-27
-## unit,stage,grade的排名
+###updated 2013-09-01
+## unit,stage,grade排名的api，exam,unit,stage,grade错题统计
+    curl -X GET http://127.0.0.1:3000/api/units/unit_ranking.json/?id=132&auth_token=L1M1NXGpFayafaQasky7
+    curl -X GET http://127.0.0.1:3000/api/stages/stage_ranking.json/?id=1&auth_token=L1M1NXGpFayafaQasky7
+    curl -X GET http://127.0.0.1:3000/api/grades/grade_ranking.json/?id=1&auth_token=L1M1NXGpFayafaQasky7
+id分别对应着unit，stage，grade的id
 
-http://127.0.0.1:3000/api/grades/ranking.json/?id=1&order_type=1
-id为grade的id,order_type为排序的方式，1 是avg_ponit根据平均分排名 2.accuracy根据正确率来排名 3.avg_duration 根据评价时间来排名
-
-http://127.0.0.1:3000/api/grades/ranking.json/?id=1&order_type=1
-http://127.0.0.1:3000/api/units/order.json/?auth_token=L1M1NXGpFayafaQasky7&id=10
-
-###updated 2013-08-26
-
-## 对于exam的错题统计
-curl -X GET "http://127.0.0.1:3000/api/exams/135/error.json/?auth_token=L1M1NXGpFayafaQasky7"
-135为exam的id
+##exam,unit,stage,grade错题统计
+    curl -X GET http://127.0.0.1:3000/api/exams/wrong_answers.json/?id=135&auth_token=L1M1NXGpFayafaQasky7
+    curl -X GET http://127.0.0.1:3000/api/units/wrong_answers.json/?id=132&auth_token=L1M1NXGpFayafaQasky7
+    curl -X GET http://127.0.0.1:3000/api/stages/wrong_answers.json/?id=1&auth_token=L1M1NXGpFayafaQasky7
+    curl -X GET http://127.0.0.1:3000/api/grades/wrong_answers.json/?id=1&auth_token=L1M1NXGpFayafaQasky7
+id分别对应着exam,unit，stage，grade的id
 
 ###updated 2013-07-30
 
