@@ -36,6 +36,10 @@ Giftbase::Application.routes.draw do
         get 'mine'
         get 'ranking'
       end
+
+      member do
+        post 'purchase'
+      end
     end
     
     resources :exams do
