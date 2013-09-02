@@ -3,7 +3,8 @@ module Api
     before_filter :authenticate_user!
 
     def index
-    	@credit_line_items = CreditLineItem.all
+    	credit = current_user.credit
+    	@credit_line_items = credit.credit_line_items
     end
   end
 end
