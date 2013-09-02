@@ -27,6 +27,10 @@ Giftbase::Application.routes.draw do
       collection do
         get 'mine'
       end
+
+      member do
+        post 'purchase'
+      end
     end
     
     resources :exams do

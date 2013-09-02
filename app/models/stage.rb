@@ -15,6 +15,9 @@ class Stage < ActiveRecord::Base
     if (!user.stages.include?(self)) && user.credit.balance > self.price
       user.credit.add_expense(self)
       user.stages << self
+      true
+    else
+      false
     end
   end
 end
