@@ -16,8 +16,11 @@ Giftbase::Application.routes.draw do
   
   resources :credits, only: [:index]
 
+
   namespace :api do
     resource :credit
+
+    resources :credit_line_items
 
     resource :profiles do
       collection do 
