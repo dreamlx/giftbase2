@@ -32,10 +32,22 @@ module Api
     end
 
     def wrong_answers
-      @exam = Exam.find(params[:id])
+      # 我的错题，现在是所有错题
+      @exam = Exam.find(params[:id]) if params[:answer_range] == 'unit'
+      @exam = Stage.find(params[:id]) if params[:answer_range] == 'stage'
+      @exam = Grade.find(params[:id]) if params[:answer_range] == 'grade'
       @wrong_answers = Array.new
       wrong_item(@exam)
       render "/api/exams/wrong_answers"
+    end
+
+    private 
+    def wrong_item(exam)
+    answers = Answer.where("exam_id = #{exam.id}")
+      answers.each do |answer|
+        if answer.point < answer.question_line_item.point
+          @wrong_answers.push(answer)
+        end
     end
   end
 end
