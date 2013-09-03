@@ -19,5 +19,7 @@
 /public/uploads
 
 /.rvmrc
+/.ruby-*
 /config/database.yml
-/public/assets
+/config/database.yml.*
+/config/initializers/carrierwave.rb
