@@ -15,6 +15,5 @@ module Api
 
       render 'index'
     end
-
   end
 end

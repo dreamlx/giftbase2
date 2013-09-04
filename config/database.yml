@@ -7,7 +7,7 @@ development:
   port: 5432
   username: postgres
   #password: postgres
-  password: postgres
+  password: 791126
 
 test:
   adapter: postgresql
@@ -18,7 +18,7 @@ test:
   port: 5432
   username: postgres
   #password: postgres
-  password: postgres
+  password: 791126
 
 production:
   adapter: postgresql
@@ -29,5 +29,5 @@ production:
   port: 5432
   username: postgres
   #password: postgres
-  password: postgres
+  password: 791126
 
