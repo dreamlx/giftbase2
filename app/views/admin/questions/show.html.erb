@@ -10,6 +10,14 @@
     </div>
     <%= link_to t("back", scope: "crud"), admin_questions_path, class: 'btn' %>
   </div>
+  <hr/>
+  <div>
+    <%= Unit.model_name.human %>
+    
+    <% @units.each do |unit| %>
+      |<span><%=link_to h(unit.name), admin_unit_path(unit) %></span>
+    <% end %>
+</div>
 <% end %>
 
 <div class="clearfix">

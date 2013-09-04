@@ -41,6 +41,10 @@ Giftbase::Application.routes.draw do
         get 'stage_ranking'
         get 'wrong_answers'
       end
+
+      member do
+        post 'purchase'
+      end
     end
     
     resources :exams do
@@ -141,5 +145,9 @@ Giftbase::Application.routes.draw do
     registrations: 'registrations'
   }
 
+  scope "/admin" do
+    resources :users
+  end
+  
   root :to => 'home#index'
 end

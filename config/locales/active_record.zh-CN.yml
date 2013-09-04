@@ -12,6 +12,7 @@ zh-CN:
         remember_me: 记住密码
         username: 用户名
       question:
+        id: 序号
         type: 类型
         subject: 题干
         hint: 解题提示
