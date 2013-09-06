@@ -28,18 +28,17 @@ Giftbase::Application.routes.draw do
       end
     end
     
-    resources :grades do
+    resources :ranks do
       collection do
-        get 'grade_ranking'
-        get 'wrong_answers' 
+        post 'ranking'
       end
     end
+
+    resources :grades
 
     resources :stages do
       collection do
         get 'mine'
-        get 'stage_ranking'
-        get 'wrong_answers'
       end
 
       member do
@@ -52,7 +51,7 @@ Giftbase::Application.routes.draw do
         post :finish_uploading
       end
       collection do
-        get  :wrong_answers 
+        post  :wrong_answers 
       end
       resources :answers, only: [:update, :show]
     end
@@ -60,8 +59,6 @@ Giftbase::Application.routes.draw do
     resources :units, only: [:index, :show] do
       collection do
         get 'mine'
-        get 'unit_ranking'
-        get 'wrong_answers' 
       end
       
       resources :question_groups, only: [:index, :show] do

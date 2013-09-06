@@ -36,10 +36,8 @@ module Api
       @exams = Unit.find(params[:unit_id]).exams    unless params[:unit_id].blank?
       @exams = Stage.find(params[:stage_id]).exams  unless params[:stage_id].blank?
       @exams = Grade.find(params[:grade_id]).exams  unless params[:grade_id].blank?
-      
       # 我的错题
       @exams = User.find(params[:user_id]).exams  unless params[:user_id].blank?
-
       @wrong_answers = wrong_item(@exams)
       render "/api/exams/wrong_answers"
     end
@@ -52,6 +50,7 @@ module Api
           wrong_answers.push(answer) if answer.point < answer.question_line_item.point
         end
       end
+      return wrong_answers
     end
   end
 end
