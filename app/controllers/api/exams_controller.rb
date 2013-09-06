@@ -36,8 +36,10 @@ module Api
       @exams = Unit.find(params[:unit_id]).exams    unless params[:unit_id].blank?
       @exams = Stage.find(params[:stage_id]).exams  unless params[:stage_id].blank?
       @exams = Grade.find(params[:grade_id]).exams  unless params[:grade_id].blank?
+      @exams = Exam.find(params[:exam_id]) unless params[:exam_id].blank?
       # 我的错题
-      @exams = User.find(params[:user_id]).exams  unless params[:user_id].blank?
+      @exams = @exams.where("user_id = #{params[:user_id]}")
+      # @exams = User.find(params[:user_id]).exams  unless params[:user_id].blank?
       @wrong_answers = wrong_item(@exams)
       render "/api/exams/wrong_answers"
     end
