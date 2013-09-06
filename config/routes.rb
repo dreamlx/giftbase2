@@ -40,6 +40,10 @@ Giftbase::Application.routes.draw do
       member do
         post 'purchase'
       end
+
+      member do
+        post 'purchase'
+      end
     end
     
     resources :exams do
