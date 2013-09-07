@@ -1,5 +1,4 @@
-<%= @wrong_answers_array.each do |wrong_answers| %>
-<%= wrong_answers.each do |wrong_answer| %>
+<%= @wrong_answers.each do |wrong_answer| %>
 <%= @question = wrong_answer.question %>
 <div class="clearfix">
   <div class="pull-left">
@@ -12,5 +11,4 @@
   </div>
 </div>
 <%= render "/admin/questions/#{@question.class.name.underscore}/show", { question: @question } %>
-<% end %>
 <% end %>

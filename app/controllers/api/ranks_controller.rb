@@ -1,16 +1,5 @@
-module Api
-  class RanksController < Api::BaseController
-    before_filter :authenticate_user!
-
-    def ranking
-      exams = Unit.find(params[:unit_id]).exams    unless params[:unit_id].blank?
-      exams = Stage.find(params[:stage_id]).exams  unless params[:stage_id].blank?
-      exams = Grade.find(params[:grade_id]).exams  unless params[:grade_id].blank?
-      @users_ranking = exams_ranking(exams)
-      @users_ranking.sort!{|a,b| [b['avg_point'], b['avg_duration']] <=> [a['avg_point'], b['avg_duration']]}
-    end
-    
-    private 
+module ExamRanking
+  private 
     def exams_ranking(exams)
       total_point = 0
       sum_duration = 0
@@ -39,8 +28,23 @@ module Api
         @all_users_avg_point = @all_users_sum_point / users_ranking.length
         @all_users_sum_duration = @all_users_sum_duration / users_ranking.length
       end
-
       return users_ranking   
-    end 
+    end
+end
+
+module Api
+  class RanksController < Api::BaseController
+    before_filter :authenticate_user!
+
+    include ExamRanking
+
+    def ranking
+      exams = Unit.find(params[:unit_id]).exams    unless params[:unit_id].blank?
+      exams = Stage.find(params[:stage_id]).exams  unless params[:stage_id].blank?
+      exams = Grade.find(params[:grade_id]).exams  unless params[:grade_id].blank?
+      @users_ranking = exams_ranking(exams)
+      @users_ranking.sort!{|a,b| [b['avg_point'], b['avg_duration']] <=> [a['avg_point'], b['avg_duration']]}
+    end
   end
 end
+
