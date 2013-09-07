@@ -48,4 +48,5 @@ group :development do
   gem "rvm-capistrano"
   gem 'capistrano', '~> 2.12.0'
   gem 'capistrano-ext'
+  gem 'rails_best_practices'
 end

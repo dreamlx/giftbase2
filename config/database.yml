@@ -6,8 +6,8 @@ development:
   host: localhost
   port: 5432
   username: postgres
-  password: postgres
-  #password: 791126
+  #password: postgres
+  password: 791126
 
 test:
   adapter: postgresql
