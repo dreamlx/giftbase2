@@ -20,12 +20,15 @@ gem 'activemerchant', '~> 1.21.0', require: "active_merchant"
 gem 'activemerchant_patch_for_china', '~> 0.2.0'
 gem 'yaml_db'
 
+# mysql
+gem 'mysql2'
+gem 'rest-client'
 # on heroku
 gem 'thin'
-gem 'pg'
-gem 'heroku'
-gem 'pry-nav'
-gem 'pry'
+#gem 'pg'
+#gem 'heroku'
+#gem 'pry-nav'
+#gem 'pry'
 
 group :assets do
   gem 'sass-rails',   '~> 3.2'
