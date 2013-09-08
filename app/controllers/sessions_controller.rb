@@ -5,7 +5,7 @@ class SessionsController < Devise::SessionsController
     sign_in(resource_name, resource)
     respond_to do |format|
       format.html { redirect_to after_sign_in_path_for(resource) }
-      format.json { render status: 200, json: { success: true, auth_token: resource.authentication_token } }
+      format.json { render status: 200, json: { success: true, auth_token: resource.authentication_token, username: resource.username, avatar_id: resource.avatar_id } }
     end
   end
 end

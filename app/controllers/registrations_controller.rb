@@ -15,14 +15,14 @@ class RegistrationsController < Devise::RegistrationsController
         expire_session_data_after_sign_in!
         respond_to do |format|
           format.html { redirect_to after_inactive_sign_up_path_for(resource) }
-          format.json { render status: :unprocessable_entity, json: { success: false } }
+          format.json { render status: :unprocessable_entity, json: { success: false, error_message: resource.errors } }
         end
       end
     else
       clean_up_passwords resource
       respond_to do |format|
         format.html { }
-        format.json { render status: :unprocessable_entity, json: { success: false } }
+        format.json { render status: :unprocessable_entity, json: { success: false, error_message: resource.errors } }
       end
     end
   end
@@ -48,7 +48,7 @@ class RegistrationsController < Devise::RegistrationsController
     else
       respond_to do |format|
         format.html { render "edit" }
-        format.json { render status: :unprocessable_entity, json: { success: false } }
+        format.json { render status: :unprocessable_entity, json: { success: false, error_message: @user.errors } }
       end
     end
   end
