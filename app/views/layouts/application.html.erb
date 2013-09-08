@@ -7,8 +7,11 @@
   <%= csrf_meta_tags %>
 </head>
 <body>
-  <div id="wrapper">
+  <header id='header'>
     <%= render '/shared/topnav' %>
+  </header>
+
+  <div id="wrapper">
 
     <div class="container">
 
@@ -68,6 +71,8 @@
                   <% end %>
 
                   <%= yield %>
+
+                  
                 </div>
               </div>
             <% end %>
