@@ -44,6 +44,10 @@ Giftbase::Application.routes.draw do
       member do
         post 'purchase'
       end
+
+      member do
+        post 'purchase'
+      end
     end
     
     resources :exams do
@@ -70,9 +74,11 @@ Giftbase::Application.routes.draw do
   namespace :admin do
     resources :grades do
       resources :pictures, only: [:new, :create, :destroy]
+    end
+
+     resources :ranks do
       member do
-        get 'grade_ranking'
-        get 'wrong_answer'
+        post :ranking
       end
     end
     
@@ -87,17 +93,13 @@ Giftbase::Application.routes.draw do
     
     resources :stages do
       resources :map_places, only: [:new, :create, :destroy]
-      member do
-        get 'stage_ranking'
-        get 'wrong_answer'
-      end
     end
 
     resources :exams, only: [:index, :show] do
       member do
         post :start_review
         post :finish_review
-        get  :wrong_answer 
+        post :wrong_answers
       end
 
       get 'question_groups/:question_group_id/question_line_items/:question_line_item_id/review' => 'reviews#show', as: 'review'
@@ -124,8 +126,6 @@ Giftbase::Application.routes.draw do
 
       member do
         post 'update_by_ajax'
-        get  'unit_ranking'
-        get 'wrong_answer'
       end
       resources :map_places, only: [:new, :create, :destroy]
     end

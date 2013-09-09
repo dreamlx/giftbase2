@@ -131,7 +131,6 @@ GEM
     money (3.7.1)
       i18n (~> 0.4)
     multi_json (1.7.7)
-    mysql2 (0.3.11)
     net-scp (1.1.2)
       net-ssh (>= 2.6.5)
     net-sftp (2.1.2)
@@ -252,7 +251,7 @@ DEPENDENCIES
   capistrano (~> 2.12.0)
   capistrano-ext
   carrierwave (~> 0.8.0)
-  carrierwave-aliyun
+  carrierwave-aliyun (~> 0.2.0)
   coffee-rails (~> 3.2.2)
   default_value_for (~> 2.0.1)
   devise (~> 2.2.3)
@@ -263,7 +262,6 @@ DEPENDENCIES
   kaminari (~> 0.14.1)
   letter_opener (~> 1.1.0)
   mini_magick (~> 3.5.0)
-  mysql2
   pg
   pry
   pry-nav
@@ -272,7 +270,6 @@ DEPENDENCIES
   rails (= 3.2.12)
   rails_best_practices
   ransack (~> 0.7.2)
-  rest-client
   ruby-hmac
   rvm-capistrano
   sass-rails (~> 3.2)

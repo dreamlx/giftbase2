@@ -1,6 +1,21 @@
+module WrongItem
+  private 
+  def wrong_item(exams)
+    wrong_answers = Array.new
+    exams.each do |exam|
+      exam.answers.each do |answer|
+        wrong_answers.push(answer) if answer.point < answer.question_line_item.point
+      end
+    end
+    return wrong_answers
+  end
+end
+
 module Api
   class ExamsController < Api::BaseController
     before_filter :authenticate_user!
+
+    include WrongItem
 
     def index
       @exams = current_user.exams
@@ -42,17 +57,6 @@ module Api
       # @exams = User.find(params[:user_id]).exams  unless params[:user_id].blank?
       @wrong_answers = wrong_item(@exams)
       render "/api/exams/wrong_answers"
-    end
-
-  private 
-    def wrong_item(exams)
-      wrong_answers = Array.new
-      exams.each do |exam|
-        exam.answers.each do |answer|
-          wrong_answers.push(answer) if answer.point < answer.question_line_item.point
-        end
-      end
-      return wrong_answers
     end
   end
 end

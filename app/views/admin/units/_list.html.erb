@@ -23,7 +23,7 @@
         <td class="control span2">
           <%= link_to t("show", scope: "crud"), admin_unit_path(unit) %>
           <%= link_to t("edit", scope: "crud"), edit_admin_unit_path(unit) %>
-          <%= link_to t("ranking", scope: "ranking_type"), unit_ranking_admin_unit_path(unit) %>
+          <%= link_to t("ranking", scope: "ranking_type"), ranking_admin_rank_path(unit,unit_id: unit.id),method: :post %>
         </td>
       </tr>
     <% end %>
