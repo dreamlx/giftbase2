@@ -13,12 +13,15 @@ gem 'friendly_id', '~> 4.0.9'
 gem 'ransack', '~> 0.7.2'
 gem 'rabl', '~> 0.8.4'
 gem 'carrierwave', '~> 0.8.0'
-gem 'carrierwave-aliyun', '~> 0.2.0'
+gem 'rest-client'
+gem 'carrierwave-aliyun'
 gem 'mini_magick', '~> 3.5.0'
 gem 'ruby-hmac'
 gem 'activemerchant', '~> 1.21.0', require: "active_merchant"
 gem 'activemerchant_patch_for_china', '~> 0.2.0'
 gem 'yaml_db'
+# on default
+gem 'mysql2'
 
 # mysql
 gem 'mysql2'
@@ -49,4 +52,5 @@ group :development do
   gem "rvm-capistrano"
   gem 'capistrano', '~> 2.12.0'
   gem 'capistrano-ext'
+  gem 'rails_best_practices'
 end

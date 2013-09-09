@@ -16,11 +16,5 @@ module Api
 
       render 'index'
     end
-
-    def order
-      @unit = Unit.find(params[:id])
-      @exams = Exam.all
-      @exams.sort!{|a,b| [b.total_point,b.duration.to_i] <=>  [a.total_point,b.duration.to_i]}
-    end
   end
 end

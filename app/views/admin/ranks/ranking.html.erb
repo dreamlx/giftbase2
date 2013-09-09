@@ -1,0 +1,32 @@
+<h3><%= t(@ranking_title, scope: "ranking_title") %></h3>
+<table class="table table-bordered table-striped">
+  <thead>
+    <tr>
+      <th><%= Exam.human_attribute_name(:unit) %></th>
+      <th><%= Exam.human_attribute_name(:user) %></th>
+      <th><%= Exam.human_attribute_name(:duration) %></th>
+      <th><%= Exam.human_attribute_name(:point) %></th>
+      <th><%= t("wrong_answer") %>
+      <th><%= t("avg_duration", scope: "ranking_type") %></th>
+      <th><%= t("avg_point", scope: "ranking_type") %></th>
+      <th><%= t("ranking", scope: "ranking_type") %></th>
+    </tr>
+  </thead>
+  <tbody>
+    <% i = 0 %>
+    <%= @users_ranking.each do |user_ranking| %>
+      <tr>
+        <td><%= @result.try(:name)%></td>
+        <td><%= user_ranking['user_id'] %></td>
+        <td><%= user_ranking['avg_duration'] / 60 %></td>
+        <td><%= user_ranking['avg_point'].to_f %></td>
+        <td><%= eval(@wrong_answers_path)%></td>
+        <td><%= @all_users_sum_duration / 60%></td>
+        <td><%= @all_users_avg_point %></td>
+        <td><%= i += 1%>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+        
+

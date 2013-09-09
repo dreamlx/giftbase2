@@ -1,16 +1,13 @@
-###updated 2013-09-01
-## unit,stage,grade排名的api，exam,unit,stage,grade错题统计
-    curl -X GET http://127.0.0.1:3000/api/units/unit_ranking.json/?id=132&auth_token=L1M1NXGpFayafaQasky7
-    curl -X GET http://127.0.0.1:3000/api/stages/stage_ranking.json/?id=1&auth_token=L1M1NXGpFayafaQasky7
-    curl -X GET http://127.0.0.1:3000/api/grades/grade_ranking.json/?id=1&auth_token=L1M1NXGpFayafaQasky7
-id分别对应着unit，stage，grade的id
-
-##exam,unit,stage,grade错题统计
-    curl -X GET http://127.0.0.1:3000/api/exams/wrong_answers.json/?id=135&auth_token=L1M1NXGpFayafaQasky7
-    curl -X GET http://127.0.0.1:3000/api/units/wrong_answers.json/?id=132&auth_token=L1M1NXGpFayafaQasky7
-    curl -X GET http://127.0.0.1:3000/api/stages/wrong_answers.json/?id=1&auth_token=L1M1NXGpFayafaQasky7
-    curl -X GET http://127.0.0.1:3000/api/grades/wrong_answers.json/?id=1&auth_token=L1M1NXGpFayafaQasky7
-id分别对应着exam,unit，stage，grade的id
+###updated 2013-09-06
+##unit,stage,grade错题统计
+    curl -X POST http://127.0.0.1:3000/api/exams/wrong_answers/?auth_token=L1M1NXGpFayafaQasky7 -d "grade_id=1&user_id=15" 
+    curl -X POST http://127.0.0.1:3000/api/exams/wrong_answers/?auth_token=L1M1NXGpFayafaQasky7 -d "stage_id=1&user_id=15" 
+    curl -X POST http://127.0.0.1:3000/api/exams/wrong_answers/?auth_token=L1M1NXGpFayafaQasky7 -d "unit_id=129&user_id=15" 
+ 
+##unit,stage,grade 排名统计
+    curl -X POST http://127.0.0.1:3000/api/ranks/ranking/?auth_token=L1M1NXGpFayafaQasky7 -d "grade_id=1"
+    curl -X POST http://127.0.0.1:3000/api/ranks/ranking/?auth_token=L1M1NXGpFayafaQasky7 -d "stage_id=1"
+    curl -X POST http://127.0.0.1:3000/api/ranks/ranking/?auth_token=L1M1NXGpFayafaQasky7 -d "unit_id=1"
 
 ###updated 2013-07-30
 

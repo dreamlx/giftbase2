@@ -1,5 +1,9 @@
+require "api/exams_controller"
+
 module Admin
   class ExamsController < Admin::BaseController
+    include WrongItem
+    
     def index
       @exams = Exam.all
     end
@@ -26,15 +30,26 @@ module Admin
       @exam = Exam.find(params[:id])
     end
 
-    def error
-      @errors = Array.new
-      @exam = Exam.find(params[:id])
-      answers = Answer.where("exam_id = #{@exam.id}")
-      answers.each do |answer|
-        if answer.point < answer.question_line_item.point
-          @errors.push(answer)
+    def wrong_answers
+      @wrong_answers = Array.new
+      exams = Unit.find(params[:unit_id]).exams    unless params[:unit_id].blank?
+      exams = Stage.find(params[:stage_id]).exams  unless params[:stage_id].blank?
+      exams = Grade.find(params[:grade_id]).exams  unless params[:grade_id].blank?
+      # 我的错题
+      exams = User.find(params[:user_id]).exams  unless params[:user_id].blank?
+      @wrong_answers = wrong_item(exams)
+      render "/admin/answers/wrong_answers", :object => @wrong_answers
+    end
+
+    private 
+    def wrong_item(exams)
+      wrong_answers = Array.new
+      exams.each do |exam|
+        exam.answers.each do |answer|
+          wrong_answers.push(answer) if answer.point < answer.question_line_item.point
         end
       end
+      return wrong_answers
     end
   end
 end

@@ -16,8 +16,11 @@ Giftbase::Application.routes.draw do
   
   resources :credits, only: [:index]
 
+
   namespace :api do
     resource :credit
+
+    resources :credit_line_items
 
     resource :profiles do
       collection do 
@@ -25,16 +28,17 @@ Giftbase::Application.routes.draw do
       end
     end
     
-    resources :grades do
+    resources :ranks do
       collection do
-        get 'ranking'
+        post 'ranking'
       end
     end
+
+    resources :grades
 
     resources :stages do
       collection do
         get 'mine'
-        get 'ranking'
       end
 
       member do
@@ -49,16 +53,16 @@ Giftbase::Application.routes.draw do
     resources :exams do
       member do
         post :finish_uploading
-        get  :error 
       end
-
+      collection do
+        post  :wrong_answers 
+      end
       resources :answers, only: [:update, :show]
     end
     
     resources :units, only: [:index, :show] do
       collection do
         get 'mine'
-        get 'order'
       end
       
       resources :question_groups, only: [:index, :show] do
@@ -70,8 +74,11 @@ Giftbase::Application.routes.draw do
   namespace :admin do
     resources :grades do
       resources :pictures, only: [:new, :create, :destroy]
+    end
+
+     resources :ranks do
       member do
-        post 'ranking'
+        post :ranking
       end
     end
     
@@ -86,16 +93,13 @@ Giftbase::Application.routes.draw do
     
     resources :stages do
       resources :map_places, only: [:new, :create, :destroy]
-      member do
-        post 'ranking'
-      end
     end
 
     resources :exams, only: [:index, :show] do
       member do
         post :start_review
         post :finish_review
-        get  :error 
+        post :wrong_answers
       end
 
       get 'question_groups/:question_group_id/question_line_items/:question_line_item_id/review' => 'reviews#show', as: 'review'
@@ -117,11 +121,11 @@ Giftbase::Application.routes.draw do
           post 'add_question'
           post 'remove_question'
         end
+
       end
 
       member do
         post 'update_by_ajax'
-        get  'order_by_point'
       end
       resources :map_places, only: [:new, :create, :destroy]
     end

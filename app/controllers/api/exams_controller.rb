@@ -1,6 +1,21 @@
+module WrongItem
+  private 
+  def wrong_item(exams)
+    wrong_answers = Array.new
+    exams.each do |exam|
+      exam.answers.each do |answer|
+        wrong_answers.push(answer) if answer.point < answer.question_line_item.point
+      end
+    end
+    return wrong_answers
+  end
+end
+
 module Api
   class ExamsController < Api::BaseController
     before_filter :authenticate_user!
+
+    include WrongItem
 
     def index
       @exams = current_user.exams
@@ -31,15 +46,17 @@ module Api
       render json: @exam
     end
 
-    def error
-      @errors = Array.new
-      @exam = Exam.find(params[:id])
-      answers = Answer.where("exam_id = #{@exam.id}")
-      answers.each do |answer|
-        if answer.point < answer.question_line_item.point
-          @errors.push(answer)
-        end
-      end
+    def wrong_answers
+      #试卷，单元，年级所有错题
+      @exams = Unit.find(params[:unit_id]).exams    unless params[:unit_id].blank?
+      @exams = Stage.find(params[:stage_id]).exams  unless params[:stage_id].blank?
+      @exams = Grade.find(params[:grade_id]).exams  unless params[:grade_id].blank?
+      @exams = Exam.find(params[:exam_id]) unless params[:exam_id].blank?
+      # 我的错题
+      @exams = @exams.where("user_id = #{params[:user_id]}")
+      # @exams = User.find(params[:user_id]).exams  unless params[:user_id].blank?
+      @wrong_answers = wrong_item(@exams)
+      render "/api/exams/wrong_answers"
     end
   end
 end
