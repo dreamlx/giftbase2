@@ -18,9 +18,10 @@
 /config/deploy
 /public/uploads
 
-/.rvmrc
-/.ruby-*
-/config/database.yml
-/config/database.yml.*
-/config/initializers/carrierwave.rb
+# restore track
+#/.rvmrc
+#/.ruby-*
+#/config/database.yml
+#/config/database.yml.*
+#/config/initializers/carrierwave.rb
 
