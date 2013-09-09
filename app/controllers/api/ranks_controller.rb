@@ -5,7 +5,8 @@ module ExamRanking
       sum_duration = 0
       @all_users_sum_duration = 0
       @all_users_sum_point = 0
-      users_ranking = Array.new    #存储每个用户的信息 
+      users_ranking = Array.new    #存储每个用户的信息
+      #TODO 用户需要role，这里应该判断所有的role为学生的users 
       users = exams.select("user_id as id").group("user_id") #
 
       users.each do |user|
@@ -14,8 +15,8 @@ module ExamRanking
             total_point += exam.total_point
             sum_duration += exam.duration
           end
-        users_ranking.push({"avg_duration" => sum_duration/exams.size,
-                "avg_point" => total_point/exams.size, "user_id" => user.id})
+        users_ranking.push({ "avg_duration" => sum_duration / exams.size,
+                "avg_point" => total_point / exams.size, "user_id" => user.id })
         end
       end
 

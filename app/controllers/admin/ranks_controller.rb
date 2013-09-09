@@ -10,21 +10,21 @@ module Admin
     def ranking
       if !params[:unit_id].blank?
         @result = Unit.find(params[:unit_id])
-        exams = @result.exams
+        @ranking_title = 'ranking_unit'
         @wrong_answers_path = "link_to t('wrong_answer'),wrong_answers_admin_exam_path(@result, 
                               unit_id: @result.id, user_id: user_ranking['user_id']), method: :post"
       elsif !params[:stage_id].blank?
         @result = Stage.find(params[:stage_id])
-        exams = @result.exams
+        @ranking_title = "ranking_stage"
         @wrong_answers_path = "link_to t('wrong_answer'),wrong_answers_admin_exam_path(@result, 
                               stage_id: @result.id, user_id: user_ranking['user_id']), method: :post"
       elsif !params[:grade_id].blank?
         @result = Grade.find(params[:grade_id])
-        exams = @result.exams
+        @ranking_title = "ranking_grade"
         @wrong_answers_path = "link_to t('wrong_answer'),wrong_answers_admin_exam_path(@result, 
                                 grade_id: @result.id, user_id: user_ranking['user_id']), method: :post"
       end
-      @users_ranking = exams_ranking(exams)
+      @users_ranking = exams_ranking(@result.exams)
       @users_ranking.sort!{|a,b| [b['avg_point'], b['avg_duration']] <=> [a['avg_point'], b['avg_duration']]}
       render "/admin/ranks/ranking"
     end

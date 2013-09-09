@@ -29,7 +29,12 @@ zh-CN:
     ranking_type: 排名方式  
     avg_point: 平均分数
     accuracy: 正确率
-    avg_duration: 平均耗时  
+    avg_duration: 平均耗时
+
+  ranking_title:
+    ranking_unit: 试卷排名
+    ranking_stage: 单元排名
+    ranking_grade: 年级排名 
 
   wrong_answer: 错题
 
