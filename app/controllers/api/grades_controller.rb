@@ -1,7 +1,7 @@
 module Api
   class GradesController < Api::BaseController
     def index
-      @grades = Grade.all
+      @grades = Grade.includes([:stages]).all
     end
 
     def show

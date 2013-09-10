@@ -1,6 +1,6 @@
 attributes :id, :position, :point
 
-unless @object.nil?
+unless @object.question.nil?
 	node(:question_type) { @object.question.type }
 
 	child(:question => :question) do |question|
