@@ -1,7 +1,10 @@
 module Admin
   class StagesController < Admin::BaseController
     def index
-      @stages = Stage.all
+      @grades = Grade.all
+      @stages = Stage.scoped
+      @q = @stages.search(params[:q])
+      @stages = @q.result(distinct: true).order("updated_at DESC")
     end
 
     def show
