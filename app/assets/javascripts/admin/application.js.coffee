@@ -12,10 +12,10 @@ $ ->
     $('#q_stage_id_eq').empty()
     $('#q_stage_id_eq').append("<option value=''>全部</option>")
     if grade_id
-      $.getJSON "http://127.0.0.1:3000/api/grades/#{grade_id}.json", (json)->
+      $.getJSON "/api/grades/#{grade_id}.json", (json)->
         for stage in json.stages
           $('#q_stage_id_eq').append("<option value='#{stage.id}'>#{stage.name}</option>")
     else
-      $.getJSON "http://127.0.0.1:3000/api/stages.json", (stages)->
+      $.getJSON "/api/stages.json", (stages)->
         for stage in stages
           $('#q_stage_id_eq').append("<option value='#{stage.id}'>#{stage.name}</option>")
