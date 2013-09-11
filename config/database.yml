@@ -1,7 +1,7 @@
 development:
   adapter: postgresql
   encoding: unicode
-  database: giftbase_development
+  database: giftbase_dev
   pool: 5
   host: localhost
   port: 5432
