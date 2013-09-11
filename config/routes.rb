@@ -30,7 +30,7 @@ Giftbase::Application.routes.draw do
     
     resources :ranks do
       collection do
-        post 'ranking'
+        get 'ranking'
       end
     end
 
@@ -55,7 +55,7 @@ Giftbase::Application.routes.draw do
         post :finish_uploading
       end
       collection do
-        post  :wrong_answers 
+        get  :wrong_answers 
       end
       resources :answers, only: [:update, :show]
     end
@@ -77,8 +77,8 @@ Giftbase::Application.routes.draw do
     end
 
      resources :ranks do
-      member do
-        post :ranking
+      collection do
+        get 'ranking'
       end
     end
     

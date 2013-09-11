@@ -46,17 +46,5 @@ module Admin
       redirect_to admin_stages_url, notice: t("success", scope: "flash.controller.destroy", model: Stage.model_name.human)
     end
     
-    def stage_ranking
-      @i = 0
-      @stage = Stage.find(params[:id])
-      @ranking_type = params[:ranking_type]
-      @exams = @stage.exams
-      @ranks = ranking
-
-      respond_to do |format|
-        format.js{render :action => "ranking_ajax"}
-        format.html{render "/admin/ranking/stage_ranking" }
-      end
-    end
   end
 end

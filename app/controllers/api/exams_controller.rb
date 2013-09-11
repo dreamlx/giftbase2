@@ -53,11 +53,11 @@ module Api
       exams = Stage.find(params[:stage_id]).exams  unless params[:stage_id].blank?
       exams = Grade.find(params[:grade_id]).exams  unless params[:grade_id].blank?
       # 我的错题
-      exams.map!{ |e| e.user_id == params[:user_id] ? e : nil }  unless params[:user_id].blank?
+      exams.map!{ |e| e.user_id == current_user.id ? e : nil }
       exams.compact!
       
       @wrong_answers = wrong_item(exams)
-      render "/admin/answers/wrong_answers", :object => @wrong_answers
+      render "/api/exams/wrong_answers"
     end
   end
 end

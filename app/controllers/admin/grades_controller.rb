@@ -42,16 +42,5 @@ module Admin
 
       redirect_to admin_grades_url, notice: t("success", scope: "flash.controller.destroy", model: Grade.model_name.human)
     end
-
-    def grade_ranking
-      @i = 0
-      @grade = Grade.find(params[:id])
-      @exams = @grade.exams
-      @ranks = ranking
-      respond_to do |format|
-        format.js{render :action => "ranking_ajax"}
-        format.html{render "/admin/ranking/grade_ranking" }
-      end
-    end
   end
 end

@@ -21,7 +21,7 @@
         <td class="control span2">
           <%= link_to t("show", scope: "crud"), admin_grade_path(grade) %>
           <%= link_to t("edit", scope: "crud"), edit_admin_grade_path(grade) %>
-          <%= link_to t("ranking",scope: "ranking_type"), ranking_admin_rank_path(grade,grade_id: grade.id),:method => :post%>
+          <%= link_to t("ranking",scope: "ranking_type"), ranking_admin_ranks_path(grade_id: grade.id) %>
         </td>
       </tr>
     <% end %>

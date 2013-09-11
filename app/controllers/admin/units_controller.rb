@@ -66,14 +66,5 @@ module Admin
         render action: "edit"
       end
     end
-
-    def unit_ranking
-      @i = 0
-      @unit = Unit.find(params[:id])
-      @exams = Exam.where("unit_id = #{@unit.id}")
-      @ranks = ranking
-      @ranks.sort!{|a,b| [b['avg_point'], b['avg_duration']] <=> [a['avg_point'], b['avg_duration']]}
-      render "/admin/ranking/unit_ranking"     
-    end
   end
 end

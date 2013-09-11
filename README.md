@@ -1,13 +1,14 @@
 ###updated 2013-09-06
 ##unit,stage,grade错题统计
-    curl -X POST http://127.0.0.1:3000/api/exams/wrong_answers/?auth_token=L1M1NXGpFayafaQasky7 -d "grade_id=1&user_id=15" 
-    curl -X POST http://127.0.0.1:3000/api/exams/wrong_answers/?auth_token=L1M1NXGpFayafaQasky7 -d "stage_id=1&user_id=15" 
-    curl -X POST http://127.0.0.1:3000/api/exams/wrong_answers/?auth_token=L1M1NXGpFayafaQasky7 -d "unit_id=129&user_id=15" 
+    curl -X GET http://127.0.0.1:3000/api/exams/wrong_answers.json?auth_token=L1M1NXGpFayafaQasky7 -d "exam_id=1" 
+    curl -X GET http://127.0.0.1:3000/api/exams/wrong_answers.json?auth_token=L1M1NXGpFayafaQasky7 -d "grade_id=1" 
+    curl -X GET http://127.0.0.1:3000/api/exams/wrong_answers.json?auth_token=L1M1NXGpFayafaQasky7 -d "stage_id=1" 
+    curl -X GET http://127.0.0.1:3000/api/exams/wrong_answers.json?auth_token=L1M1NXGpFayafaQasky7 -d "unit_id=129" 
  
 ##unit,stage,grade 排名统计
-    curl -X POST http://127.0.0.1:3000/api/ranks/ranking/?auth_token=L1M1NXGpFayafaQasky7 -d "grade_id=1"
-    curl -X POST http://127.0.0.1:3000/api/ranks/ranking/?auth_token=L1M1NXGpFayafaQasky7 -d "stage_id=1"
-    curl -X POST http://127.0.0.1:3000/api/ranks/ranking/?auth_token=L1M1NXGpFayafaQasky7 -d "unit_id=1"
+    curl -X GET http://127.0.0.1:3000/api/ranks/ranking.json?auth_token=L1M1NXGpFayafaQasky7 -d "grade_id=1"
+    curl -X GET http://127.0.0.1:3000/api/ranks/ranking.json?auth_token=L1M1NXGpFayafaQasky7 -d "stage_id=1"
+    curl -X GET http://127.0.0.1:3000/api/ranks/ranking.json?auth_token=L1M1NXGpFayafaQasky7 -d "unit_id=1"
 
 ###updated 2013-07-30
 
