@@ -18,12 +18,12 @@
     <% @exams.each do |exam| %>
       <tr>
         <td><%= exam.unit.name unless exam.unit.nil?%></td>
-        <td></td>
+        <td><%= exam.user.username || "" %></td>
         <td><%= l(exam.stopped_at.to_date, format: :long) unless exam.stopped_at.nil?%></td>
         <td><%= exam.duration.to_i / 60 %> min</td>
         <td class="control span2">
           <%= link_to t("show", scope: "crud"), admin_exam_path(exam) %>
-          <%= link_to t("wrong_answer"), wrong_answer_admin_exam_path(exam)%>
+          <%= link_to t("wrong_answer"), wrong_answers_admin_exams_path(exam_id: exam)%>
         </td>
       </tr>
     <% end %>

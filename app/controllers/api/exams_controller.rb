@@ -48,15 +48,16 @@ module Api
 
     def wrong_answers
       #试卷，单元，年级所有错题
-      @exams = Unit.find(params[:unit_id]).exams    unless params[:unit_id].blank?
-      @exams = Stage.find(params[:stage_id]).exams  unless params[:stage_id].blank?
-      @exams = Grade.find(params[:grade_id]).exams  unless params[:grade_id].blank?
-      @exams = Exam.find(params[:exam_id]) unless params[:exam_id].blank?
+      exams = Exam.where("id = #{params[:exam_id]}")    unless params[:exam_id].blank?
+      exams = Unit.find(params[:unit_id]).exams    unless params[:unit_id].blank?
+      exams = Stage.find(params[:stage_id]).exams  unless params[:stage_id].blank?
+      exams = Grade.find(params[:grade_id]).exams  unless params[:grade_id].blank?
       # 我的错题
-      @exams = @exams.where("user_id = #{params[:user_id]}")
-      # @exams = User.find(params[:user_id]).exams  unless params[:user_id].blank?
-      @wrong_answers = wrong_item(@exams)
-      render "/api/exams/wrong_answers"
+      exams.map!{ |e| e.user_id == params[:user_id] ? e : nil }  unless params[:user_id].blank?
+      exams.compact!
+      
+      @wrong_answers = wrong_item(exams)
+      render "/admin/answers/wrong_answers", :object => @wrong_answers
     end
   end
 end

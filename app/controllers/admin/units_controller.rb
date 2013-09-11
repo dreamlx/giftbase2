@@ -75,16 +75,5 @@ module Admin
       @ranks.sort!{|a,b| [b['avg_point'], b['avg_duration']] <=> [a['avg_point'], b['avg_duration']]}
       render "/admin/ranking/unit_ranking"     
     end
-
-    def wrong_answer
-      @unit = Unit.find(params[:id])
-      @wrong_answers_array = Array.new
-      @exams = Exam.where("unit_id = #{@unit.id}")
-      @exams.each do |exam|
-        @wrong_answers = wrong_item(exam)
-        @wrong_answers_array.push(@wrong_answers)
-      end
-      render "/admin/answers/wrong_answers", :object => @wrong_answers_array
-    end
   end
 end

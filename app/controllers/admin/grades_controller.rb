@@ -53,17 +53,5 @@ module Admin
         format.html{render "/admin/ranking/grade_ranking" }
       end
     end
-
-    def wrong_answer
-      @grade = Grade.find(params[:id])
-      @wrong_answers_array = Array.new
-      @exams = @grade.exams
-      @exams.each do |exam|
-        @wrong_answers = wrong_item(exam)
-        @wrong_answers_array.push(@wrong_answers)
-      end
-      render "/admin/answers/wrong_answers", :object => @wrong_answers_array
-    end
-
   end
 end

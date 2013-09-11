@@ -99,9 +99,11 @@ Giftbase::Application.routes.draw do
       member do
         post :start_review
         post :finish_review
-        post :wrong_answers
       end
 
+      collection do
+        get :wrong_answers
+      end
       get 'question_groups/:question_group_id/question_line_items/:question_line_item_id/review' => 'reviews#show', as: 'review'
       put 'question_groups/:question_group_id/question_line_items/:question_line_item_id/review' => 'reviews#update'
     end
