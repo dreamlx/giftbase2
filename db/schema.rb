@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130829065151) do
+ActiveRecord::Schema.define(:version => 20130912151625) do
 
   create_table "answers", :force => true do |t|
     t.integer  "exam_id"
@@ -53,10 +53,10 @@ ActiveRecord::Schema.define(:version => 20130829065151) do
 
   create_table "credits", :force => true do |t|
     t.integer  "user_id"
-    t.decimal  "start_balance"
-    t.decimal  "balance"
-    t.datetime "created_at",    :null => false
-    t.datetime "updated_at",    :null => false
+    t.decimal  "start_balance", :precision => 10, :scale => 0
+    t.decimal  "balance",       :precision => 10, :scale => 0
+    t.datetime "created_at",                                   :null => false
+    t.datetime "updated_at",                                   :null => false
   end
 
   add_index "credits", ["user_id"], :name => "index_credits_on_user_id"
@@ -135,12 +135,12 @@ ActiveRecord::Schema.define(:version => 20130829065151) do
 
   create_table "orders", :force => true do |t|
     t.string   "number"
-    t.decimal  "credit_quantity"
-    t.decimal  "total",           :precision => 8, :scale => 2
+    t.decimal  "credit_quantity", :precision => 10, :scale => 0
+    t.decimal  "total",           :precision => 8,  :scale => 2
     t.string   "state"
     t.integer  "user_id"
-    t.datetime "created_at",                                    :null => false
-    t.datetime "updated_at",                                    :null => false
+    t.datetime "created_at",                                     :null => false
+    t.datetime "updated_at",                                     :null => false
   end
 
   add_index "orders", ["number"], :name => "index_orders_on_number"
@@ -275,6 +275,12 @@ ActiveRecord::Schema.define(:version => 20130829065151) do
     t.string   "gender"
     t.string   "username"
     t.integer  "avatar_id"
+    t.date     "birthday"
+    t.string   "home_address"
+    t.string   "school_name"
+    t.string   "school_address"
+    t.string   "qq"
+    t.string   "parent_name"
   end
 
   add_index "users", ["authentication_token"], :name => "index_users_on_authentication_token", :unique => true

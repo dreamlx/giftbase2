@@ -33,6 +33,19 @@ iOS App 注销的时候，把本地保存的 auth_token 清除，就算注销了
     
     => {"id":2,"email":"test@kingaxis.com"}
 
+## 更新profile
+    curl -X PUT "http://0.0.0.0:3000/api/profiles.json?auth_token=7NZPuMgEWzBNjQ8EAcUc" -d "parent_name=sdfad"
+
+    => {"avatar":{"url":"/assets/fallback/default.png","thumb":{"url":"/assets/fallback/default.png"}},"avatar_id":null,"birthday":null,"created_at":"2013-09-11T18:19:22+08:00","email":"test012@kingaxis.com","gender":"m","home_address":null,"id":98,"parent_name":"sdfad","qq":"1111","role":null,"school_address":null,"school_name":null,"updated_at":"2013-09-12T23:40:43+08:00","username":"11test"}%    
+
+url：http://0.0.0.0:3000/api/profiles.json?auth_token=7NZPuMgEWzBNjQ8EAcUc
+
+method：put
+
+新增参数：
+
+    qq,parent_name, birthday(yy-mm-dd), school_address,school_name,home_address, email
+    qq号码，家长名字，生日（年月日），学校地址，学校名字，家庭地址, email(需要前端校验email格式)
 ## 上传头像
     curl -X PUT "http://0.0.0.0:3000/api/profiles.json?auth_token=MWWyUxtjqBhWE45p41Jk" -F "avatar=@/Users/dreamlinx/Downloads/1.jpg"
   
