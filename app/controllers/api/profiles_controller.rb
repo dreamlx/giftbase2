@@ -8,8 +8,14 @@ module Api
     end
 
     def update
-      @user = current_user
-      @user.avatar = params[:avatar]
+      @user             = current_user
+      @user.avatar      = params[:avatar] unless params[:avatar].blank?
+      @user.qq          = params[:qq] unless params[:qq].blank?
+      @user.birthday    = params[:birthday] unless params[:birthday].blank?
+      @user.address         = params[:address] unless params[:address].blank?
+      @user.school_name     = params[:school_name] unless params[:school_name].blank?
+      @user.school_address  = params[:school_address] unless params[:school_address].blank?
+      @user.parent_name     = params[:parent_name] unless params[:parent_name].blank?
       if @user.save!
         render json: @user
       else
