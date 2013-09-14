@@ -24,7 +24,7 @@ class ImageUploader < CarrierWave::Uploader::Base
 
   # Provide a default URL as a default if there hasn't been a file uploaded:
   def default_url
-    asset_path("fallback/default.png")
+    asset_path("/images/fallback/default.png")
   end
 
   # Process files as they are uploaded:
