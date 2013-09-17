@@ -45,9 +45,6 @@ Giftbase::Application.routes.draw do
         post 'purchase'
       end
 
-      member do
-        post 'purchase'
-      end
     end
     
     resources :exams do
@@ -93,6 +90,10 @@ Giftbase::Application.routes.draw do
     
     resources :stages do
       resources :map_places, only: [:new, :create, :destroy]
+      member do
+        post 'move_higher'
+        post 'move_lower'
+      end
     end
 
     resources :exams, only: [:index, :show] do

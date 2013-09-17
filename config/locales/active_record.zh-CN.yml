@@ -81,6 +81,7 @@ zh-CN:
         video_poster: 视频预览图
         grade_id: 所属年级
         grade: 所属年级
+        position: 序号
       grade:
         name: 名称
         description: 描述

@@ -2,7 +2,7 @@ module Admin
   class StagesController < Admin::BaseController
     def index
       @grades = Grade.all
-      @stages = Stage.scoped
+      @stages = Stage.scoped.order([:position, :name])
       @q = @stages.search(params[:q])
       @stages = @q.result(distinct: true).order("updated_at DESC")
     end
@@ -44,6 +44,20 @@ module Admin
       @stage.destroy
 
       redirect_to admin_stages_url, notice: t("success", scope: "flash.controller.destroy", model: Stage.model_name.human)
+    end
+
+    def move_higher
+      @stage = Stage.find(params[:id])
+      @stage.move_higher
+
+      redirect_to admin_stages_path
+    end
+
+    def move_lower
+      @stage = Stage.find(params[:id])
+      @stage.move_lower
+
+      redirect_to admin_stages_path
     end
     
   end

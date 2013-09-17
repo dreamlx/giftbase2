@@ -9,9 +9,15 @@ class Stage < ActiveRecord::Base
   has_and_belongs_to_many :users
   has_many :map_places, as: :placeable, dependent: :destroy
   
-  attr_accessible :description, :name, :price, :video, :video_cache, :video_poster, :video_poster_cache, :grade_id
+  attr_accessible :description, 
+    :name, :price, 
+    :video, :video_cache, :video_poster, 
+    :video_poster_cache, :grade_id,
+    :position
 
   validates :name, :price, presence: true
+
+  acts_as_list scope: :grade
 
   def purchase(user)
     if (!user.stages.include?(self)) && user.credit.balance > self.price
