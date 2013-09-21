@@ -2,8 +2,8 @@ class Credit < ActiveRecord::Base
   belongs_to :user
   has_many :credit_line_items, order: 'created_at'
 
-  default_value_for :start_balance, 0
-  default_value_for :balance, 0
+  default_value_for :start_balance, 100
+  default_value_for :balance, 100
 
   def self.bundles
     [100, 200, 500, 1000]

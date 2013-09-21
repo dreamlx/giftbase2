@@ -19,9 +19,9 @@ module Api
     def purchase
       @stage = Stage.find(params[:id])
       if @stage.purchase(current_user)
-        render nothing: true, status: 200
+        render json: "success", status: 200
       else
-        render nothing: true, status: :unprocessable_entity
+        render json: "failed", status: :unprocessable_entity
       end
     end
   end
