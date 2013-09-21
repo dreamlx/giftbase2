@@ -1,6 +1,6 @@
 module Api
   class StagesController < Api::BaseController
-    before_filter :authenticate_user!, only: [:mine]
+    before_filter :authenticate_user!, only: [:mine, :purchase]
 
     def index
       @stages = Stage.all
@@ -14,6 +14,15 @@ module Api
       @stages = current_user.stages
 
       render 'index'
+    end
+
+    def purchase
+      @stage = Stage.find(params[:id])
+      if @stage.purchase(current_user)
+        render nothing: true, status: 200
+      else
+        render nothing: true, status: :unprocessable_entity
+      end
     end
   end
 end
