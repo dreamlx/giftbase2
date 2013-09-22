@@ -1,3 +1,16 @@
+### updated 2013-09-22
+## purchase 支付api
+前提要求账号内有现金
+    
+    curl -X POST http://127.0.0.1:3000/api/stages/3/purchase.json\?auth_token\=7NZPuMgEWzBNjQ8EAcUc 
+
+    url: api/stages/id/purchase.json #id 是stage的id，数字
+    action: POST
+    返回结果：success、failed
+
+
+
+
 ###updated 2013-09-10
 ##unit,stage,grade错题统计
     curl -X GET http://127.0.0.1:3000/api/exams/wrong_answers.json?auth_token=L1M1NXGpFayafaQasky7 -d "exam_id=1" 
