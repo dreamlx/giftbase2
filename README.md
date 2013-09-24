@@ -26,7 +26,7 @@
 ###updated 2013-07-30
 
 ## 注册用户, 指定性别 gender
-    url -H "Accept:application/json" -d "user[avatar_id]=2&user[username]=11test&user[email]=test012@kingaxis.com&user[password]=123456&user[password_confirmation]=123456&user[gender]=m" http://0.0.0.0:3000/users
+    curl -H "Accept:application/json" -d "user[avatar_id]=2&user[username]=11test&user[email]=test012@kingaxis.com&user[password]=123456&user[password_confirmation]=123456&user[gender]=m" http://0.0.0.0:3000/users
     
     => {"success":true,"auth_token":"q1d9skvy7yPqUajzhj4V"}
     

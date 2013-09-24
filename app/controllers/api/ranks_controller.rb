@@ -49,8 +49,16 @@ module Api
       exams = Stage.find(params[:stage_id]).exams  unless params[:stage_id].blank?
       exams = Grade.find(params[:grade_id]).exams  unless params[:grade_id].blank?
       @user_rankings = exam_rankings(exams)
-      @user_rankings.sort!{|a,b| [b['avg_point'], b['avg_duration']] <=> [a['avg_point'], b['avg_duration']]}
+      @user_rankings.sort!{|a,b| [b['avg_point'], b['avg_duration']] <=> [a['avg_point'], a['avg_duration']]}
 
+      @index_with_rankings = Array.new
+      @current_user_ranking = Hash.new
+      @user_rankings.each_with_index do |key, index|
+        break if index > 5
+        key[:ranking_no] = @user_rankings.size - index.to_i 
+        @current_user_ranking = key if key[:user].id == current_user.id
+        @index_with_rankings << key
+      end
       @alluser_total_point = sum_ranking(@user_rankings, :total_point)
       @alluser_sum_duration = sum_ranking(@user_rankings, :sum_duration)
       @all_exam_sizes = sum_ranking(@user_rankings, :exam_sizes)
@@ -58,12 +66,13 @@ module Api
       @alluser_avg_duration = @all_exam_sizes > 0 ? (@alluser_sum_duration / @all_exam_sizes) : 0
       
       render json: { 
-        user_rankings: @user_rankings,
+        user_rankings: @index_with_rankings.reverse,
         alluser_total_point: @alluser_total_point,
         alluser_sum_duration: @alluser_sum_duration,
         all_exam_sizes: @all_exam_sizes,
         alluser_avg_point: @alluser_avg_point,
-        alluser_avg_duration: @alluser_avg_duration
+        alluser_avg_duration: @alluser_avg_duration,
+        current_user_ranking: @current_user_ranking
       }
     end
   end
