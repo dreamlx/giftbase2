@@ -54,10 +54,9 @@ module Api
       @index_with_rankings = Array.new
       @current_user_ranking = Hash.new
       @user_rankings.each_with_index do |key, index|
-        break if index > 5
         key[:ranking_no] = @user_rankings.size - index.to_i 
         @current_user_ranking = key if key[:user].id == current_user.id
-        @index_with_rankings << key
+        @index_with_rankings << key if index < 5
       end
       @alluser_total_point = sum_ranking(@user_rankings, :total_point)
       @alluser_sum_duration = sum_ranking(@user_rankings, :sum_duration)
