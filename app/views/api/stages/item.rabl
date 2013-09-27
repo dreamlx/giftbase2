@@ -9,7 +9,7 @@ if @object.video_poster?
   node(:thumb_video_poster_url) { |stage| url_with_protocol_and_host(stage.video_poster_url(:thumb)) }
 end
 
-node(:purchase_state){ |state| @object.purchase(current_user) ? "paid" : 'unpaid' }
+node(:purchase_state){ |state| @object.purchase?(current_user) ? "paid" : 'unpaid' }
 
 
 child(:units) do

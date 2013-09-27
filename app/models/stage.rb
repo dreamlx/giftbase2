@@ -28,4 +28,8 @@ class Stage < ActiveRecord::Base
       false
     end
   end
+
+  def purchase?(user)
+    user.stages.include?(self)
+  end
 end
