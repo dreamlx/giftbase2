@@ -1,7 +1,7 @@
 module Api
   class GradesController < Api::BaseController
     def index
-      grades = Grade.order("name").all
+      grades = Grade.order("position").all
       @grades = []
       
       grades.each {|g| @grades << g if g.pictures.size > 0 }

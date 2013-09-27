@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130917124645) do
+ActiveRecord::Schema.define(:version => 20130927165656) do
 
   create_table "answers", :force => true do |t|
     t.integer  "exam_id"
@@ -91,6 +91,7 @@ ActiveRecord::Schema.define(:version => 20130917124645) do
     t.text     "description"
     t.datetime "created_at",  :null => false
     t.datetime "updated_at",  :null => false
+    t.integer  "position"
   end
 
   create_table "map_places", :force => true do |t|
