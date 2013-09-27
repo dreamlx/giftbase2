@@ -21,7 +21,7 @@ module Api
       if @stage.purchase(current_user)
         render json: "success", status: 200
       else
-        render json: "failed", status: :unprocessable_entity
+        render json: "failed, no enough money or have paid", status: :unprocessable_entity
       end
     end
   end
