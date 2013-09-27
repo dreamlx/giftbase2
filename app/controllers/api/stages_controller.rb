@@ -3,7 +3,7 @@ module Api
     before_filter :authenticate_user!, only: [:mine, :purchase]
 
     def index
-      @stages = Stage.all
+      @stages = Stage.order(:position).all
     end
 
     def show

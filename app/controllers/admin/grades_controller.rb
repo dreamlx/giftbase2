@@ -1,7 +1,7 @@
 module Admin
   class GradesController < Admin::BaseController
     def index
-      @grades = Grade.all
+      @grades = Grade.order(:position).all
     end
 
     def show
