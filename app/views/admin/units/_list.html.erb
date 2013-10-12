@@ -1,6 +1,7 @@
 <table class="table table-bordered table-striped">
   <thead>
     <tr>
+      <th><%= Unit.human_attribute_name(:position) %></th>
       <th><%= Unit.human_attribute_name(:stage) %></th>
       <th><%= Unit.human_attribute_name(:name) %></th>
       <th><%= Unit.human_attribute_name(:exam_minutes) %></th>
@@ -11,6 +12,7 @@
   <tbody>
     <% units.each do |unit| %>
       <tr>
+        <td><%= unit.position unless unit.position.blank? %></td>
         <% if unit.stage_id.nil?%>
         <td><%= select_tag "unit_#{unit.id}",options_for_select(@stages.collect{ |s| [s.name,s.id]}),prompt: "试卷套装", :onchange =>"$.post('#{update_by_ajax_admin_unit_path(unit)}',{'stage_id': this.value})" %>
                           </td>
@@ -22,7 +24,7 @@
         <td><%= unit.user.try(:email) %></td>
         <td class="control span2">
           <%= link_to t("show", scope: "crud"), admin_unit_path(unit) %>
-          <%= link_to t("edit", scope: "crud"), edit_admin_unit_path(unit) %>
+          <%= link_to t("edit", scope: "crud"), edit_admin_unit_path(unit), target: '_blank' %>
           <%= link_to t("ranking", scope: "ranking_type"), ranking_admin_ranks_path(unit_id: unit.id) %>
         </td>
       </tr>

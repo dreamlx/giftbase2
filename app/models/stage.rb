@@ -3,7 +3,7 @@ class Stage < ActiveRecord::Base
   mount_uploader :video_poster, PosterUploader
 
   belongs_to :grade
-  has_many :units
+  has_many :units, order: 'units.position'
   has_many :exams, through: :units
   has_many :answers, through: :exams
   has_and_belongs_to_many :users
