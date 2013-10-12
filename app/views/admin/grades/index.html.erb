@@ -8,6 +8,7 @@
 <table class="table table-bordered table-striped">
   <thead>
     <tr>
+      <th><%= Grade.human_attribute_name(:position) %></th>
       <th><%= Grade.human_attribute_name(:name) %></th>
       <th><%= Grade.human_attribute_name(:description) %></th>
       <th></th>
@@ -16,6 +17,7 @@
   <tbody>
     <% @grades.each do |grade| %>
       <tr>
+        <td><%= grade.position %></td>
         <td><%= grade.name %></td>
         <td><%= grade.description %></td>
         <td class="control span2">

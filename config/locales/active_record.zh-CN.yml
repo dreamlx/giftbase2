@@ -51,6 +51,7 @@ zh-CN:
         name: 名称
         description: 描述
         exam_minutes: 考试时间(分)
+        position: 序号
       question_group:
         name: 名称
         description: 描述
@@ -83,6 +84,7 @@ zh-CN:
         grade: 所属年级
         position: 序号
       grade:
+        position: 序号
         name: 名称
         description: 描述
       credit_line_item:

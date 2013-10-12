@@ -58,6 +58,7 @@ module Api
         @current_user_ranking = key if key[:user].id == current_user.id
         @index_with_rankings << key if index < 5
       end
+      
       @alluser_total_point = sum_ranking(@user_rankings, :total_point)
       @alluser_sum_duration = sum_ranking(@user_rankings, :sum_duration)
       @all_exam_sizes = sum_ranking(@user_rankings, :exam_sizes)
