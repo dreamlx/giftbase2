@@ -30,6 +30,6 @@ class Stage < ActiveRecord::Base
   end
 
   def purchase?(user)
-    user.stages.include?(self)
+    user.blank? ? false : user.stages.include?(self) 
   end
 end
