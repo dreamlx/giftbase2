@@ -58,7 +58,7 @@
 ## api_stage     GET     /api/stage/:id
     curl http://gifted-center.com/api/stages/1.json
     action: GET
-    result: 获取id号为1课程单元和单元内的试卷json
+    result: 获取id号为1课程单元和单元试卷描述json
 
 ## api_units 	GET    	/api/units(.:format)		
     curl http://gifted-center.com/api/units
