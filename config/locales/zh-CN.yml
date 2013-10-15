@@ -1,8 +1,6 @@
 # -*- coding: utf-8 -*-
 
 zh-CN:
-  app_name: Giftbase天才训练营
-
   crud: 
     back: 返回
     back_to: "返回%{model}"
