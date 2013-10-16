@@ -4,7 +4,7 @@ module Admin
       @grades = Grade.all
       @stages = Stage.scoped.order([:position, :name])
       @q = @stages.search(params[:q])
-      @stages = @q.result(distinct: true).order("updated_at DESC")
+      @stages = @q.result(distinct: true).order("updated_at DESC").page(params[:page])
     end
 
     def show
