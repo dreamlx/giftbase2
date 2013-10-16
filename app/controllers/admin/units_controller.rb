@@ -8,7 +8,7 @@ module Admin
         Unit.only_owner(current_user)
       end
       @q = @units.search(params[:q])
-      @units = @q.result(distinct: true).order("updated_at DESC")
+      @units = @q.result(distinct: true).order("updated_at DESC").page(params[:page])
     end
 
     def show

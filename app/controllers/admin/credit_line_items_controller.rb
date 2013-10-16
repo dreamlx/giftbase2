@@ -1,7 +1,7 @@
 module Admin
   class CreditLineItemsController < Admin::BaseController
     def index
-      @credit_line_items = CreditLineItem.all
+      @credit_line_items = CreditLineItem.page(params[:page])
     end
 
     def with_order

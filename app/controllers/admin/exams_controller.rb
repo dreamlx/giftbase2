@@ -5,7 +5,7 @@ module Admin
     include WrongItem
     
     def index
-      @exams = Exam.all
+      @exams = Exam.page(params[:page])
     end
 
     def start_review

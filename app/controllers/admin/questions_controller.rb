@@ -5,9 +5,9 @@ module Admin
       @question_level_lteq = (params[:q] && params[:q][:level_lteq]) ? params[:q][:level_lteq].to_i : 4
       @q = Question.only_owner(current_user).search(params[:q])
       if !params[:question_id].blank?
-        @questions = Question.where("id = #{params[:question_id]}")
+        @questions = Question.where("id = #{params[:question_id]}").page(params[:page])
       else
-        @questions = @q.result(distinct: true).order("updated_at DESC")
+        @questions = @q.result(distinct: true).order("updated_at DESC").page(params[:page])
       end
     end
 
