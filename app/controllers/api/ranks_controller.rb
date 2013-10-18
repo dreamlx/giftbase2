@@ -56,7 +56,7 @@ module Api
       @user_rankings.each_with_index do |key, index|
         key[:ranking_no] = @user_rankings.size - index.to_i 
         @current_user_ranking = key if key[:user].id == current_user.id
-        @index_with_rankings << key if index < 5
+        @index_with_rankings << key if index < 3
       end
       
       @alluser_total_point = sum_ranking(@user_rankings, :total_point)
