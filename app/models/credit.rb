@@ -4,7 +4,7 @@ class Credit < ActiveRecord::Base
 
   #TODO: 默认值应该是0，这里以后需要手工调整
   default_value_for :start_balance, 1000
-  default_value_for :balance, 0
+  default_value_for :balance, 100
 
   def self.bundles
     [100, 200, 500, 1000]

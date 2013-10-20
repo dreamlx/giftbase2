@@ -56,7 +56,11 @@ module Api
       @user_rankings.each_with_index do |key, index|
         key[:ranking_no] = @user_rankings.size - index.to_i 
         @current_user_ranking = key if key[:user].id == current_user.id
-        @index_with_rankings << key if index < 3
+        @current_user_ranking['index'] = index
+        if index < 3
+          @index_with_rankings << key
+          @index_with_rankings['index'] = index
+        end
       end
       
       @alluser_total_point = sum_ranking(@user_rankings, :total_point)
@@ -66,7 +70,7 @@ module Api
       @alluser_avg_duration = @all_exam_sizes > 0 ? (@alluser_sum_duration / @all_exam_sizes) : 0
       
       render json: { 
-        user_rankings: @index_with_rankings.reverse,
+        user_rankings: @index_with_rankings,
         alluser_total_point: @alluser_total_point,
         alluser_sum_duration: @alluser_sum_duration,
         all_exam_sizes: @all_exam_sizes,
