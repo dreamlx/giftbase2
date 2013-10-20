@@ -7,24 +7,24 @@ module ExamRanking
       @all_users_sum_point = 0
       user_rankings = Array.new    #存储每个用户的信息
 
-      user_ids = exams.select("user_id as id").group("user_id") 
-
-      user_ids.each do |user_id|
-        if user_id.id
-          exams.where("user_id = #{user_id.id}").each do |exam|
-            total_point += exam.total_point
-            sum_duration += exam.duration
-          end
+      exam_groups = exams.group_by{ |e| e.user_id }
+      
+      exam_groups.each do |item|
+        user_id = item.first
+        exams = item.last
+        exams.each do |exam|
+          total_point += exam.total_point
+          sum_duration += exam.duration
+        end
         user_rankings.push(
-          user: User.find(user_id.id),
+          user: User.find(user_id),
           sum_duration: sum_duration.to_i, 
           avg_duration: (sum_duration / exams.size).to_f,
           total_point: total_point.to_i, 
           avg_point: (total_point / exams.size).to_f, 
           exam_sizes: exams.size,
-          users_count: user_ids.size
-          )
-        end
+          users_count: exam_groups.size
+         ) 
       end
 
       return user_rankings   
@@ -66,7 +66,7 @@ module Api
       @alluser_avg_duration = @all_exam_sizes > 0 ? (@alluser_sum_duration / @all_exam_sizes) : 0
       
       render json: { 
-        user_rankings: @index_with_rankings,
+        user_rankings: @index_with_rankings.reverse,
         alluser_total_point: @alluser_total_point,
         alluser_sum_duration: @alluser_sum_duration,
         all_exam_sizes: @all_exam_sizes,
