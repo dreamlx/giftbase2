@@ -56,10 +56,10 @@ module Api
       @user_rankings.each_with_index do |key, index|
         key[:ranking_no] = @user_rankings.size - index.to_i 
         @current_user_ranking = key if key[:user].id == current_user.id
-        @current_user_ranking['index'] = index
+        @current_user_ranking['index'] = index.to_s
         if index < 3
           @index_with_rankings << key
-          @index_with_rankings['index'] = index
+          @index_with_rankings['index'] = index.to_s
         end
       end
       
