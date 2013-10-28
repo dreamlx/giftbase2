@@ -1,6 +1,7 @@
 Giftbase::Application.routes.draw do
   get '/alipay/done/:order_number' => 'alipay#done', as: :done_alipay
   post '/alipay/notify/:order_number' => 'alipay#notify', as: :notify_alipay
+  get '/home/privacy'
 
   resources :stages, only: [:index, :show] do
     member do

@@ -23,7 +23,7 @@ class Credit < ActiveRecord::Base
   end
 
   def update_balance
-    self.balance = credit_line_items.map(&:amount).sum + self.start_balance
+    self.balance = self.credit_line_items.map(&:amount).sum + self.start_balance
     self.save!
   end
 end
