@@ -16,13 +16,12 @@ module Admin
     end
 
     def copy
-      @unit = Unit.find(params[:id])
-      unit2 = Unit.new
-      unit2 = @unit
+      unit = Unit.find(params[:id])
+      unit2 = unit.amoeba_dup
       unit2.name += '=>copy'
       unit2.save
 
-      redirect_to admin_unit_path(unit2), 
+      redirect_to admin_unit_path(unit2.id), 
                       notice: t("success", 
                       scope: "flash.controller.create", 
                       model: Unit.model_name.human)

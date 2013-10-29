@@ -5,6 +5,10 @@ class Unit < ActiveRecord::Base
   has_many :exams, dependent: :destroy
   belongs_to :stage
 
+  amoeba do
+    enable
+  end
+
   attr_accessible :description, :exam_minutes, :name, :stage_id
 
   validates :name, :exam_minutes, presence: true

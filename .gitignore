@@ -23,4 +23,5 @@
 /config/database.yml
 /config/database.yml.*
 /config/initializers/carrierwave.rb
+/public/assets
 

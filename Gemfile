@@ -21,7 +21,7 @@ gem 'activemerchant', '~> 1.21.0', require: "active_merchant"
 gem 'activemerchant_patch_for_china', '~> 0.2.0'
 gem 'yaml_db'
 gem 'memcache-client'
-
+gem 'amoeba'  #copy active record deep
 # on default
 gem 'mysql2'
 gem 'rest-client'
