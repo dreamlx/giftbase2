@@ -2,7 +2,9 @@ class QuestionGroup < ActiveRecord::Base
   belongs_to :unit
   has_many :question_line_items, dependent: :destroy, order: 'position'
   has_many :questions, through: :question_line_items
-
+  amoeba do
+    enable
+  end
   acts_as_list scope: :unit
 
   attr_accessible :description, :name, :position

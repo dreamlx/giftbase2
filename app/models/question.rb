@@ -5,6 +5,9 @@ class Question < ActiveRecord::Base
   has_one :user_question
   has_one :user, through: :user_question
   
+  amoeba do
+    enable
+  end
   attr_accessible :hint, :level, :subject, :image, :image_cache
 
   validates :subject, :level, presence: true

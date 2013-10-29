@@ -16,9 +16,8 @@ module Admin
     end
 
     def copy
-      @unit = Unit.find(params[:id])
-      unit2 = Unit.new
-      unit2 = @unit
+      unit = Unit.find(params[:id])
+      unit2 = unit.amoeba_dup
       unit2.name += '=>copy'
       unit2.save
 

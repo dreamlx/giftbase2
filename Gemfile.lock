@@ -42,6 +42,8 @@ GEM
     acts_as_list (0.2.0)
       activerecord (>= 3.0)
     addressable (2.3.5)
+    amoeba (2.0.0)
+      activerecord (>= 3.0)
     arel (3.0.2)
     awesome_print (1.1.0)
     bcrypt-ruby (3.1.1)
@@ -234,6 +236,7 @@ DEPENDENCIES
   activemerchant (~> 1.21.0)
   activemerchant_patch_for_china (~> 0.2.0)
   acts_as_list (~> 0.2.0)
+  amoeba
   awesome_print (~> 1.1.0)
   better_errors (~> 0.7.0)
   binding_of_caller (~> 0.7.1)
