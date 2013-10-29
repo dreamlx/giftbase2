@@ -15,6 +15,20 @@ module Admin
       @unit = Unit.find(params[:id])
     end
 
+    def copy
+      @unit = Unit.find(params[:id])
+      unit2 = Unit.new
+      unit2 = @unit
+      unit2.name += '=>copy'
+      unit2.save
+
+      redirect_to admin_unit_path(unit2), 
+                      notice: t("success", 
+                      scope: "flash.controller.create", 
+                      model: Unit.model_name.human)
+      unit2.belong_user(current_user)
+    end
+
     def new
       @unit = Unit.new
     end
@@ -32,7 +46,6 @@ module Admin
                       scope: "flash.controller.create", 
                       model: Unit.model_name.human)
         @unit.belong_user(current_user)  
-
       else
         render action: "new"
       end
