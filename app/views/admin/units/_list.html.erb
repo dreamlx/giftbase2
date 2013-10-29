@@ -26,7 +26,7 @@
           <%= link_to t("show", scope: "crud"), admin_unit_path(unit) %>
           <%= link_to t("edit", scope: "crud"), edit_admin_unit_path(unit), target: '_blank' %>
           <%= link_to t("ranking", scope: "ranking_type"), ranking_admin_ranks_path(unit_id: unit.id) %>
-          <%= link_to t("copy", scope: "crud"), copy_admin_unit_path(unit), class: 'btn' %>
+          <%= link_to t("copy", scope: "crud"), copy_admin_unit_path(unit), method:'post', class: 'btn' %>
         </td>
       </tr>
     <% end %>

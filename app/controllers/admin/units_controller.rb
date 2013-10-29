@@ -22,7 +22,6 @@ module Admin
       unit2.save
       unit2.belong_user(current_user)
       @unit = unit2
-      render action: 'show'
       redirect_to admin_unit_path(unit2), 
                       notice: t("success", 
                       scope: "flash.controller.create", 

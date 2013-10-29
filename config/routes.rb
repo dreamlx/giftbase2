@@ -128,7 +128,7 @@ Giftbase::Application.routes.draw do
 
       member do
         post 'update_by_ajax'
-        get 'copy'
+        post 'copy'
       end
       resources :map_places, only: [:new, :create, :destroy]
     end
