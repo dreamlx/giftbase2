@@ -17,7 +17,6 @@ Giftbase::Application.routes.draw do
   
   resources :credits, only: [:index]
 
-
   namespace :api do
     resource :credit
 
@@ -125,11 +124,11 @@ Giftbase::Application.routes.draw do
           post 'add_question'
           post 'remove_question'
         end
-
       end
 
       member do
         post 'update_by_ajax'
+        post 'copy'
       end
       resources :map_places, only: [:new, :create, :destroy]
     end
