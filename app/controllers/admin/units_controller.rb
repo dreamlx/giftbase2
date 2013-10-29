@@ -19,14 +19,20 @@ module Admin
       unit = Unit.find(params[:id])
       unit2 = unit.amoeba_dup
       unit2.name += '=>copy'
-      unit2.save
-      unit2.belong_user(current_user)
-      @unit = unit2
-      redirect_to admin_unit_path(unit2), 
-                      notice: t("success", 
-                      scope: "flash.controller.create", 
-                      model: Unit.model_name.human)
       
+      
+      if unit2.save
+        unit2.belong_user(current_user)
+        redirect_to admin_unit_path(unit2), 
+                        notice: t("success", 
+                        scope: "flash.controller.copy", 
+                        model: Unit.model_name.human)
+      else
+        redirect_to admin_unit_path(unit), 
+                        notice: t("failure", 
+                        scope: "flash.controller.copy", 
+                        model: Unit.model_name.human)
+      end      
     end
 
     def new

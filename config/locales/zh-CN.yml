@@ -48,6 +48,9 @@ zh-CN:
       update: 
         failure: "更新%{model}失败"
         success: "更新%{model}成功"
+      copy:
+        failure: "复制%{model}失败"
+        success: "复制%{model}成功"      
       orders:
         pay:
           success: "付款成功"
