@@ -1,9 +1,11 @@
 class SingleChoiceOption < ActiveRecord::Base
   belongs_to :question, class_name: 'Question::SingleChoice'
 
+  mount_uploader :image, ImageUploader
+  
   acts_as_list scope: :question
 
-  attr_accessible :content, :correct, :position, :sequence, :_destroy
+  attr_accessible :content, :correct, :position, :sequence, :_destroy, :image, :image_cache
 
   validates :content, presence: true
 

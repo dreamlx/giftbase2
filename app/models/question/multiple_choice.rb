@@ -1,6 +1,6 @@
 class Question::MultipleChoice < Question
   has_many :multiple_choice_options, order: :position, foreign_key: 'question_id', dependent: :destroy
-
+  
   accepts_nested_attributes_for :multiple_choice_options, :reject_if => proc { |attributes| attributes[:content].blank? }, allow_destroy: true
 
   def self.instanceable?

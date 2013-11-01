@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20131012090234) do
+ActiveRecord::Schema.define(:version => 20131101223239) do
 
   create_table "answers", :force => true do |t|
     t.integer  "exam_id"
@@ -128,6 +128,7 @@ ActiveRecord::Schema.define(:version => 20131012090234) do
     t.boolean  "correct"
     t.datetime "created_at",  :null => false
     t.datetime "updated_at",  :null => false
+    t.string   "image"
   end
 
   add_index "multiple_choice_options", ["correct"], :name => "index_multiple_choice_options_on_correct"
@@ -205,6 +206,7 @@ ActiveRecord::Schema.define(:version => 20131012090234) do
     t.boolean  "correct"
     t.datetime "created_at",  :null => false
     t.datetime "updated_at",  :null => false
+    t.string   "image"
   end
 
   add_index "single_choice_options", ["correct"], :name => "index_single_choice_options_on_correct"
