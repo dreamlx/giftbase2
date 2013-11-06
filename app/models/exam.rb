@@ -31,7 +31,10 @@ class Exam < ActiveRecord::Base
   end
 
   def total_point
-    answers.map(&:point).sum
+    scoring_rule = YAML::load(File.open("#{Rails.root}/config/scoring_rule.yml"))
+    math_rule = scoring_rule["math"]["one"] 
+    wrong_counts = (answers.map{|a| a.point == 0 ? true : nil}.compact).size
+    math_rule["sum_point"] - math_rule["deduct_point"]*wrong_counts
   end
 
   def max_point

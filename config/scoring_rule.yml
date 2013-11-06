@@ -1,0 +1,4 @@
+math:
+  one:
+    sum_point: 100
+    deduct_point: 5
