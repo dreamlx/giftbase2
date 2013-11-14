@@ -110,6 +110,7 @@ Giftbase::Application.routes.draw do
     end
     
     resources :units do
+
       resources :question_groups, except: [:index] do
         resources :question_line_items, only: [:create, :update, :destroy] do
           member do
@@ -130,10 +131,15 @@ Giftbase::Application.routes.draw do
         post 'update_by_ajax'
         post 'copy'
       end
+
       resources :map_places, only: [:new, :create, :destroy]
     end
 
-    resources :questions
+    resources :questions do
+      member do
+        post 'do_question'
+      end 
+    end
     
     resources :reports, only: [:index]
 

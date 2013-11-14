@@ -51,6 +51,7 @@
         <td><%= question.class.model_name.human %></td>
         <td><%= question.subject %></td>
         <td class="control span2">
+          <%= link_to t("do", scope: "crud"), do_question_admin_question_path(question), method: :POST %>
           <%= link_to t("show", scope: "crud"), admin_question_path(question) %>
           <%= link_to t("edit", scope: "crud"), edit_admin_question_path(question) %>
         </td>

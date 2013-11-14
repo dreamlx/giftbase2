@@ -2,6 +2,7 @@
 
 zh-CN:
   crud:
+    do:  做题 
     copy: 复制 
     back: 返回
     back_to: "返回%{model}"

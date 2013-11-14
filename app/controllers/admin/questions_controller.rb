@@ -72,5 +72,9 @@ module Admin
       redirect_to admin_questions_url, notice: t("success", scope: "flash.controller.destroy", model: Question.model_name.human)
     end
 
+    def do_question
+      @question = Question.find(params[:id])
+    end
+
   end
 end

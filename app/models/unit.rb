@@ -23,4 +23,12 @@ class Unit < ActiveRecord::Base
   def belong_user(user)
     UserUnit.create(user_id: user.id, unit_id: self.id) 
   end
+
+  def pre_question(question_id)
+    self.questions.where("question_id < ?", question_id).order("id DESC").first
+  end
+
+  def next_question(question_id)
+    self.questions.where("question_id > ?", question_id).order("id ASC").first
+  end
 end
