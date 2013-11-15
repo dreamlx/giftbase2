@@ -5,13 +5,16 @@ class ExamsController < ApplicationController
     @unit = Unit.find(params[:unit_id])
     @exam = @unit.exams.build
     @exam.user_id = current_user.id
-    @exam.save
-    @question = @unit.questions.first
-    @question_line_item = @unit.question_line_items.first
-    @answer = @exam
+    if @exam.save
+      redirect_to new_exam_answer_path(@exam) 
+    end
   end
 
   def create
+  end
+
+  def score
+    @exam = Exam.find(params[:id])
   end
 
   def start_review

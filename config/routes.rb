@@ -15,7 +15,14 @@ Giftbase::Application.routes.draw do
     end
   end
 
-  resources :exams, only: [:new, :create]
+  resources :exams, only: [:new, :create] do
+    resources :answers, only:[:new, :create]
+
+    member do
+      get 'score'
+    end
+  end
+
   resources :answers, only: [:create]
   
   resources :credits, only: [:index]

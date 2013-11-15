@@ -9,4 +9,6 @@
         %div
         - if single_choice_option.image?
           = link_to image_tag(single_choice_option.image_url(:thumb)), single_choice_option.image_url
-    = submit_tag 'next'
+    = f.submit 'next'
+    = f.submit 'prev'
+    = f.submit 'all_submit'
