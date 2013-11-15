@@ -14,6 +14,9 @@ Giftbase::Application.routes.draw do
       post 'pay'
     end
   end
+
+  resources :exams, only: [:new, :create]
+  resources :answers, only: [:create]
   
   resources :credits, only: [:index]
 
@@ -96,7 +99,7 @@ Giftbase::Application.routes.draw do
       end
     end
 
-    resources :exams, only: [:index, :show] do
+    resources :exams, only: [:index, :show, :new] do
       member do
         post :start_review
         post :finish_review
@@ -137,7 +140,7 @@ Giftbase::Application.routes.draw do
 
     resources :questions do
       member do
-        post 'do_question'
+        get 'do_question'
       end 
     end
     

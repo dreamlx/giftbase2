@@ -8,6 +8,11 @@ module Admin
       @exams = Exam.page(params[:page])
     end
 
+    def new
+      @unit = Unit.find(params[:unit_id])
+      @exam = @unit.exams.build
+    end
+
     def start_review
       @exam = Exam.find(params[:id])
       @question_group = @exam.unit.question_groups.first

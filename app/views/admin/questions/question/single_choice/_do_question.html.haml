@@ -1,0 +1,12 @@
+%ol{type:"A"}
+  = simple_form_for answer do |f|
+    - question.single_choice_options.each do |single_choice_option|
+      = f.input :option_id, input_html: {type: 'radio', value: "#{single_choice_option.id}" }, label: false
+      = f.input :exam_id, input_html: {type:"hidden", value: "#{@exam.id}"}, label: false
+      = f.input :question_line_item_id, input_html: {type:"hidden", value:"#{@question_line_item.id}"}, label: false
+      %li
+        = simple_format(h(single_choice_option.content))
+        %div
+        - if single_choice_option.image?
+          = link_to image_tag(single_choice_option.image_url(:thumb)), single_choice_option.image_url
+    = submit_tag 'next'

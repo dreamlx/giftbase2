@@ -25,7 +25,7 @@ gem 'amoeba'  #copy active record deep
 # on default
 gem 'mysql2'
 gem 'rest-client'
-
+gem "haml-rails" #erb简化模板
 # on heroku
 gem 'thin'
 gem 'pg'
@@ -36,7 +36,7 @@ gem 'pry'
 group :assets do
   gem 'sass-rails',   '~> 3.2'
   gem 'coffee-rails', '~> 3.2.2'
-  gem 'therubyracer', '~> 0.10.0'
+  #gem 'therubyracer', '~> 0.10.0'
   gem 'uglifier', '>= 1.2.4'
   gem 'bootstrap-sass', '~> 2.3.0.1'
   gem 'font-awesome-sass-rails', '~> 3.0.2.2'
