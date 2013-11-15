@@ -6,12 +6,30 @@ class ExamsController < ApplicationController
     @exam = @unit.exams.build
     @exam.user_id = current_user.id
     @exam.save
-    @question = @unit.questions.first
-    @question_line_item = @unit.question_line_items.first
-    @answer = @exam
+    # session[:exam_id] ||= Exam.last.id + 1
+    # @exam.id = session[:exam_id]
+    # session[:exam_id] += 1
+    session[:question_line_item_ids] ||= Array.new
+    session[:unit_id] ||= @unit.id 
+    if session[:unit_id] != @unit.id
+      @unit.question_line_items.each do |question_line_item|
+        session[:question_line_item_ids].push(question_line_item.id)
+        binding.pry
+      end
+      session[:record_answer_id] = 0
+      cookies[:answers] = Array.new 
+      binding.pry
+      redirect_to new_exam_answer_path(@exam)
+    else
+      redirect_to admin_units_path
+    end
   end
 
   def create
+  end
+
+  def score
+    @exam = Exam.find(params[:id])
   end
 
   def start_review

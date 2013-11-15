@@ -7,7 +7,7 @@ class Answer < ActiveRecord::Base
   delegate :question, to: :question_line_item
 
   store :data, accessors: [ :option_id, :option_ids, :content, :contents, :matches ]
-
+  
   attr_accessible :comment, :exam_id, :point, :reviewed_at, :image, :image_cache, :question_line_item_id, :option_id, :option_ids, :content, :contents, :matches
 
   scope :unreviewed, lambda { where('reviewed_at IS NULL') }
