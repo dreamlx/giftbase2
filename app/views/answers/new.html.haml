@@ -2,7 +2,7 @@
   %div.clearfix
     %div.pull-left
       %p
-        = "#{$i}:"
+        = "#{session[:record_answer_id]}:"
         = simple_format(h(@question.subject))
     %div
       - if @question.image?

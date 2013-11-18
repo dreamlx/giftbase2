@@ -1,5 +1,4 @@
 %ol{type:"A"}
-  - binding.pry
   = simple_form_for answer do |f|
     - question.single_choice_options.each do |single_choice_option|
       = f.input :option_id, input_html: {type: 'radio', value: "#{single_choice_option.id}" }, label: false
