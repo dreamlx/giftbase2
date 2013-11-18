@@ -22,6 +22,8 @@ class ExamsController < ApplicationController
       redirect_to new_exam_answer_path(@exam)
     else
       redirect_to admin_units_path
+    if @exam.save
+      redirect_to new_exam_answer_path(@exam) 
     end
   end
 
