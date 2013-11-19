@@ -1,4 +1,3 @@
-
 class AnswersController < Admin::BaseController
  
   def new

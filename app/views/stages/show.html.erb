@@ -10,6 +10,19 @@
   </div>
 <% end %>
 
+<dl class="dl-horizontal">
+  <% if @stage.grade %>
+    <dt><%= Stage.human_attribute_name(:grade) %></dt>
+    <dd><%= link_to @stage.grade.name, grade_path(@stage.grade) %></dd>
+  <% end -%>
+  <dt><%= Stage.human_attribute_name(:name) %></dt>
+  <dd><%= @stage.name %></dd>
+  <dt><%= Stage.human_attribute_name(:description) %></dt>
+  <dd><%= @stage.description %></dd>
+  <dt><%= Stage.human_attribute_name(:price) %></dt>
+  <dd><%= @stage.price %></dd>
+</dl>
+
 <%= simple_format(h(@stage.description)) %>
 
 <% if @stage.video? %>
@@ -17,3 +30,5 @@
   <script src="http://vjs.zencdn.net/4.0/video.js"></script>
   <%= video_tag(@stage.video_url, controls: true, poster: @stage.video_poster_url, class: 'video-js vjs-default-skin') %>
 <% end -%>
+
+<%= render '/units/list', { units: @stage.units } %>

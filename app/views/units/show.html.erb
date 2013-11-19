@@ -1,0 +1,16 @@
+<% content_for :title_bar do %>
+  <h1>
+    <%= @unit.name %>
+    <small><%= @unit.stage.try(:name) %> <%= @unit.exam_minutes %></small>
+  </h1>
+<% end %>
+
+<%= @unit.description %>
+
+<ul class="selectable-question-list">
+  <% @unit.question_line_items.each do |question_line_item| %>
+    <li>
+      <%= render '/questions/item', {  question: question_line_item.question, question_line_item: question_line_item} %>
+    </li>
+  <% end -%>
+</ul>

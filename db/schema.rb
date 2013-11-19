@@ -274,7 +274,7 @@ ActiveRecord::Schema.define(:version => 20131101223239) do
     t.string   "last_sign_in_ip"
     t.datetime "created_at",                             :null => false
     t.datetime "updated_at",                             :null => false
-    t.string   "role"
+    t.string   "role_id"
     t.string   "authentication_token"
     t.string   "avatar"
     t.string   "gender"

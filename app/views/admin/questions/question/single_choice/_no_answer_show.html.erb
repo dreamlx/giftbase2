@@ -1,0 +1,12 @@
+<ol type="A">
+  <% question.single_choice_options.each do |single_choice_option| %>
+    <li>
+      <%= simple_format(h(single_choice_option.content)) %>
+      <div>
+        <% if single_choice_option.image? %>
+          <%= link_to image_tag(single_choice_option.image_url(:thumb)), single_choice_option.image_url%>
+        <% end -%>
+      </div>      
+    </li>
+  <% end -%>
+</ol>
