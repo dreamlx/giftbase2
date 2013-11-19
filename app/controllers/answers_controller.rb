@@ -22,10 +22,10 @@ class AnswersController < Admin::BaseController
   	  session[:record_answer_id] -= 2
   	  redirect_to new_exam_answer_path(@exam)
   	elsif params[:commit] == 'next'
-  	  session[:answers].push(params[:answer])
+  	  session[:answers].push(params[:answer]) unless params[:answer][:option_id].nil?
   	  redirect_to new_exam_answer_path(@exam)
   	elsif params[:commit] == 'all_submit'
-      session[:answers].push(params[:answer])
+      session[:answers].push(params[:answer]) unless params[:answer][:option_id].nil? 
   	  session[:answers].each do |answer|
   	  	a = Answer.new(answer)
   	  	a.save

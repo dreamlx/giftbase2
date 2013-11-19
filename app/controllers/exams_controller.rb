@@ -6,17 +6,17 @@ class ExamsController < ApplicationController
     @exam = @unit.exams.build
     @exam.user_id = current_user.id
     @exam.save
-    session[:question_line_items] ||= {:unit_id => @unit.id, :ids => []}
-    # session[:exam_id] ||= Exam.last.id + 1
-    # @exam.id = session[:exam_id]
-    # session[:exam_id] += 1
-    session[:question_line_items] = {:unit_id => @unit.id, :ids => []}
-    @unit.question_line_items.each do |question_line_item|
-      session[:question_line_items][:ids].push(question_line_item.id)
+    if @unit.question_line_items.size != 0
+      session[:question_line_items] ||= {:unit_id => @unit.id, :ids => []}
+      @unit.question_line_items.each do |question_line_item|
+        session[:question_line_items][:ids].push(question_line_item.id)
+      end
+      session[:record_answer_id] = 0
+      session[:answers] = Array.new 
+      redirect_to new_exam_answer_path(@exam)
+    else
+      redirect_to admin_units_path
     end
-    session[:record_answer_id] = 0
-    session[:answers] = Array.new 
-    redirect_to new_exam_answer_path(@exam) 
   end
 
   def create
