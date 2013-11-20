@@ -12,11 +12,11 @@
   <tbody>
     <% @stages.each do |stage| %>
       <tr>
-        <td><%= link_to "#{stage.name}", grade_stage_path(@grade, stage) %></td>
-        <td><%= link_to "#{stage.units.count}",grade_stage_path(@grade, stage) %></td>
+        <td><%= link_to "#{stage.name}", stage_path(stage) %></td>
+        <td><%= link_to "#{stage.units.count}",stage_path(stage) %></td>
         <td><%= stage.price %></td>
         <td class="control span2">
-          <%= link_to t("show", scope: "crud"), grade_stage_path(@grade, stage) %>
+          <%= link_to t("show", scope: "crud"), stage_path(stage) %>
         </td>
       </tr>
     <% end %>

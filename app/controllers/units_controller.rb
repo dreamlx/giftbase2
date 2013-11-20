@@ -1,6 +1,7 @@
 class UnitsController < ApplicationController
   before_filter :authenticate_user!
   def show
+    session[:return_to] = request.referer
     @unit = Unit.find(params[:id])
   end
 

@@ -6,7 +6,7 @@
     <% else %>
       <%= link_to '已购买', '#', class: 'btn btn-success disabled' %>
     <% end -%>
-    <%= link_to t("back", scope: "crud"), stages_path, class: 'btn' %>
+    <%= link_to t("back", scope: "crud"), session.delete(:return_to), class: 'btn' %>
   </div>
 <% end %>
 

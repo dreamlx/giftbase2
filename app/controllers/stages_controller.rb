@@ -6,6 +6,7 @@ class StagesController < ApplicationController
   end
 
   def show
+    session[:return_to] = request.referer
     @stage = Stage.find(params[:id])
     @units = @stage.units
   end

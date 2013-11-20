@@ -21,7 +21,7 @@
                 %div
                 - if single_choice_option.image?
                   = link_to image_tag(single_choice_option.image_url(:thumb)), single_choice_option.image_url
-          %div.actions.pull-right
+          %div.actions.pull-left
             %div.btn-group
               = f.submit 'next', class:"btn btn-small "
               = f.submit 'pre', class:"btn btn-small "
