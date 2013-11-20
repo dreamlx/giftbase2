@@ -11,7 +11,11 @@ Giftbase::Application.routes.draw do
     end
   end
 
-  resources :units, only: [:show]
+  resources :units, only: [:show] do
+    member do
+      get 'take_exam'
+    end
+  end
 
   resources :orders, only: [:index, :show, :create] do
     member do
@@ -19,9 +23,9 @@ Giftbase::Application.routes.draw do
     end
   end
 
-  resources :exams, only: [:new, :create] do
-    resources :answers, only:[:new, :create]
+  resources :answers, only:[:new, :create]
 
+  resources :exams, only: [:new, :create] do
     member do
       get 'score'
     end

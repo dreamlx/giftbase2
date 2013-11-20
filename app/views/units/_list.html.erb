@@ -16,7 +16,7 @@
         <td><%= unit.name %></td>
         <td><%= unit.exam_minutes %></td>
         <td class="control span2">
-          <%= link_to t("take_exam", scope: "crud"), new_exam_path(:unit_id => unit.id) %>
+          <%= link_to t("take_exam", scope: "crud"), take_exam_unit_path(unit) %>
           <%= link_to t("show", scope: "crud"), unit_path(unit) %>
         </td>
       </tr>
