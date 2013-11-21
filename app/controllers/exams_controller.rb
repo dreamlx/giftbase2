@@ -2,21 +2,6 @@
 class ExamsController < ApplicationController
   
   def new
-    @unit = Unit.find(params[:unit_id])
-    @exam = @unit.exams.build
-    @exam.user_id = current_user.id
-    @exam.save
-    if @unit.question_line_items.size != 0
-      session[:question_line_items] ||= {:unit_id => @unit.id, :ids => []}
-      @unit.question_line_items.each do |question_line_item|
-        session[:question_line_items][:ids].push(question_line_item.id)
-      end
-      session[:record_answer_id] = 0
-      session[:answers] = Array.new 
-      redirect_to new_exam_answer_path(@exam)
-    else
-      redirect_to admin_units_path
-    end
   end
 
   def create
@@ -46,5 +31,6 @@ class ExamsController < ApplicationController
 
   def show
     @exam = Exam.find(params[:id])
+    @unit = @exam.unit
   end
 end

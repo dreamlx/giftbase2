@@ -9,6 +9,7 @@ class UnitsController < ApplicationController
   	@unit = Unit.find(params[:id])
   	if @unit.question_line_items.size != 0
   	  if params[:question_line_item_id].nil?    #直接点做题，读取第一题
+        session[:return_to] = request.referer
         session[:answers] = Array.new 
         @question_line_item = @unit.question_line_items.order("position").first
         @question = @question_line_item.question

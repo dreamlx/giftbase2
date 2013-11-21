@@ -1,10 +1,4 @@
-<% content_for :title_bar do %>
-  <h1>
-    <%= @unit.name %>
-    <small><%= @unit.stage.try(:name) %> <%= @unit.exam_minutes %></small>
-  </h1>
-<%= link_to t("back", scope: "crud"), session.delete(:return_to), class: 'btn btn-small pull-right' %>
-<% end %>
+<%= render 'title_bar', {unit: @unit}%>
 <%= @unit.description %>
 
 <ul class="selectable-question-list">

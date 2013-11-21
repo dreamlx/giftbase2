@@ -1,2 +1,7 @@
-%h1
-  = @exam.total_point
+= render '/units/title_bar', {unit: @exam.unit}
+%div.hero-unit
+  %P 
+    = Exam.human_attribute_name("score")
+  %h1
+    = @exam.total_point
+  = link_to t("show", scope: "crud"), exam_path(@exam)

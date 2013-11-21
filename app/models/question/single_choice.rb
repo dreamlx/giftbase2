@@ -32,6 +32,16 @@ class Question::SingleChoice < Question
     answer.mark_as_reviewed!
   end
 
+  def get_answer_choice_option(answer)  # 得到答案的选项
+    if answer.nil?
+     return
+    else
+      self.single_choice_options.to_enum.with_index(65).each do |op, i|
+        return i.chr if answer.option_id.to_i == op.id
+      end
+    end
+  end
+
   private
 
   def mass_assignment_authorizer(role = :default)

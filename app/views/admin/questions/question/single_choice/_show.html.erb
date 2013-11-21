@@ -1,12 +1,18 @@
 <ol type="A">
   <% question.single_choice_options.each do |single_choice_option| %>
-    <li class="<%= 'text-success' if single_choice_option.correct %>">
-      <%= simple_format(h(single_choice_option.content)) %>
-      <div>
-        <% if single_choice_option.image? %>
-          <%= link_to image_tag(single_choice_option.image_url(:thumb)), single_choice_option.image_url%>
-        <% end -%>
-      </div>      
-    </li>
+    <% if controller_name == "admin/units" %>
+      <li class="<%= 'text-success' if single_choice_option.correct %>">
+    <%elsif controller_name == "units"%>
+      <li>
+    <%elsif controller_name == "exams" %>
+      <li class="<%= 'text-error'%>" >
+    <%end%>
+        <%= simple_format(h(single_choice_option.content)) %>
+        <div>
+          <% if single_choice_option.image? %>
+            <%= link_to image_tag(single_choice_option.image_url(:thumb)), single_choice_option.image_url%>
+          <% end -%>
+        </div>      
+      </li>
   <% end -%>
 </ol>

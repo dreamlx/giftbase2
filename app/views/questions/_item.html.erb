@@ -10,6 +10,7 @@
     <div class="clearfix">
       <div class="pull-left">
         <%= simple_format(h(question.subject)) %>
+        <%= user_answer(question_line_item, exam)%>
       </div>
       <div>
         <% if question.image? %>
@@ -18,7 +19,7 @@
       </div>
     </div>
 
-    <%= render "/admin/questions/#{question.class.name.underscore}/no_answer_show", { question: question} %>
+    <%= render "/admin/questions/#{question.class.name.underscore}/show", { question: question} %>
   </div>
 
   <div class="clearfix footer">

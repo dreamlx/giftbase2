@@ -62,6 +62,7 @@ zh-CN:
         unit: 试卷
         user: 学生
         point: 分数
+        score: 您的得分为：
         unreviewed_count: 待批回答数
       answer:
         point: 分数

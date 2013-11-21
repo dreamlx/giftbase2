@@ -1,0 +1,11 @@
+<% content_for :title_bar do %>
+  <h1>
+    <%= unit.name %>
+    <small><%= unit.stage.try(:name) %> <%= unit.exam_minutes %></small>
+  </h1>
+  <% if action = "show" %>
+    <%= link_to t("back", scope: "crud"), session.delete(:return_to), class: 'btn btn-small pull-right' %> 
+  <% elsif action = "take_exam"%>
+    <%= link_to t("back", scope: "crud"), stage_path(unit.stage.id), class: 'btn btn-small pull-right' %>
+  <% end %>
+<% end %>

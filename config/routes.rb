@@ -25,7 +25,7 @@ Giftbase::Application.routes.draw do
 
   resources :answers, only:[:new, :create]
 
-  resources :exams, only: [:new, :create] do
+  resources :exams, only: [:new, :create, :show] do
     member do
       get 'score'
     end
