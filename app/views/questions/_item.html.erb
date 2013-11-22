@@ -9,8 +9,14 @@
   <div class="content">
     <div class="clearfix">
       <div class="pull-left">
-        <%= simple_format(h(question.subject)) %>
-        <%= user_answer(question_line_item, exam)%>
+        <div class="pull-left">
+          <%= simple_format(h(question.subject)) %>
+        </div>
+        <%if controller_name == "exams" %>
+          <div class="pull-left">
+            <%= "#{Answer.human_attribute_name('user_answer')} : #{user_answer(question_line_item, exam)}"%>
+          </div>
+        <%end%>
       </div>
       <div>
         <% if question.image? %>

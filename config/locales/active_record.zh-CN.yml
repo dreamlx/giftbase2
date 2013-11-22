@@ -65,6 +65,8 @@ zh-CN:
         score: 您的得分为：
         unreviewed_count: 待批回答数
       answer:
+        user_answer_nil: 空 
+        user_answer: 你的答案
         point: 分数
         comment: 评语
         max_point: 满分

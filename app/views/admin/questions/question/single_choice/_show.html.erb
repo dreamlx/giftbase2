@@ -1,11 +1,9 @@
 <ol type="A">
   <% question.single_choice_options.each do |single_choice_option| %>
-    <% if controller_name == "admin/units" %>
+    <% if controller_name == "admin/units" || controller_name == "exams" %>
       <li class="<%= 'text-success' if single_choice_option.correct %>">
     <%elsif controller_name == "units"%>
       <li>
-    <%elsif controller_name == "exams" %>
-      <li class="<%= 'text-error'%>" >
     <%end%>
         <%= simple_format(h(single_choice_option.content)) %>
         <div>
