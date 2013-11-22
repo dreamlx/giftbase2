@@ -21,9 +21,13 @@ class Question::SingleChoice < Question
   end
 
   def auto_review(answer)
-    option = single_choice_options.find(answer.option_id)
-    if option.correct
-      answer.point = answer.max_point
+    if !answer.option_id.nil?
+      option = single_choice_options.find(answer.option_id)
+      if option.correct
+        answer.point = answer.max_point
+      else
+        answer.point = 0
+      end
     else
       answer.point = 0
     end

@@ -4,11 +4,13 @@
     <small><%= unit.stage.try(:name) %> <%= unit.exam_minutes %></small>
   </h1>
   <% if controller_name == "units" && action_name == "show"%>
-    <%= link_to t("back", scope: "crud"), session.delete(:return_to), class: 'btn btn-small pull-right' %> 
+    <%= link_to t("back", scope: "crud"), stage_path(unit.stage.id), class: 'btn btn-small pull-right' %> 
     <%= link_to t("take_exam", scope: "crud"), take_exam_unit_path(unit), class: 'btn btn-small pull-right' %>
-  <% elsif controller_name == "take_exam"%>
+  <% elsif controller_name == "exams" && (action_name == "score")%>
     <%= link_to t("back", scope: "crud"), stage_path(unit.stage.id), class: 'btn btn-small pull-right' %>
   <% elsif controller_name == "exams" && action_name == "show"%>
   	<%= link_to t("back", scope: "crud"), score_exam_path(exam), class: 'btn btn-small pull-right'%>
+  <% elsif controller_name == "units" && action_name == "take_exam" %>
+    <%= link_to t("back", scope: "crud"), unit_path(unit), class: 'btn btn-small pull-right' %> 
   <% end %>
 <% end %>
