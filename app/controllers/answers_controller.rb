@@ -14,21 +14,21 @@ class AnswersController < Admin::BaseController
 
   def create
     @unit = Unit.find(params[:unit_id])
-  	if params[:commit] == 'pre'
+  	if params[:commit] == t("previous_question_line_item")
   	  session[:answers].pop
       question_line_item = QuestionLineItem.find(params[:answer][:question_line_item_id])
       if !@unit.pre_question_line_item(question_line_item.position).nil? #get pre question_line_item
         question_line_item = @unit.pre_question_line_item(question_line_item.position) 
       end
       redirect_to take_exam_unit_path(@unit, question_line_item_id: question_line_item.id)
-  	elsif params[:commit] == 'next'
+  	elsif params[:commit] == t("next_question_line_item")
   	  session[:answers].push(params[:answer]) unless params[:answer][:option_id].nil?
       question_line_item = QuestionLineItem.find(params[:answer][:question_line_item_id])
       if !@unit.next_question_line_item(question_line_item.position).nil?   #get next question_line_item
         question_line_item = @unit.next_question_line_item(question_line_item.position) 
       end
   	  redirect_to take_exam_unit_path(@unit, question_line_item_id: question_line_item.id)
-  	elsif params[:commit] == 'all_submit'
+  	elsif params[:commit] == t("all_submit")
       exam = Exam.create!(unit_id:@unit.id, user_id: current_user.id)
       session[:answers].push(params[:answer]) unless params[:answer][:option_id].nil? 
   	  session[:answers].each do |answer|

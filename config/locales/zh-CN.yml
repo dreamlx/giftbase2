@@ -91,6 +91,7 @@ zh-CN:
   next_question_group: '下一试题分组 >>'
   previous_question_line_item: '< 上一题'
   next_question_line_item: '下一题 >'
+  all_submit: '提交答案'
   no_point: '未评分'
   review: '批阅'
   start_review: '开始批阅'

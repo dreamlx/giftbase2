@@ -23,9 +23,9 @@
                   = link_to image_tag(single_choice_option.image_url(:thumb)), single_choice_option.image_url
           %div.actions.pull-left
             %div.btn-group
-              = f.submit 'next', class:"btn btn-small "
-              = f.submit 'pre', class:"btn btn-small "
-              = f.submit 'all_submit', class:"btn btn-small "
+              = f.submit t("previous_question_line_item"), class:"btn btn-small "
+              = f.submit t("next_question_line_item"), class:"btn btn-small "
+              = f.submit t("all_submit"), class:"btn btn-small "
   %div.clearfix.footer
     %div.pull-left
       = "#{Question.human_attribute_name(:hint)} : #{question.hint}"
