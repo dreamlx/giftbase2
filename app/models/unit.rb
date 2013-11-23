@@ -24,11 +24,11 @@ class Unit < ActiveRecord::Base
     UserUnit.create(user_id: user.id, unit_id: self.id) 
   end
 
-  def pre_question(question_id)
-    self.questions.where("question_id < ?", question_id).order("id DESC").first
+  def pre_question_line_item(position)
+    self.question_line_items.where("question_line_items.position < ?", position).order("question_line_items.position desc").first
   end
 
-  def next_question(question_id)
-    self.questions.where("question_id > ?", question_id).order("id ASC").first
+  def next_question_line_item(position)
+    self.question_line_items.where("question_line_items.position > ?", position).order("question_line_items.position").first
   end
 end

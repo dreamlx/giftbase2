@@ -1,0 +1,6 @@
+<%= render 'title_bar', {unit: @unit}%>
+<ul class="selectable-question-list">
+    <li>
+      <%= render "/admin/questions/#{@question.class.name.underscore}/do_question", {question: @question, question_line_item: @question_line_item, answer: @answer, unit: @unit} %>
+    </li>
+</ul>

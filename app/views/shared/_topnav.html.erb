@@ -6,7 +6,7 @@
         <ul class="nav">
           <li class="<%= 'active' if controller.class.to_s == 'HomeController' and params[:action] == 'index'%>"><%= link_to t('home'), root_path %></li>
           <li class="<%= 'active' if params[:action] == 'privacy' %>"><%= link_to t('privacy'), home_privacy_path %></li>
-          <li class="<%= 'active' if controller.class.to_s == 'StagesController' %>"><%= link_to Stage.model_name.human, stages_path %></li>
+          <li class="<%= 'active' if controller.class.to_s == 'StagesController' %>"><%= link_to Stage.model_name.human, root_path %></li>
           <li class="<%= 'active' if controller.class.to_s == 'CreditsController' %>"><%= link_to Credit.model_name.human, credits_path %></li>
           <li class="<%= 'active' if controller.class.to_s == 'OrdersController' %>"><%= link_to Order.model_name.human, orders_path %></li>
         </ul>

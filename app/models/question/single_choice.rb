@@ -21,15 +21,29 @@ class Question::SingleChoice < Question
   end
 
   def auto_review(answer)
-    option = single_choice_options.find(answer.option_id)
-    if option.correct
-      answer.point = answer.max_point
+    if !answer.option_id.nil?
+      option = single_choice_options.find(answer.option_id)
+      if option.correct
+        answer.point = answer.max_point
+      else
+        answer.point = 0
+      end
     else
       answer.point = 0
     end
     answer.save
     
     answer.mark_as_reviewed!
+  end
+
+  def get_answer_choice_option(answer)  # 得到答案的选项
+    if answer.nil?
+     return
+    else
+      self.single_choice_options.to_enum.with_index(65).each do |op, i|
+        return i.chr if answer.option_id.to_i == op.id
+      end
+    end
   end
 
   private

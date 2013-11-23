@@ -1,0 +1,24 @@
+<table class="table table-bordered table-striped">
+  <thead>
+    <tr>
+      <th><%= Unit.human_attribute_name(:position) %></th>
+      <th><%= Unit.human_attribute_name(:stage) %></th>
+      <th><%= Unit.human_attribute_name(:name) %></th>
+      <th><%= Unit.human_attribute_name(:exam_minutes) %></th>
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+    <% units.each do |unit| %>
+      <tr>
+        <td><%= unit.position unless unit.position.blank? %></td>
+        <td><%= unit.stage.try(:name)%></td>
+        <td><%= unit.name %></td>
+        <td><%= unit.exam_minutes %></td>
+        <td class="control span2">
+          <%= link_to t("show", scope: "crud"), unit_path(unit) %>
+        </td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>

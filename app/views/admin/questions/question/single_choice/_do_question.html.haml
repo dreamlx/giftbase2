@@ -1,14 +1,33 @@
-%ol{type:"A"}
-  = simple_form_for answer do |f|
-    - question.single_choice_options.each do |single_choice_option|
-      = f.input :option_id, input_html: {type: 'radio', value: "#{single_choice_option.id}" }, label: false
-      = f.input :exam_id, input_html: {type:"hidden", value: "#{@exam.id}"}, label: false
-      = f.input :question_line_item_id, input_html: {type:"hidden", value:"#{@question_line_item.id}"}, label: false
-      %li
-        = simple_format(h(single_choice_option.content))
-        %div
-        - if single_choice_option.image?
-          = link_to image_tag(single_choice_option.image_url(:thumb)), single_choice_option.image_url
-    = f.submit 'next'
-    = f.submit 'prev'
-    = f.submit 'all_submit'
+%div.item
+  %div.header.clearfix
+    %div.type.pull-left
+      = question_line_item.position
+      = question.class.model_name.human
+  %div.content
+    %div.clearfix
+      %div
+        = simple_format(h(question.subject))
+      %ol{type:"A"}
+        = simple_form_for(answer, :url => answers_path(unit_id: @unit.id), :method => 'post') do |f|
+          - question.single_choice_options.each do |single_choice_option|
+            %div.row
+
+              %div.span1{style:"width:20px"}
+                = f.input :option_id, input_html: {class:"pull-left", type: 'radio', value: "#{single_choice_option.id}"}, label: false
+                = f.input :question_line_item_id, input_html: {type:"hidden", value:"#{@question_line_item.id}"}, label: false
+              %div.span11
+                %li
+                  = simple_format(h(single_choice_option.content))
+                %div
+                - if single_choice_option.image?
+                  = link_to image_tag(single_choice_option.image_url(:thumb)), single_choice_option.image_url
+          %div.actions.pull-left
+            %div.btn-group
+              = f.submit t("previous_question_line_item"), class:"btn btn-small "
+              = f.submit t("next_question_line_item"), class:"btn btn-small "
+              = f.submit t("all_submit"), class:"btn btn-small "
+  %div.clearfix.footer
+    %div.pull-left
+      = "#{Question.human_attribute_name(:hint)} : #{question.hint}"
+    %div.pull-right
+      = "#{Question.human_attribute_name(:level)} : #{question.human_level}"

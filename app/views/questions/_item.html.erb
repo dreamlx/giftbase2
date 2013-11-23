@@ -1,0 +1,35 @@
+<div class="item">
+  <div class="header clearfix">
+    <div class="type pull-left">
+      <%= question_line_item.position %>
+      <%= question.class.model_name.human %>
+    </div>
+  </div>
+
+  <div class="content">
+    <div class="clearfix">
+      <div class="pull-left">
+        <div class="pull-left">
+          <%= simple_format(h(question.subject)) %>
+        </div>
+        <%if controller_name == "exams" %>
+          <div class="pull-left">
+            <%= "#{Answer.human_attribute_name('user_answer')} : #{user_answer(question_line_item, exam)}"%>
+          </div>
+        <%end%>
+      </div>
+      <div>
+        <% if question.image? %>
+          <%= link_to image_tag(question.image_url(:thumb)), question.image_url, class: 'pull-right' %>
+        <% end -%>
+      </div>
+    </div>
+
+    <%= render "/admin/questions/#{question.class.name.underscore}/show", { question: question} %>
+  </div>
+
+  <div class="clearfix footer">
+    <div class="pull-left"><%= Question.human_attribute_name(:hint) %>:<%= question.hint %></div>
+    <div class="pull-right"><%= Question.human_attribute_name(:level) %>:<%= question.human_level %></div>
+  </div>
+</div>
