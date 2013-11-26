@@ -12,7 +12,7 @@ class StagesController < ApplicationController
   end
 
   def purchase
-    @stage = @grade.stages.find(params[:id])
+    @stage = Stage.find(params[:id])
     @stage.purchase(current_user)
 
     redirect_to stage_path(@stage), notice: t("success", scope: "flash.controller.stages.purchase")

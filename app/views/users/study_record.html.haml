@@ -1,0 +1,28 @@
+%h1 
+  = t("study_record")
+%table.table.table-bordered.table-striped
+  %thead
+    %tr
+      %th
+        = Exam.human_attribute_name("take_exam_time")
+      %th
+        = Exam.human_attribute_name("unit")
+      %th
+        = Exam.human_attribute_name("duration")
+      %th
+        = Exam.human_attribute_name("complete_schedule")
+      %th
+        = Exam.human_attribute_name("accuracy")
+  %tbody
+    - @exams.each do |exam|
+      %tr
+        %td
+          = exam.started_at.to_date unless exam.started_at.nil?
+        %td
+          = exam.unit.name
+        %td
+          = exam_time(exam.duration)
+        %td
+          = t("exam_complete_schedule", total_counts: exam.unit.question_line_items.size, correct_counts: exam.correct_counts )
+        %td
+          = exam.accuracy

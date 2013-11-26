@@ -19,6 +19,7 @@
         <td><%= order.human_state_name %></td>
         <td class="control span2">
           <%= link_to t("show", scope: "crud"), order %>
+          <%= link_to t("pay_by_cash"), pay_by_cash_order_path(order), method: :post%>
         </td>
       </tr>
     <% end %>

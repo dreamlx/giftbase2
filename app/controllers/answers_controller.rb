@@ -43,7 +43,7 @@ class AnswersController < Admin::BaseController
     end
 
     def all_submit
-      exam = Exam.create!(unit_id:@unit.id, user_id: current_user.id)
+      exam = Exam.create!(unit_id:@unit.id, user_id: current_user.id, stopped_at: Time.now, started_at: cookies.delete(:started_at))
       session[:answers].push(params[:answer])
       last_question_line_item = @unit.question_line_items.order("position").last
       if params[:answer][:question_line_item] != last_question_line_item.id

@@ -1,0 +1,16 @@
+%h1
+  = t("study_schedule")
+%table.table.table-bordered.table-striped
+  %thead
+    %tr
+      %th
+        = Stage.human_attribute_name(:name)
+      %th
+        = Stage.human_attribute_name(:precentage_complete)
+  %tbody
+    - @stages.each do |stage|
+      %tr
+        %td
+          = link_to "#{stage.name}", stage_path(stage)
+        %td
+          = stage.stage_percentage_complete(current_user)

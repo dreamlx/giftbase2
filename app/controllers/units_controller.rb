@@ -13,6 +13,7 @@ class UnitsController < ApplicationController
         session[:answers] = Array.new 
         @question_line_item = @unit.question_line_items.order("position").first
         @question = @question_line_item.question
+        cookies[:started_at] = Time.now
         @answer = Answer.new
       else
       	@question_line_item = QuestionLineItem.find(params[:question_line_item_id])
