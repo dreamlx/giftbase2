@@ -5,6 +5,20 @@ class UsersController < ApplicationController
   end
 
   def study_record_chart
+  	@take_exam_time_for_day = Hash.new 
+  	@exams = current_user.exams
+  	@exams.each do |exam|
+      time = exam.created_at.strftime("%y/%m/%d")
+      if @take_exam_time_for_day[time].nil?
+      	@take_exam_time_for_day[time] = exam.duration/60
+      else
+      	@take_exam_time_for_day[time] += exam.duration/60 
+      end 
+  	end
+  	respond_to do |format|
+      format.json {render json: @take_exam_time_for_day.to_json}
+      format.html 
+  	end
   end
 
   def study_schedule
