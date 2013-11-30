@@ -20,6 +20,15 @@ class OrdersController < ApplicationController
     end
   end
 
+  def pay_by_cash
+    @order = current_user.orders.find(params[:id])
+    if @order.pay
+      redirect_to orders_path, notice: t("success")
+    else
+      redirect_to orders_path, alert: t("failure")
+    end
+  end
+
   def pay
     @order = current_user.orders.find(params[:id])
 

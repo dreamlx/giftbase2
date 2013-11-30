@@ -21,6 +21,9 @@
               </a>
               <ul class="dropdown-menu">
                 <li><%= link_to current_user.email, edit_user_registration_path %></li>
+                <li><%= link_to t("study_schedule"), study_schedule_user_path(current_user) %></li>
+                <li><%= link_to t("study_record"), study_record_user_path(current_user) %></li>
+                <li><%= link_to t("study_record_chart"), study_record_chart_user_path(current_user) %></li>
                 <li><%= link_to t('sign_out'), destroy_user_session_path, :method => :delete, :id => "sign-out" %></li>
               </ul>
             </li>

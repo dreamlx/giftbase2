@@ -32,4 +32,9 @@ class Stage < ActiveRecord::Base
   def purchase?(user)
     user.blank? ? false : user.stages.include?(self) 
   end
+
+  def stage_percentage_complete(user)
+    complete_units = self.exams.select("unit_id").where("user_id = #{user.id}").uniq
+    percent = (complete_units.length.to_f/self.units.length)
+  end
 end

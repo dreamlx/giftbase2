@@ -3,6 +3,14 @@ Giftbase::Application.routes.draw do
   post '/alipay/notify/:order_number' => 'alipay#notify', as: :notify_alipay
   get '/home/privacy'
 
+  resources :users, only: [] do
+    member do
+      get 'study_record'
+      get 'study_record_chart'
+      get 'study_schedule'
+    end
+  end
+
   resources :grades, only: [:index, :show]
 
   resources :stages, only: [:index, :show] do
@@ -20,6 +28,7 @@ Giftbase::Application.routes.draw do
   resources :orders, only: [:index, :show, :create] do
     member do
       post 'pay'
+      post 'pay_by_cash'
     end
   end
 

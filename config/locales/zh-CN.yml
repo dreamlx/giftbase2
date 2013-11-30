@@ -99,3 +99,8 @@ zh-CN:
   home: 首页
   download: 下载
   privacy: 隐私政策
+  study_record: 作业记录
+  study_schedule: 学习进度
+  study_record_chart: 作业记录报表
+  pay_by_cash: 现金支付
+  exam_complete_schedule: "%{total_counts}题，准确%{correct_counts}题" 

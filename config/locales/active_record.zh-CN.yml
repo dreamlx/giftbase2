@@ -64,6 +64,9 @@ zh-CN:
         point: 分数
         score: 您的得分为：
         unreviewed_count: 待批回答数
+        complete_schedule: 完成进度
+        accuracy: 正确率
+        take_exam_time: 日期
       answer:
         user_answer_nil: 空 
         user_answer: 你的答案
@@ -86,6 +89,7 @@ zh-CN:
         grade_id: 所属年级
         grade: 所属年级
         position: 序号
+        precentage_complete: 完成率
       grade:
         position: 序号
         name: 名称

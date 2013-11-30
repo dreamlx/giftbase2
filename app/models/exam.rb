@@ -53,6 +53,18 @@ class Exam < ActiveRecord::Base
     answers.each(&:auto_review)
   end
 
+  def accuracy
+    format("%.2f", correct_counts.to_f/answers.size)
+  end
+
+  def correct_counts
+    i = 0
+    answers.each do |answer|
+      i += 1 if answer.point.to_f == answer.question_line_item.point.to_f
+    end
+    return i
+  end
+
   # TODO: test data for development, remove it on production
   def self.generate_test_params(unit_id)
     unit = Unit.find(unit_id)
@@ -84,3 +96,4 @@ class Exam < ActiveRecord::Base
     params
   end
 end
+ 
