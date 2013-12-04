@@ -69,4 +69,5 @@ group :test do
   gem 'factory_girl_rails', '4.2.1'
   gem 'rspec-rails', '2.13.1'
   gem 'capybara', '2.1.0'
+  gem 'libnotify', '0.8.0'
 end
