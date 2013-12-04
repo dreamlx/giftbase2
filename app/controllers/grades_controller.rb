@@ -8,7 +8,7 @@ class GradesController < ApplicationController
 
   def show
     @grade = Grade.find(params[:id])
- 	@stages = @grade.stages
+ 	  @stages = @grade.stages
   end
 
   private

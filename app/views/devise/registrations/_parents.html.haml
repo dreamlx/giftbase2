@@ -1,0 +1,18 @@
+%h2
+  = "Sign Up #{t('parents_entrance')}"
+
+= simple_form_for(resource, :as => resource_name, :url => registration_path(resource_name)) do |f|
+  = f.error_notification
+  .form-inputs
+    = f.input :avatar
+    = f.input :username, :required => true, :autofocus => true
+    %div.btn-group{"data-toggle" => "buttons-radio"}
+      %button.btn.btn-primary{:type=>"button"} father
+      %button.btn.btn-primary{:type=>"button"} mather
+    = f.input :email, :required => true
+    = f.input :phone
+    = f.input :role, input_html: {type: "hidden", value:"#{cookies[:user_role]}"}, label: false
+    = f.input :password, :required => true
+    = f.input :password_confirmation, :required => true
+  .form-actions
+    = f.button :submit, "Sign up"

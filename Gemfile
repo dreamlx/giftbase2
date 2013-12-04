@@ -32,6 +32,7 @@ gem 'pg'
 #gem 'heroku'
 gem 'pry-nav'
 gem 'pry'
+gem 'html2haml'
 
 gem 'chart-js-rails'
 
