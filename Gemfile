@@ -26,6 +26,7 @@ gem 'amoeba'  #copy active record deep
 gem 'mysql2'
 gem 'rest-client'
 gem "haml-rails" #erb简化模板
+gem 'html2haml'
 # on heroku
 gem 'thin'
 gem 'pg'
