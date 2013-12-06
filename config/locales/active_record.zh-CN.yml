@@ -15,6 +15,7 @@ zh-CN:
         parents: 家长
         teacher: 老师
         admin: 管理员
+        home_address: 家庭地址
       question:
         id: 序号
         type: 类型

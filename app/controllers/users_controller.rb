@@ -24,4 +24,9 @@ class UsersController < ApplicationController
   def study_schedule
     @stages = current_user.stages
   end
+
+  def parents_children
+    @parent = User.find(params[:id])
+    @student = User.new
+  end
 end

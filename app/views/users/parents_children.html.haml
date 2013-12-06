@@ -1,0 +1,30 @@
+%h2
+  = t("set_up_child")
+
+%div.span5
+  %label
+    = User.human_attribute_name(:parents)
+  %p
+    = @parent.username
+  %label
+    = User.human_attribute_name(:email)
+  %p
+    = @parent.email
+  %label
+    = User.human_attribute_name(:home_address)
+  %p
+    = @parent.home_address
+%div.span6
+  %h4
+    = t("add_child")
+  = simple_form_for(@student) do |f|
+    = f.error_notification
+    .form-inputs
+      = f.input :username, :required => true, :autofocus => true
+      = f.input :email, :required => true
+      = f.input :role, input_html: {type: "hidden", value:"#{cookies[:user_role]}"}, label: false
+      = f.input :password, :required => true
+      = f.input :password_confirmation, :required => true
+
+    .form-actions
+      = f.button :submit, "Sign up"

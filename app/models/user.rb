@@ -35,6 +35,10 @@ class User < ActiveRecord::Base
 
   has_many :orders
 
+  has_many :parents_children, foreign_key:"parent_id", dependent: :destroy
+  has_many :parents, through: :parents_children, source: :parent_id
+  has_many :children, through: :parents_children, source: :child_id
+
   mount_uploader :avatar, ImageUploader
 
   def self.find_first_by_auth_conditions(warden_conditions)

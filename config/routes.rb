@@ -8,6 +8,7 @@ Giftbase::Application.routes.draw do
       get 'study_record'
       get 'study_record_chart'
       get 'study_schedule'
+      get 'parents_children'
     end
   end
 

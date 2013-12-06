@@ -105,3 +105,5 @@ zh-CN:
   pay_by_cash: 现金支付
   exam_complete_schedule: "%{total_counts}题，准确%{correct_counts}题" 
   parents_entrance: 家长入口
+  add_child: 增加孩子
+  set_up_child: 设置小孩

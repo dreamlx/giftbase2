@@ -7,12 +7,16 @@
     = f.input :avatar
     = f.input :username, :required => true, :autofocus => true
     %div.btn-group{"data-toggle" => "buttons-radio"}
-      %button.btn.btn-primary{:type=>"button"} father
-      %button.btn.btn-primary{:type=>"button"} mather
+      %button.btn.btn-primary{:type=>"button", :id => "father"} father
+      %button.btn.btn-primary{:type=>"button", :id => "mother"} mother
     = f.input :email, :required => true
     = f.input :phone
-    = f.input :role, input_html: {type: "hidden", value:"#{cookies[:user_role]}"}, label: false
+    = f.input :role, input_html: {type: "hidden",id:"role"}, label: false
+    = f.input :home_address
     = f.input :password, :required => true
     = f.input :password_confirmation, :required => true
   .form-actions
     = f.button :submit, "Sign up"
+
+= javascript_include_tag "users_new"
+

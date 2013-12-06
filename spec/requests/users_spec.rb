@@ -8,7 +8,7 @@ describe "Users" do
   	before{visit root_path}
 
   	describe "click student then click sign_up" do
-  	  let(:submit_student){User.human_attribute_name(:student)}
+     let(:submit_student){User.human_attribute_name(:student)}
   	  before do 
   	  	click_link submit_student
   	  	click_link sign_up
@@ -26,9 +26,14 @@ describe "Users" do
   	  	click_link sign_up
   	  end
   	  it "should be have user_role parents" do
-  	  	should have_selector("input[value='parents']")
+      #   click_button "mother"
+  	  	# should have_selector("input[value='mother']")
+      #   click_button "father"
+      #   should have_selector("input[value='father']")
       end
   	end
   end
+
+  describe ""
 
 end
