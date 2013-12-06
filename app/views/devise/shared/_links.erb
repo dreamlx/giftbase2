@@ -2,7 +2,7 @@
   <%= link_to "Sign in", new_session_path(resource_name) %><br />
 <% end -%>
 
-<%- if devise_mapping.registerable? && controller_name != 'registrations' %>
+<%- if devise_mapping.registerable? && controller_name != 'registrations' && (cookies[:user_role] == "student" || cookies[:user_role] == "parents" || cookies[:user_role] == "teacher")%>
   <%= link_to "Sign up", new_registration_path(resource_name) %><br />
 <% end -%>
 

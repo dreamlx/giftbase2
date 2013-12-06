@@ -11,6 +11,11 @@ zh-CN:
         password_confirmation: 确认密码
         remember_me: 记住密码
         username: 用户名
+        student: 学生
+        parents: 家长
+        teacher: 老师
+        admin: 管理员
+        home_address: 家庭地址
       question:
         id: 序号
         type: 类型

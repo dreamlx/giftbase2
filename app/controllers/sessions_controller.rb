@@ -2,6 +2,7 @@ class SessionsController < Devise::SessionsController
   def create
     cookies.delete(:user_role) unless cookies[:user_role].nil?
     self.resource = warden.authenticate!(auth_options)
+    binding.pry
     set_flash_message(:notice, :signed_in) if is_navigational_format?
     sign_in(resource_name, resource)
     respond_to do |format|

@@ -4,12 +4,13 @@ class User < ActiveRecord::Base
   # :lockable, :timeoutable and :omniauthable
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :trackable, :validatable,
-         :token_authenticatable
+         :token_authenticatable, :confirmable
 
   # Setup accessible (or protected) attributes for your model
   attr_accessible :username, :email, :password, :password_confirmation, 
                   :remember_me, :role, :avatar, :gender, :avatar_id,
-                  :birthday, :home_address, :school_name, :school_address, :qq, :parent_name
+                  :birthday, :home_address, :school_name, :school_address, :qq, :parent_name,
+                  :phone
   # attr_accessible :title, :body
   attr_accessor :login
 
@@ -33,6 +34,12 @@ class User < ActiveRecord::Base
   after_create :create_its_credit
 
   has_many :orders
+
+  has_many :child_parents, foreign_key:"parent_id", dependent: :destroy
+  has_many :children, through: :child_parents, source: :child
+
+  has_many :reverse_child_parents, foreign_key:"child_id", class_name:"ChildParent", dependent: :destroy
+  has_many :parents, through: :reverse_child_parents, source: :parent
 
   mount_uploader :avatar, ImageUploader
 

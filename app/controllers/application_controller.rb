@@ -5,7 +5,9 @@ class ApplicationController < ActionController::Base
     if resource.role == "admin"
       stored_location_for(resource) || admin_path
   	elsif resource.role == "student"
-  	  grades_path
+      grades_path
+  	elsif  resource.role == "father" || resource.role == "mother"
+      parent_user_path(resource)
   	end
   end
 end

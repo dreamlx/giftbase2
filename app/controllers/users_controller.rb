@@ -24,4 +24,26 @@ class UsersController < ApplicationController
   def study_schedule
     @stages = current_user.stages
   end
+
+  def parent_add_child
+    @parent = User.find(params[:id])
+    parent_child = @parent.child_parents.build
+    if params[:child] == "old"
+    elsif params[:child] == "new"
+      child = User.create(params[:user])
+      if child.save
+        parent_child.child_id = child.id
+        parent_child.save
+        redirect_to parent_user_path(@parent)
+      else
+        redirect_to parent_user_path(@parent)
+      end
+    end
+  end
+
+  def parent
+    @parent = User.find(params[:id])
+    @children = @parent.children
+    @student = User.new
+  end
 end

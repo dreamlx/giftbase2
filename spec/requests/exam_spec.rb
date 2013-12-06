@@ -1,19 +1,25 @@
 require 'spec_helper'
 
-
 describe 'take_exam_page' do
-	subject{ page }
+	# subject{ page }
+	include ControllerMacros
+	
+	login_user
 
-	before do 
-	  @unit = Unit.find(15)
-	  @question_line_item = @unit.question_line_items.order("position").first
-	  visit take_exam_unit_path(@unit)
-	end
+	# before do 
+ #      @unit = Unit.find(16)
+ #      visit unit_path(@unit)
+	# end
 
 	describe "next question_line_item" do
-	  let(:submit){I18n.t("next_question_line_item")}
+
+	  let(:next_submit){I18n.t("next_question_line_item")}
 	  it "question_line_item's position should add one" do
-	  	# expect{click_on submit}.to change{@question_line_item.position}.from(1).to(2)
+        should have_content(I18n.t("app_name"))
+        should have_content(I18n.t("signed_in", scope:"sessions"))
+      # should have_content(@unit.questions.first.class.model_name.human)
+      # should have_content("1+1")
+      # expect{click_link next_submit}.to change{@question_line_item.position}.from(1).to(2)
 	  end
 	end
 

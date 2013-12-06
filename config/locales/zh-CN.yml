@@ -104,3 +104,9 @@ zh-CN:
   study_record_chart: 作业记录报表
   pay_by_cash: 现金支付
   exam_complete_schedule: "%{total_counts}题，准确%{correct_counts}题" 
+  parents_entrance: 家长入口
+  add_new_child: 增加孩子(小孩没有账号)
+  add_old_child: 增加孩子(小孩已有账号)
+  set_up_child: 设置小孩
+  aready_token_child: 已经设置的小孩
+  parent_accouts: 家长账号

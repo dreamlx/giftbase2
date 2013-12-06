@@ -1,0 +1,49 @@
+%h2
+  = t("set_up_child")
+
+%div.span2
+  %h4
+    = t("parent_accouts")
+  %label
+    = User.human_attribute_name(:username)
+  %p
+    = @parent.username
+  %label
+    = User.human_attribute_name(:email)
+  %p
+    = @parent.email
+  %label
+    = User.human_attribute_name(:home_address)
+  %p
+    = @parent.home_address
+%div.span3
+  %h4
+    = t("aready_token_child")
+  - @children.each do |child|
+    = child.username
+%div.span3
+  %h4
+    = t("add_old_child")
+  = simple_form_for(@student, url: parent_add_child_user_path(child: "old"), method: :post) do |f|
+    = f.error_notification
+    .form-inputs
+      = f.input :username, :required => true, :autofocus => true
+      = f.input :role, input_html: {type: "hidden", value:"student"}, label: false
+      = f.input :password, :required => true
+    .form-actions
+      = f.button :submit, "Add"
+%div.span3
+  %h4
+    = t("add_new_child")
+  = simple_form_for(@student, url: parent_add_child_user_path(child: "new"), method: :post) do |f|
+    = f.error_notification
+    .form-inputs
+      = f.input :username, :required => true, :autofocus => true
+      = f.input :email, :required => true
+      = f.input :role, input_html: {type: "hidden", value:"student"}, label: false
+      = f.input :password, :required => true
+      = f.input :password_confirmation, :required => true
+
+    .form-actions
+      = f.button :submit, "Add"
+

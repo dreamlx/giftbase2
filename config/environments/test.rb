@@ -31,7 +31,18 @@ Giftbase::Application.configure do
 
   # Raise exception on mass assignment protection for Active Record models
   config.active_record.mass_assignment_sanitizer = :strict
-
   # Print deprecation notices to the stderr
   config.active_support.deprecation = :stderr
+  config.action_mailer.default_url_options = { :host => 'localhost:3000' }
+
+  email_config = YAML::load(File.read(Rails.root.to_s + '/config/email_config.yml'))
+  config.action_mailer.smtp_settings = {
+    :address => email_config['address'],
+    :port => email_config['port'],
+    :domain => email_config['domain'],
+    :authentication => email_config['authentication'],
+    :user_name => email_config['email'],
+    :password => email_config['password'],
+    :enable_starttls_auto => email_config['enable_starttls_auto']
+  }
 end
