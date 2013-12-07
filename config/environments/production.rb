@@ -66,4 +66,15 @@ Giftbase::Application.configure do
   # config.active_record.auto_explain_threshold_in_seconds = 0.5
 
   config.action_mailer.default_url_options = { :host => 'www.giftbase.me' }
+
+  email_config = YAML::load(File.read(Rails.root.to_s + '/config/email_config.yml'))
+  config.action_mailer.smtp_settings = {
+    :address => email_config['address'],
+    :port => email_config['port'],
+    :domain => email_config['domain'],
+    :authentication => email_config['authentication'],
+    :user_name => email_config['email'],
+    :password => email_config['password'],
+    :enable_starttls_auto => email_config['enable_starttls_auto']
+  }
 end
