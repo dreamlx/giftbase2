@@ -8,4 +8,5 @@ module UsersHelper
   	  return "#{time} sec"
   	end
   end
+
 end

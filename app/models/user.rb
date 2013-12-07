@@ -4,12 +4,13 @@ class User < ActiveRecord::Base
   # :lockable, :timeoutable and :omniauthable
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :trackable, :validatable,
-         :token_authenticatable
+         :token_authenticatable, :confirmable
 
   # Setup accessible (or protected) attributes for your model
   attr_accessible :username, :email, :password, :password_confirmation, 
                   :remember_me, :role, :avatar, :gender, :avatar_id,
-                  :birthday, :home_address, :school_name, :school_address, :qq, :parent_name
+                  :birthday, :home_address, :school_name, :school_address, :qq, :parent_name,
+                  :phone
   # attr_accessible :title, :body
   attr_accessor :login
 
@@ -34,6 +35,12 @@ class User < ActiveRecord::Base
 
   has_many :orders
 
+  has_many :child_parents, foreign_key:"parent_id", dependent: :destroy
+  has_many :children, through: :child_parents, source: :child
+
+  has_many :reverse_child_parents, foreign_key:"child_id", class_name:"ChildParent", dependent: :destroy
+  has_many :parents, through: :reverse_child_parents, source: :parent
+
   mount_uploader :avatar, ImageUploader
 
   def self.find_first_by_auth_conditions(warden_conditions)
@@ -45,9 +52,32 @@ class User < ActiveRecord::Base
     end
   end
 
+  def boolean_verify_parent(parent, child)
+    child_parent = ChildParent.where(parent_id: parent.id, child_id: child.id).first
+    if !child_parent.blank?
+      return child_parent.verify_parent
+    else
+      return false
+    end
+  end
+
+  def boolean_verify_parent
+    child_parents = ChildParent.where(child_id: self.id)
+    parents = Array.new
+    child_parents.each do |child_parent|
+      if child_parent.verify_parent == false
+        parent = User.find(child_parent.parent_id)
+        parents.push(parent)
+      end
+    end
+    return parents
+  end
+
   protected
 
   def create_its_credit
     self.create_credit
   end
+
+
 end

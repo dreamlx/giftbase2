@@ -25,10 +25,18 @@ class Unit < ActiveRecord::Base
   end
 
   def pre_question_line_item(position)
-    self.question_line_items.where("question_line_items.position < ?", position).order("question_line_items.position desc").first
+    if position == self.question_line_items.order("question_line_items.position").first
+      self
+    else
+      self.question_line_items.where("question_line_items.position < ?", position).order("question_line_items.position desc").first
+    end
   end
 
   def next_question_line_item(position)
-    self.question_line_items.where("question_line_items.position > ?", position).order("question_line_items.position").first
+    if position == self.question_line_items.order("question_line_items.position desc").first
+      self
+    else
+      self.question_line_items.where("question_line_items.position > ?", position).order("question_line_items.position").first
+    end
   end
 end

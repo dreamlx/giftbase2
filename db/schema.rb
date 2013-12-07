@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20131101223239) do
+ActiveRecord::Schema.define(:version => 20131207015027) do
 
   create_table "answers", :force => true do |t|
     t.integer  "exam_id"
@@ -37,6 +37,14 @@ ActiveRecord::Schema.define(:version => 20131101223239) do
   end
 
   add_index "brief_solutions", ["question_id"], :name => "index_brief_solutions_on_question_id"
+
+  create_table "child_parents", :force => true do |t|
+    t.integer  "child_id"
+    t.integer  "parent_id"
+    t.datetime "created_at",                       :null => false
+    t.datetime "updated_at",                       :null => false
+    t.boolean  "verify_parent", :default => false
+  end
 
   create_table "credit_line_items", :force => true do |t|
     t.decimal  "amount",     :precision => 8, :scale => 2
@@ -148,6 +156,13 @@ ActiveRecord::Schema.define(:version => 20131101223239) do
   add_index "orders", ["number"], :name => "index_orders_on_number"
   add_index "orders", ["state"], :name => "index_orders_on_state"
   add_index "orders", ["user_id"], :name => "index_orders_on_user_id"
+
+  create_table "parents_childrens", :force => true do |t|
+    t.integer  "parent_id"
+    t.integer  "child_id"
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
+  end
 
   create_table "pictures", :force => true do |t|
     t.string   "name"
@@ -286,6 +301,11 @@ ActiveRecord::Schema.define(:version => 20131101223239) do
     t.string   "school_address"
     t.string   "qq"
     t.string   "parent_name"
+    t.string   "phone"
+    t.datetime "confirmation_sent_at"
+    t.datetime "confirmed_at"
+    t.string   "confirmation_token"
+    t.string   "unconfirmed_email"
   end
 
   add_index "users", ["authentication_token"], :name => "index_users_on_authentication_token", :unique => true

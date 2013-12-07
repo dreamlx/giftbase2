@@ -21,6 +21,10 @@ $(document).ready(function(){
       ]
     }
     myNewChart = new Chart($("#canvas").get(0).getContext("2d")).Line(data)
+
+    $("#father").click(function(){
+      $("#role").value = "father"
+    })
 });
 
 

@@ -104,3 +104,15 @@ zh-CN:
   study_record_chart: 作业记录报表
   pay_by_cash: 现金支付
   exam_complete_schedule: "%{total_counts}题，准确%{correct_counts}题" 
+  parents_entrance: 家长入口
+  add_new_child: 增加孩子(小孩没有账号)
+  add_old_child: 增加孩子(小孩已有账号)
+  add_child_success: 增加小孩成功
+  set_up_child: 设置小孩
+  make_sure_child: 请登录小孩的帐号确认
+  aready_token_child: 已经设置的小孩
+  parent_accouts: 家长账号
+  user_not_exist: 用户不存在
+  aready_add_child: 已经添加过该小孩
+  success_confirm_parent: 成功确认家长
+

@@ -1,7 +1,6 @@
 class RegistrationsController < Devise::RegistrationsController
   def create
     build_resource
-
     if resource.save
       if resource.active_for_authentication?
         set_flash_message :notice, :signed_up if is_navigational_format?
@@ -21,7 +20,7 @@ class RegistrationsController < Devise::RegistrationsController
     else
       clean_up_passwords resource
       respond_to do |format|
-        format.html { redirect_to after_inactive_sign_up_path_for(resource) }
+        format.html{respond_with resource}
         format.json { render status: :unprocessable_entity, json: { success: false, error_message: resource.errors } }
       end
     end

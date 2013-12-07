@@ -1,0 +1,19 @@
+- parents = current_user.boolean_verify_parent
+- if parents.size > 0
+  %div.alert.alert-success.fade.in
+    - parents.each do |parent|
+      = simple_form_for(current_user, url: child_confirm_parent_user_path(parent), method: :post) do |f|
+        = f.button :submit, "Add"
+%h1 选择你的年级
+%table.table.table-bordered.table-striped
+  %thead
+    %tr
+      %th= Grade.human_attribute_name(:position)
+      %th= Grade.human_attribute_name(:name)
+      %th= Grade.human_attribute_name(:description)
+  %tbody
+    - @grades.each do |grade|
+      %tr
+        %td= link_to "#{grade.position}" ,grade_path(grade)
+        %td= link_to "#{grade.name}" ,grade_path(grade)
+        %td= grade.description
