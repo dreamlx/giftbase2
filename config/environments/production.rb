@@ -46,7 +46,7 @@ Giftbase::Application.configure do
   # config.action_controller.asset_host = "http://assets.example.com"
 
   # Precompile additional assets (application.js, application.css, and all non-JS/CSS are already added)
-  config.assets.precompile += %w( asciimathml.js, users.js )
+  config.assets.precompile += %w( asciimathml.js, users.js users_new.js)
 
   # Disable delivery errors, bad email addresses will be ignored
   # config.action_mailer.raise_delivery_errors = false
@@ -65,7 +65,7 @@ Giftbase::Application.configure do
   # with SQLite, MySQL, and PostgreSQL)
   # config.active_record.auto_explain_threshold_in_seconds = 0.5
 
-  config.action_mailer.default_url_options = { :host => 'www.giftbase.me' }
+  config.action_mailer.default_url_options = { :host => 'www.gifted-center.com' }
 
   email_config = YAML::load(File.read(Rails.root.to_s + '/config/email_config.yml'))
   config.action_mailer.smtp_settings = {
