@@ -10,6 +10,7 @@ Giftbase::Application.routes.draw do
       get 'study_schedule'
       get 'parent'
       post 'parent_add_child'
+      post 'child_confirm_parent'
     end
   end
 

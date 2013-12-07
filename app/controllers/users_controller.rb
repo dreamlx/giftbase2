@@ -29,16 +29,44 @@ class UsersController < ApplicationController
     @parent = User.find(params[:id])
     parent_child = @parent.child_parents.build
     if params[:child] == "old"
+      child = User.find_by_username(params[:user][:username])
+      if child.nil?
+        flash[:alert] = t("user_not_exist")
+      else
+        parent_child.child_id = child.id
+        if parent_child.save
+          flash[:alert] = t("make_sure_child")
+        else
+          flash[:alert] = t("aready_add_child")
+        end
+      end
     elsif params[:child] == "new"
       child = User.create(params[:user])
+      child.email = child.username + "@xxxx.com"
+      child.confirm!
       if child.save
         parent_child.child_id = child.id
+        parent_child.verify_parent = true
         parent_child.save
-        redirect_to parent_user_path(@parent)
+        flash[:notice] = t("add_child_success")
       else
-        redirect_to parent_user_path(@parent)
+        flash[:alert] = child.errors.full_messages.to_sentence
       end
     end
+    redirect_to parent_user_path(@parent)
+  end
+
+  def child_confirm_parent
+    @child = current_user
+    @parent = User.find(params[:id])
+    child_parent = ChildParent.where(child_id: @child.id, parent_id: @parent.id).first
+    child_parent.verify_parent = true
+    if child_parent.save
+      flash[:notice] = t("success_confirm_parent")
+    else
+      flash[:alert] = child_parent.full_messages.to_sentence
+    end 
+    redirect_to grades_path
   end
 
   def parent

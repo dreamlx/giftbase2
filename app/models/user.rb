@@ -52,9 +52,32 @@ class User < ActiveRecord::Base
     end
   end
 
+  def boolean_verify_parent(parent, child)
+    child_parent = ChildParent.where(parent_id: parent.id, child_id: child.id).first
+    if !child_parent.blank?
+      return child_parent.verify_parent
+    else
+      return false
+    end
+  end
+
+  def boolean_verify_parent
+    child_parents = ChildParent.where(child_id: self.id)
+    parents = Array.new
+    child_parents.each do |child_parent|
+      if child_parent.verify_parent == false
+        parent = User.find(child_parent.parent_id)
+        parents.push(parent)
+      end
+    end
+    return parents
+  end
+
   protected
 
   def create_its_credit
     self.create_credit
   end
+
+
 end
