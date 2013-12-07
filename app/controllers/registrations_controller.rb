@@ -21,7 +21,7 @@ class RegistrationsController < Devise::RegistrationsController
     else
       clean_up_passwords resource
       respond_to do |format|
-        format.html { }
+        format.html { redirect_to after_inactive_sign_up_path_for(resource) }
         format.json { render status: :unprocessable_entity, json: { success: false, error_message: resource.errors } }
       end
     end
