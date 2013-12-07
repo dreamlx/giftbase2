@@ -157,13 +157,6 @@ ActiveRecord::Schema.define(:version => 20131207015027) do
   add_index "orders", ["state"], :name => "index_orders_on_state"
   add_index "orders", ["user_id"], :name => "index_orders_on_user_id"
 
-  create_table "parents_childrens", :force => true do |t|
-    t.integer  "parent_id"
-    t.integer  "child_id"
-    t.datetime "created_at", :null => false
-    t.datetime "updated_at", :null => false
-  end
-
   create_table "pictures", :force => true do |t|
     t.string   "name"
     t.string   "version"
