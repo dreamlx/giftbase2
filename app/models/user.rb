@@ -52,7 +52,7 @@ class User < ActiveRecord::Base
     end
   end
 
-  def boolean_verify_parent(parent, child)
+  def boolean_verify_parent(parent, child)  #根据child_id和parent_id 判断是否互相验证
     child_parent = ChildParent.where(parent_id: parent.id, child_id: child.id).first
     if !child_parent.blank?
       return child_parent.verify_parent
@@ -61,7 +61,7 @@ class User < ActiveRecord::Base
     end
   end
 
-  def boolean_verify_parent
+  def boolean_verify_parents   #根据child_id 来获取没有验证的parents
     child_parents = ChildParent.where(child_id: self.id)
     parents = Array.new
     child_parents.each do |child_parent|

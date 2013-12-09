@@ -6,7 +6,7 @@ class Ability
     user ||= User.new # guest user (not logged in)
     if user.role == 'admin'
       can :manage, :all
-    else
+    elsif user.role == 'father' || user.role == 'mother'
       can :read, :all
     end
 
