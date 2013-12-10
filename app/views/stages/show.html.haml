@@ -1,0 +1,25 @@
+- content_for :title_bar do
+  %h1= @stage.name
+  - if can? :purchase, @stage
+    .toolbar
+      - unless current_user.stages.include?(@stage)
+        = link_to "使用#{@stage.price}点购买", purchase_stage_path(@stage), method: :post, class: 'btn btn-success'
+      - else
+        = link_to '已购买', '#', class: 'btn btn-success disabled'
+      = link_to t("back", scope: "crud"), session.delete(:return_to), class: 'btn'
+%dl.dl-horizontal
+  - if @stage.grade
+    %dt= Stage.human_attribute_name(:grade)
+    %dd= link_to @stage.grade.name, grade_path(@stage.grade)
+  %dt= Stage.human_attribute_name(:name)
+  %dd= @stage.name
+  %dt= Stage.human_attribute_name(:description)
+  %dd= @stage.description
+  %dt= Stage.human_attribute_name(:price)
+  %dd= @stage.price
+= simple_format(h(@stage.description))
+- if @stage.video?
+  %link{:href => "http://vjs.zencdn.net/4.0/video-js.css", :rel => "stylesheet"}/
+  %script{:src => "http://vjs.zencdn.net/4.0/video.js"}
+  = video_tag(@stage.video_url, controls: true, poster: @stage.video_poster_url, class: 'video-js vjs-default-skin')
+= render '/units/list', { units: @stage.units }

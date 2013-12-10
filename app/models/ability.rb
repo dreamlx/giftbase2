@@ -7,7 +7,9 @@ class Ability
     if user.role == 'admin'
       can :manage, :all
     elsif user.role == 'father' || user.role == 'mother'
-      can :read, :all
+      can :manage, Stage
+    elsif user.role == 'student'
+      can :read, Stage
     end
 
     # Define abilities for the passed in user here. For example:
