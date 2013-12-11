@@ -1,3 +1,7 @@
+### updated 2013-12-11
+##增加task，使之前没有验证的admin的email通过验证
+rake utils:confirm_admin_email
+
 ### updated 2013-09-22
 ## purchase 支付api
 前提要求账号内有现金
