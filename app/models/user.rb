@@ -29,6 +29,7 @@ class User < ActiveRecord::Base
   has_one :credit
 
   has_and_belongs_to_many :stages
+  has_and_belongs_to_many :grades
 
   before_save :ensure_authentication_token
   after_create :create_its_credit

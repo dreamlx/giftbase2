@@ -21,8 +21,11 @@ class Stage < ActiveRecord::Base
 
   def purchase(user)
     if (!user.stages.include?(self)) && user.credit.balance > self.price
-      user.credit.add_expense(self)
+      user.credit.add_expense_stage(self)
       user.stages << self
+      self.units.each do |unit|
+        user.units << unit
+      end
       true
     else
       false

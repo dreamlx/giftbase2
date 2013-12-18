@@ -64,4 +64,9 @@ class AnswersController < Admin::BaseController
       session.delete(:answers)
       redirect_to score_exam_path(exam)
     end
+
+    def unlock_unit(exam)
+      unit = Unit.find(exam.unit_id)
+       if exam.accuracy > 0
+    end
 end

@@ -14,7 +14,14 @@ Giftbase::Application.routes.draw do
     end
   end
 
-  resources :grades, only: [:index, :show]
+  resources :grades, only: [:index, :show] do
+    member do
+      post 'purchase'
+    end
+    collection do
+      get 'mine'
+    end
+  end
 
   resources :stages, only: [:index, :show] do
     member do

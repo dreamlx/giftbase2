@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20131207015027) do
+ActiveRecord::Schema.define(:version => 20131219073222) do
 
   create_table "answers", :force => true do |t|
     t.integer  "exam_id"
@@ -53,6 +53,7 @@ ActiveRecord::Schema.define(:version => 20131207015027) do
     t.integer  "stage_id"
     t.datetime "created_at",                               :null => false
     t.datetime "updated_at",                               :null => false
+    t.integer  "grade_id"
   end
 
   add_index "credit_line_items", ["credit_id"], :name => "index_credit_line_items_on_credit_id"
@@ -97,10 +98,19 @@ ActiveRecord::Schema.define(:version => 20131207015027) do
   create_table "grades", :force => true do |t|
     t.string   "name"
     t.text     "description"
-    t.datetime "created_at",  :null => false
-    t.datetime "updated_at",  :null => false
+    t.datetime "created_at",                                :null => false
+    t.datetime "updated_at",                                :null => false
     t.integer  "position"
+    t.decimal  "price",       :precision => 8, :scale => 2
   end
+
+  create_table "grades_users", :id => false, :force => true do |t|
+    t.integer "grade_id"
+    t.integer "user_id"
+  end
+
+  add_index "grades_users", ["grade_id"], :name => "index_grades_users_on_grade_id"
+  add_index "grades_users", ["user_id"], :name => "index_grades_users_on_user_id"
 
   create_table "map_places", :force => true do |t|
     t.integer  "x"
@@ -267,6 +277,7 @@ ActiveRecord::Schema.define(:version => 20131207015027) do
     t.integer  "unit_id"
     t.datetime "created_at", :null => false
     t.datetime "updated_at", :null => false
+    t.string   "state"
   end
 
   create_table "users", :force => true do |t|

@@ -14,9 +14,17 @@ class StagesController < ApplicationController
 
   def purchase
     @stage = Stage.find(params[:id])
-    @stage.purchase(current_user)
-
-    redirect_to stage_path(@stage), notice: t("success", scope: "flash.controller.stages.purchase")
+    if @stage.purchase(current_user)
+      current_user.children.each do |child|
+        child.stages << @stage
+        @stage.units.each do |unit|
+          child.units << unit
+        end
+      end
+      redirect_to stage_path(@stage), notice: t("success", scope: "flash.controller.stages.purchase")
+    else
+      redirect_to stage_path(@stage), notice: t("failed", scope: "flash.controller.stages.purchase")
+    end
   end
 
 end

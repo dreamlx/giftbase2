@@ -1,3 +1,4 @@
+
 # -*- coding: utf-8 -*-
 
 zh-CN:
@@ -58,6 +59,11 @@ zh-CN:
       stages:
         purchase:
           success: "购买成功"
+          failed: "购买失败"
+      grades:
+        purchase:
+          success: "购买成功"
+          failed: "购买失败"
       admin:
         reviews:
           update:
@@ -99,6 +105,8 @@ zh-CN:
   home: 首页
   download: 下载
   privacy: 隐私政策
+  purchase_exams: 购买年级
+  my_exams: 我的试卷
   study_record: 作业记录
   study_schedule: 学习进度
   study_record_chart: 作业记录报表

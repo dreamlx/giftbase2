@@ -5,7 +5,7 @@ class CreateCreditLineItems < ActiveRecord::Migration
       t.references :credit
       t.references :order
       t.references :stage
-
+      
       t.timestamps
     end
     add_index :credit_line_items, :credit_id
