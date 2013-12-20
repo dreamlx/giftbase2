@@ -9,8 +9,6 @@ class Exam < ActiveRecord::Base
 
   validates :unit, :user, presence: true
 
-  after_save :unlock_unit
-
   state_machine :state, initial: :uploading do
     state :uploading, :placed, :reviewed
 
@@ -57,7 +55,7 @@ class Exam < ActiveRecord::Base
   end
 
   def accuracy
-    format("%.2f", correct_counts.to_f/answers.size)
+    format("%.2f", correct_counts.to_f/answers.size) 
   end
 
   def correct_counts
@@ -66,15 +64,6 @@ class Exam < ActiveRecord::Base
       i += 1 if answer.point.to_f == answer.question_line_item.point.to_f
     end
     return i
-  end
-
-
-  def unlock_unit(exam)
-    unit = Unit.find(exam.unit_id)
-
-    units = current_user.units
-    next_unit = units.where()
-     if self.accuracy > 0
   end
 
   # TODO: test data for development, remove it on production

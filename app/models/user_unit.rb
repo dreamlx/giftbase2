@@ -11,5 +11,4 @@ class UserUnit < ActiveRecord::Base
   	  transition :lock => :unlock
   	end
   end
-
 end
