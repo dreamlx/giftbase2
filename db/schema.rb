@@ -98,10 +98,9 @@ ActiveRecord::Schema.define(:version => 20131219073222) do
   create_table "grades", :force => true do |t|
     t.string   "name"
     t.text     "description"
-    t.datetime "created_at",                                :null => false
-    t.datetime "updated_at",                                :null => false
+    t.datetime "created_at",  :null => false
+    t.datetime "updated_at",  :null => false
     t.integer  "position"
-    t.decimal  "price",       :precision => 8, :scale => 2
   end
 
   create_table "grades_users", :id => false, :force => true do |t|
@@ -166,6 +165,13 @@ ActiveRecord::Schema.define(:version => 20131219073222) do
   add_index "orders", ["number"], :name => "index_orders_on_number"
   add_index "orders", ["state"], :name => "index_orders_on_state"
   add_index "orders", ["user_id"], :name => "index_orders_on_user_id"
+
+  create_table "parents_childrens", :force => true do |t|
+    t.integer  "parent_id"
+    t.integer  "child_id"
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
+  end
 
   create_table "pictures", :force => true do |t|
     t.string   "name"
