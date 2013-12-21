@@ -39,7 +39,7 @@ class GradesController < ApplicationController
       child.stages << stage
     end
     child.grades << @grade
-    @grade.stages.first.unlock(child) #first stage is unlock
+    # @grade.stages.first.unlock(child) #first stage is unlock
     @grade.stages.first.units.first.unlock(child) # first unit is unlock
   end
 

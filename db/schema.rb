@@ -254,6 +254,7 @@ ActiveRecord::Schema.define(:version => 20131221011737) do
   create_table "stages_users", :id => false, :force => true do |t|
     t.integer "stage_id"
     t.integer "user_id"
+    t.string  "status"
     t.string  "state"
   end
 

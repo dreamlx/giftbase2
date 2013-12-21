@@ -18,7 +18,7 @@ class Grade < ActiveRecord::Base
           user.units << unit
         end
       end
-      self.stages.first.unlock(user)
+      # self.stages.first.unlock(user)
       self.stages.first.units.first.unlock(user) # first unit is unlock
       true
     else

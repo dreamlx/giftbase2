@@ -41,9 +41,11 @@ class Stage < ActiveRecord::Base
     percent = (complete_units.length.to_f/self.units.length)
   end
 
+  #TOTD  state_machine is wrong 
   def unlock(user)
     user_stage = StagesUser.where(user_id: user.id, stage_id: self.id).first
-    user_stage.unlock_stage
+    user_stage.state = "unlock"
+    user_stage.save
   end
 
   def unlock?(user)
