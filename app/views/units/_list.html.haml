@@ -1,0 +1,30 @@
+%table.table.table-bordered.table-striped
+  %thead
+    %tr
+      %th= Unit.human_attribute_name(:position)
+      %th= Unit.human_attribute_name(:stage)
+      %th= Unit.human_attribute_name(:name)
+      %th= Unit.human_attribute_name(:exam_minutes)
+      %th
+  %tbody
+    - units.each do |unit|
+      - if current_user.role == "father" || current_user.role == "mother"
+        %tr
+          %td= unit.position unless unit.position.blank?
+          %td= unit.stage.try(:name)
+          %td= unit.name
+          %td= unit.exam_minutes
+          %td.control.span2
+            = link_to t("show", scope: "crud"), unit_path(unit)
+      - elsif current_user.role == "student"
+        %tr
+          %td= unit.position unless unit.position.blank?
+          %td= unit.stage.try(:name)
+          %td= unit.name
+          %td= unit.exam_minutes
+          - if unit.unlock?(current_user)
+            %td.control.span2
+              = link_to t("show", scope: "crud"), unit_path(unit)
+          - else
+            %td.control.span2 unlock
+            

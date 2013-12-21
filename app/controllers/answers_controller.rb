@@ -73,7 +73,6 @@ class AnswersController < Admin::BaseController
       next_unit = stage.units.where("units.id > ?", unit.id).order("id desc").first
       if exam.accuracy.to_f > 0  and unit.id != next_unit.id
         next_unit.unlock(current_user) if next_unit.unlock?(current_user) == false
-        binding.pry
       end
     end
 end

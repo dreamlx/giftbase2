@@ -31,7 +31,7 @@ class Unit < ActiveRecord::Base
 
   def unlock?(user)
     user_unit = UserUnit.where(user_id: user.id, unit_id: self.id).first
-    if user_unit.state == unlock
+    if user_unit.state == "unlock"
       return true
     else
       return false

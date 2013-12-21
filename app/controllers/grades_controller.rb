@@ -32,10 +32,15 @@ class GradesController < ApplicationController
     @grade.stages.each do |stage|
       stage.units.each do |unit|
         child.units << unit
+        if unit.id == stage.units.first.id
+          unit.unlock(child)
+        end
       end
       child.stages << stage
     end
-    child.grades << @grade 
+    child.grades << @grade
+    @grade.stages.first.unlock(child) #first stage is unlock
+    @grade.stages.first.units.first.unlock(child) # first unit is unlock
   end
 
   private

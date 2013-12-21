@@ -19,9 +19,20 @@
       %th
   %tbody
     - @stages.each do |stage|
-      %tr
-        %td= link_to "#{stage.name}", stage_path(stage)
-        %td= link_to "#{stage.units.count}",stage_path(stage)
-        %td= stage.price
-        %td.control.span2
-          = link_to t("show", scope: "crud"), stage_path(stage)
+      - if current_user.role == "father" || current_user.role == "mother"
+        %tr
+          %td= link_to "#{stage.name}", stage_path(stage)
+          %td= link_to "#{stage.units.count}",stage_path(stage)
+          %td= stage.price
+          %td.control.span2
+            = link_to t("show", scope: "crud"), stage_path(stage)
+      - elsif current_user.role == "student"
+        %tr
+          %td= link_to "#{stage.name}", stage_path(stage)
+          %td= link_to "#{stage.units.count}",stage_path(stage)
+          %td= stage.price
+          - if stage.unlock?(current_user)
+            %td.control.span2
+              = link_to t("show", scope: "crud"), stage_path(stage)
+          - else
+            %td.control.span2 lock

@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20131219073222) do
+ActiveRecord::Schema.define(:version => 20131221011737) do
 
   create_table "answers", :force => true do |t|
     t.integer  "exam_id"
@@ -254,6 +254,7 @@ ActiveRecord::Schema.define(:version => 20131219073222) do
   create_table "stages_users", :id => false, :force => true do |t|
     t.integer "stage_id"
     t.integer "user_id"
+    t.string  "state"
   end
 
   add_index "stages_users", ["stage_id"], :name => "index_stages_users_on_stage_id"

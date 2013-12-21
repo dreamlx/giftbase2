@@ -40,4 +40,18 @@ class Stage < ActiveRecord::Base
     complete_units = self.exams.select("unit_id").where("user_id = #{user.id}").uniq
     percent = (complete_units.length.to_f/self.units.length)
   end
+
+  def unlock(user)
+    user_stage = StagesUser.where(user_id: user.id, stage_id: self.id).first
+    user_stage.unlock_stage
+  end
+
+  def unlock?(user)
+    user_stage = StagesUser.where(user_id: user.id, stage_id: self.id).first
+    if user_stage.state == "unlock"
+      return true
+    else
+      return false
+    end
+  end
 end
