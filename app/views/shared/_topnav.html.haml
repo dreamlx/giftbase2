@@ -1,0 +1,36 @@
+.navbar.navbar-fixed-top{"data-dropdown" => "dropdown"}
+  .navbar-inner
+    .container
+      = link_to t('app_name'), root_path, class: 'brand'
+      #top-navigation.nav-collapse.subnav-collapse.collapse.pull-right
+        %ul.nav
+          %li{:class => ('active' if controller.class.to_s == 'HomeController' and params[:action] == 'index')}
+            = link_to t('home'),root_path
+          %li{:class => ('active' if params[:action] == 'privacy')}
+            = link_to t('privacy'), home_privacy_path
+          - if user_signed_in?
+            %li{:class => ('active' if controller.class.to_s == 'GradesController' && params[:action] == 'my_exams')}
+              = link_to t('my_exams'), mine_grades_path
+            - if current_user.role == 'father' || current_user.role == 'mother'
+              %li{:class => ('active' if controller.class.to_s == 'GradesController' && params[:action] == 'index')}
+                = link_to t('purchase_exams'), grades_path
+        %ul.nav.pull-right
+          - if user_signed_in?
+            %li.dropdown
+              %a.dropdown-toggle{"data-toggle" => "dropdown", :href => "#"}
+                = t('account')
+                %b.caret
+              %ul.dropdown-menu
+                %li= link_to current_user.email, edit_user_registration_path
+                - if current_user.role == 'student'
+                  %li= link_to t("study_schedule"), study_schedule_user_path(current_user)
+                  %li= link_to t("study_record"), study_record_user_path(current_user)
+                  %li= link_to t("study_record_chart"), study_record_chart_user_path(current_user)
+                - elsif current_user.role == 'father' || current_user.role == 'mother'
+                  %li
+                    = link_to Credit.model_name.human, credits_path
+                  %li
+                    = link_to Order.model_name.human, orders_path
+                  %li
+                    = link_to t("set_up_child"), parent_user_path(current_user)
+                %li= link_to t('sign_out'), destroy_user_session_path, :method => :delete, :id => "sign-out"

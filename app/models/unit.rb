@@ -24,6 +24,20 @@ class Unit < ActiveRecord::Base
     UserUnit.create(user_id: user.id, unit_id: self.id) 
   end
 
+  def unlock(user)
+    user_unit = UserUnit.where(user_id: user.id, unit_id: self.id).first
+    user_unit.unlock_unit
+  end
+
+  def unlock?(user)
+    user_unit = UserUnit.where(user_id: user.id, unit_id: self.id).first
+    if user_unit.state == "unlock"
+      return true
+    else
+      return false
+    end
+  end
+
   def pre_question_line_item(position)
     if position == self.question_line_items.order("question_line_items.position").first
       self

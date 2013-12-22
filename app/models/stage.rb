@@ -21,8 +21,11 @@ class Stage < ActiveRecord::Base
 
   def purchase(user)
     if (!user.stages.include?(self)) && user.credit.balance > self.price
-      user.credit.add_expense(self)
+      user.credit.add_expense_stage(self)
       user.stages << self
+      self.units.each do |unit|
+        user.units << unit
+      end
       true
     else
       false
@@ -36,5 +39,21 @@ class Stage < ActiveRecord::Base
   def stage_percentage_complete(user)
     complete_units = self.exams.select("unit_id").where("user_id = #{user.id}").uniq
     percent = (complete_units.length.to_f/self.units.length)
+  end
+
+  #TOTD  state_machine is wrong 
+  def unlock(user)
+    user_stage = StagesUser.where(user_id: user.id, stage_id: self.id).first
+    user_stage.state = "unlock"
+    user_stage.save
+  end
+
+  def unlock?(user)
+    user_stage = StagesUser.where(user_id: user.id, stage_id: self.id).first
+    if user_stage.state == "unlock"
+      return true
+    else
+      return false
+    end
   end
 end

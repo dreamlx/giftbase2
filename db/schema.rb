@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20131207015027) do
+ActiveRecord::Schema.define(:version => 20131221011737) do
 
   create_table "answers", :force => true do |t|
     t.integer  "exam_id"
@@ -53,6 +53,7 @@ ActiveRecord::Schema.define(:version => 20131207015027) do
     t.integer  "stage_id"
     t.datetime "created_at",                               :null => false
     t.datetime "updated_at",                               :null => false
+    t.integer  "grade_id"
   end
 
   add_index "credit_line_items", ["credit_id"], :name => "index_credit_line_items_on_credit_id"
@@ -101,6 +102,14 @@ ActiveRecord::Schema.define(:version => 20131207015027) do
     t.datetime "updated_at",  :null => false
     t.integer  "position"
   end
+
+  create_table "grades_users", :id => false, :force => true do |t|
+    t.integer "grade_id"
+    t.integer "user_id"
+  end
+
+  add_index "grades_users", ["grade_id"], :name => "index_grades_users_on_grade_id"
+  add_index "grades_users", ["user_id"], :name => "index_grades_users_on_user_id"
 
   create_table "map_places", :force => true do |t|
     t.integer  "x"
@@ -156,6 +165,13 @@ ActiveRecord::Schema.define(:version => 20131207015027) do
   add_index "orders", ["number"], :name => "index_orders_on_number"
   add_index "orders", ["state"], :name => "index_orders_on_state"
   add_index "orders", ["user_id"], :name => "index_orders_on_user_id"
+
+  create_table "parents_childrens", :force => true do |t|
+    t.integer  "parent_id"
+    t.integer  "child_id"
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
+  end
 
   create_table "pictures", :force => true do |t|
     t.string   "name"
@@ -238,6 +254,8 @@ ActiveRecord::Schema.define(:version => 20131207015027) do
   create_table "stages_users", :id => false, :force => true do |t|
     t.integer "stage_id"
     t.integer "user_id"
+    t.string  "status"
+    t.string  "state"
   end
 
   add_index "stages_users", ["stage_id"], :name => "index_stages_users_on_stage_id"
@@ -267,6 +285,7 @@ ActiveRecord::Schema.define(:version => 20131207015027) do
     t.integer  "unit_id"
     t.datetime "created_at", :null => false
     t.datetime "updated_at", :null => false
+    t.string   "state"
   end
 
   create_table "users", :force => true do |t|

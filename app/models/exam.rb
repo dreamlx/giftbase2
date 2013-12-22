@@ -55,7 +55,7 @@ class Exam < ActiveRecord::Base
   end
 
   def accuracy
-    format("%.2f", correct_counts.to_f/answers.size)
+    format("%.2f", correct_counts.to_f/answers.size) 
   end
 
   def correct_counts

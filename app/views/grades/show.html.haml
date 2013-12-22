@@ -1,0 +1,38 @@
+- content_for :title_bar do
+  %h1= @grade.name
+  - if can? :purchase, @grade
+    .toolbar
+      - unless current_user.grades.include?(@grade)
+        = link_to "使用#{@grade.stages.sum(:price)}点购买", purchase_grade_path(@grade), method: :post, class: 'btn btn-success'
+      - else
+        = link_to '已购买', '#', class: 'btn btn-success disabled'
+      = link_to t("back", scope: "crud"), session.delete(:return_to), class: 'btn'
+%h1= t("listing", scope: "crud", model: Stage.model_name.human)
+.actions.pull-right
+  = button_to t("back", scope:"crud"), grades_path, method: :get, class: "btn btn-small"
+%table.table.table-bordered.table-striped
+  %thead
+    %tr
+      %th= Stage.human_attribute_name(:name)
+      %th 试卷数量
+      %th= Stage.human_attribute_name(:price)
+      %th
+  %tbody
+    - @stages.each do |stage|
+      - if current_user.role == "father" || current_user.role == "mother"
+        %tr
+          %td= link_to "#{stage.name}", stage_path(stage)
+          %td= link_to "#{stage.units.count}",stage_path(stage)
+          %td= stage.price
+          %td.control.span2
+            = link_to t("show", scope: "crud"), stage_path(stage)
+      - elsif current_user.role == "student"
+        %tr
+          %td= link_to "#{stage.name}", stage_path(stage)
+          %td= link_to "#{stage.units.count}",stage_path(stage)
+          %td= stage.price
+          - if stage.unlock?(current_user)
+            %td.control.span2
+              = link_to t("show", scope: "crud"), stage_path(stage)
+          - else
+            %td.control.span2 lock

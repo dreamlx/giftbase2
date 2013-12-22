@@ -18,8 +18,12 @@ class Credit < ActiveRecord::Base
     self.credit_line_items.create(amount: order.credit_quantity, order: order)
   end
 
-  def add_expense(stage)
+  def add_expense_stage(stage)
     self.credit_line_items.create(amount: -(stage.price), stage: stage)
+  end
+
+  def add_expense_grade(grade)
+    self.credit_line_items.create(amount: -(grade.stages.sum(:price)), grade: grade)
   end
 
   def update_balance

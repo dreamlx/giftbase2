@@ -61,7 +61,18 @@ class AnswersController < Admin::BaseController
       end
 
       exam.auto_review
+      unlock_unit(exam)
       session.delete(:answers)
       redirect_to score_exam_path(exam)
+    end
+
+
+    def unlock_unit(exam)
+      unit = Unit.find(exam.unit_id)
+      stage = unit.stage
+      next_unit = stage.units.where("units.id > ?", unit.id).order("id desc").first
+      if exam.accuracy.to_f > 0  and unit.id != next_unit.id
+        next_unit.unlock(current_user) if next_unit.unlock?(current_user) == false
+      end
     end
 end
