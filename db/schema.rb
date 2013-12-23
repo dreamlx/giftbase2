@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20131221011737) do
+ActiveRecord::Schema.define(:version => 20131223032150) do
 
   create_table "answers", :force => true do |t|
     t.integer  "exam_id"
@@ -102,14 +102,6 @@ ActiveRecord::Schema.define(:version => 20131221011737) do
     t.datetime "updated_at",  :null => false
     t.integer  "position"
   end
-
-  create_table "grades_users", :id => false, :force => true do |t|
-    t.integer "grade_id"
-    t.integer "user_id"
-  end
-
-  add_index "grades_users", ["grade_id"], :name => "index_grades_users_on_grade_id"
-  add_index "grades_users", ["user_id"], :name => "index_grades_users_on_user_id"
 
   create_table "map_places", :force => true do |t|
     t.integer  "x"
@@ -251,16 +243,6 @@ ActiveRecord::Schema.define(:version => 20131221011737) do
 
   add_index "stages", ["grade_id"], :name => "index_stages_on_grade_id"
 
-  create_table "stages_users", :id => false, :force => true do |t|
-    t.integer "stage_id"
-    t.integer "user_id"
-    t.string  "status"
-    t.string  "state"
-  end
-
-  add_index "stages_users", ["stage_id"], :name => "index_stages_users_on_stage_id"
-  add_index "stages_users", ["user_id"], :name => "index_stages_users_on_user_id"
-
   create_table "units", :force => true do |t|
     t.string   "name"
     t.text     "description"
@@ -273,11 +255,27 @@ ActiveRecord::Schema.define(:version => 20131221011737) do
 
   add_index "units", ["stage_id"], :name => "index_units_on_stage_id"
 
+  create_table "user_grades", :force => true do |t|
+    t.integer  "user_id"
+    t.integer  "grade_id"
+    t.string   "state"
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
+  end
+
   create_table "user_questions", :force => true do |t|
     t.integer  "user_id"
     t.integer  "question_id"
     t.datetime "created_at",  :null => false
     t.datetime "updated_at",  :null => false
+  end
+
+  create_table "user_stages", :force => true do |t|
+    t.integer  "user_id"
+    t.integer  "stage_id"
+    t.string   "state"
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
   end
 
   create_table "user_units", :force => true do |t|

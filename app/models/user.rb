@@ -25,11 +25,12 @@ class User < ActiveRecord::Base
   
   has_many :user_units
   has_many :units, through: :user_units
+  has_many :user_stages
+  has_many :stages, through: :user_stages
+  has_many :user_grades
+  has_many :grades, through: :user_grades
 
   has_one :credit
-
-  has_and_belongs_to_many :stages
-  has_and_belongs_to_many :grades
 
   before_save :ensure_authentication_token
   after_create :create_its_credit
