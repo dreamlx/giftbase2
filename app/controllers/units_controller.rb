@@ -3,6 +3,9 @@ class UnitsController < ApplicationController
   def show
     session[:return_to] = request.referer
     @unit = Unit.find(params[:id])
+    if current_user.role == "student" and @unit.unlock?(current_user) == false
+      redirect_to request.referer, alert: t("unit_locked")
+    end
   end
 
   def take_exam

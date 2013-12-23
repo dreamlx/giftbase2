@@ -9,7 +9,15 @@ class StagesController < ApplicationController
   def show
     session[:return_to] = request.referer
     @stage = Stage.find(params[:id])
-    @units = @stage.units
+    if current_user.role == "student"
+      if @stage.unlock?(current_user)
+        @units = @stage.units
+      else
+        redirect_to request.referer, alert: t("stage_locked")
+      end
+    else
+      @unit = @stage.units
+    end
   end
 
   def purchase

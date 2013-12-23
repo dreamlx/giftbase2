@@ -18,9 +18,6 @@ Giftbase::Application.routes.draw do
     member do
       post 'purchase'
     end
-    collection do
-      get 'mine'
-    end
   end
 
   resources :stages, only: [:index, :show] do
