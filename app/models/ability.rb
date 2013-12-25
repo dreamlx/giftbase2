@@ -11,8 +11,7 @@ class Ability
       can :manage, Grade
     elsif user.role == 'student'
       can :read, Stage
-      can :show, Grade
-      can :mine, Grade
+      can :read, Grade
     end
 
 

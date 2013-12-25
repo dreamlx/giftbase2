@@ -10,7 +10,7 @@
             = link_to t('privacy'), home_privacy_path
           - if user_signed_in?
             %li{:class => ('active' if controller.class.to_s == 'GradesController' && params[:action] == 'my_exams')}
-              = link_to t('my_exams'), mine_grades_path
+              = link_to t('my_exams'), grades_path
             - if current_user.role == 'father' || current_user.role == 'mother'
               %li{:class => ('active' if controller.class.to_s == 'GradesController' && params[:action] == 'index')}
                 = link_to t('purchase_exams'), grades_path

@@ -123,4 +123,6 @@ zh-CN:
   user_not_exist: 用户不存在
   aready_add_child: 已经添加过该小孩
   success_confirm_parent: 成功确认家长
+  stage_locked: 该试卷套装未解锁，请先解锁
+  unit_locked: 该unit套装未解锁，请先解锁
 

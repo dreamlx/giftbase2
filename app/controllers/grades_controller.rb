@@ -4,16 +4,16 @@ class GradesController < ApplicationController
   load_and_authorize_resource
 
   def index
-    @grades = Grade.order(:position).all
+    if current_user.role == "student"
+      @grades = current_user.grades
+    else
+      @grades = Grade.all
+    end
   end
 
   def show
     @grade = Grade.find(params[:id])
  	  @stages = @grade.stages
-  end
-
-  def mine
-    @grades = current_user.grades
   end
 
   def purchase
@@ -39,7 +39,7 @@ class GradesController < ApplicationController
       child.stages << stage
     end
     child.grades << @grade
-    # @grade.stages.first.unlock(child) #first stage is unlock
+    @grade.stages.first.unlock(child) #first stage is unlock
     @grade.stages.first.units.first.unlock(child) # first unit is unlock
   end
 

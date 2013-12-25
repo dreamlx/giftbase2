@@ -6,9 +6,10 @@ class Stage < ActiveRecord::Base
   has_many :units, order: 'units.position'
   has_many :exams, through: :units
   has_many :answers, through: :exams
-  has_and_belongs_to_many :users
   has_many :map_places, as: :placeable, dependent: :destroy
   
+  has_many :user_stage
+  has_many :user, through: :user_stage
   attr_accessible :description, 
     :name, :price, 
     :video, :video_cache, :video_poster, 
@@ -41,15 +42,14 @@ class Stage < ActiveRecord::Base
     percent = (complete_units.length.to_f/self.units.length)
   end
 
-  #TOTD  state_machine is wrong 
   def unlock(user)
-    user_stage = StagesUser.where(user_id: user.id, stage_id: self.id).first
-    user_stage.state = "unlock"
+    user_stage = UserStage.where(user_id: user.id, stage_id: self.id).first
+    user_stage.unlock_stage
     user_stage.save
   end
 
   def unlock?(user)
-    user_stage = StagesUser.where(user_id: user.id, stage_id: self.id).first
+    user_stage = UserStage.where(user_id: user.id, stage_id: self.id).first
     if user_stage.state == "unlock"
       return true
     else
