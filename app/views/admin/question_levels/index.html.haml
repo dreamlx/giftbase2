@@ -1,0 +1,17 @@
+- content_for :title_bar do
+  %h1= t("listing", scope: "crud", model: QuestionLevel.model_name.human)
+  .toolbar
+    = link_to t("new", scope: "crud"), new_admin_question_level_path, class: 'btn btn-primary'
+%table.table.center.table-bordered
+  %thead
+    %tr
+      %th name
+      %th 操作
+    - @question_levels.each do |question_level|
+      %tr
+        %td= question_level.name
+        %td
+          = link_to t("show", scope: "crud"), edit_admin_question_level_path(question_level)
+          = link_to t("destroy", scope: "crud"), admin_question_level_path(question_level), :method => :delete, :data => { :confirm => 'Are you sure?' }
+
+

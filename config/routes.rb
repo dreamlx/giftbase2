@@ -103,6 +103,8 @@ Giftbase::Application.routes.draw do
   end
 
   namespace :admin do
+    resources :question_levels, except: [:show]
+
     resources :grades do
       resources :pictures, only: [:new, :create, :destroy]
     end

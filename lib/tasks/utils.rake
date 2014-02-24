@@ -8,5 +8,19 @@ namespace :utils do
       user.confirm! unless user.confirmed?
     end
   end
+
+  desc "set default question_level "
+  task :set_default_question_level => :environment do
+  	questions = Question.all
+  	ql = QuestionLevel.first
+  	questions.each do |question|
+  	 question.question_level = ql
+  	 if question.save
+  	   puts "#{question.id} set default question level success"
+  	 else
+  	   puts "#{question.id} set default question level failed"
+  	 end
+  	end
+  end
  
 end

@@ -4,6 +4,7 @@
       <%= link_to t('app_name'), admin_path, class: 'brand' %>
       <ul class="nav">
         <li class="<%= 'active' if controller.class.to_s == 'Admin::DashboardController' %>"><%= link_to t('dashboard'), admin_path %></li>
+        <li class="<%= 'active' if controller.class.to_s == 'Admin::QuestionLevelsController' %>"><%= link_to QuestionLevel.model_name.human, admin_question_levels_path %></li>
         <li class="<%= 'active' if controller.class.to_s == 'Admin::QuestionsController' %>"><%= link_to Question.model_name.human, admin_questions_path %></li>
         <li class="<%= 'active' if controller.class.to_s == 'Admin::UnitsController' %>"><%= link_to Unit.model_name.human, admin_units_path %></li>
         <li class="<%= 'active' if controller.class.to_s == 'Admin::StagesController' %>"><%= link_to Stage.model_name.human, admin_stages_path %></li>

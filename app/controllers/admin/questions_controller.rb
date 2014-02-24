@@ -1,8 +1,8 @@
 module Admin
   class QuestionsController < Admin::BaseController
     def index
-      @question_level_gteq = (params[:q] && params[:q][:level_gteq]) ? params[:q][:level_gteq].to_i : 1
-      @question_level_lteq = (params[:q] && params[:q][:level_lteq]) ? params[:q][:level_lteq].to_i : 4
+      @question_level_gteq = (params[:q] && params[:q][:question_level_id_gteq]) ? params[:q][:question_level_id_gteq].to_i : QuestionLevel.first.id
+      @question_level_lteq = (params[:q] && params[:q][:question_level_id_lteq]) ? params[:q][:question_level_id_lteq].to_i : QuestionLevel.last.id
       @q = Question.only_owner(current_user).search(params[:q])
       if !params[:question_id].blank?
         @questions = Question.where("id = #{params[:question_id]}").page(params[:page])
