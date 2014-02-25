@@ -11,7 +11,7 @@ class User < ActiveRecord::Base
                   :birthday, :home_address, :school_name, :school_address, :qq, :parent_name,
                   :phone
   # attr_accessible :title, :body
-  attr_accessor :login
+  attr_accessor :login, :current_user
 
   validates :username,
     :uniqueness => {

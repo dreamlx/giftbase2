@@ -4,6 +4,7 @@ class Unit < ActiveRecord::Base
   has_many :questions, through: :question_line_items
   has_many :exams, dependent: :destroy
   belongs_to :stage
+  
 
   amoeba do
     enable

@@ -24,7 +24,6 @@ gem 'memcache-client'
 gem 'amoeba'  #copy active record deep
 # on default
 gem 'mysql2'
-gem 'rest-client'
 gem "haml-rails" #erb简化模板
 gem 'html2haml'
 # on heroku
