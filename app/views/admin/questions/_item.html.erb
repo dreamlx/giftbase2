@@ -4,7 +4,7 @@
       <% if actions[:remove_from_unit] %>
         <%= question_line_item.position %>.
       <% end -%>
-      <%= question.class.model_name.human %>
+      <%= question.class.model_name.human unless question.class.nil? %>
     </div>
 
     <div class="actions pull-right">
