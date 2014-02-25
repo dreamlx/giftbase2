@@ -1,3 +1,7 @@
+### updated 2014-2-25
+## add task, set_default_question_level
+rake utils:set_default_question_level
+
 ### updated 2013-12-11
 ##增加task，使之前没有验证的admin的email通过验证
 rake utils:confirm_admin_email
