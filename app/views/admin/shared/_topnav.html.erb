@@ -13,6 +13,8 @@
         <li class="<%= 'active' if controller.class.to_s == 'Admin::ReportsController' %>"><%= link_to t('report'), admin_reports_path %></li>
         <li class="<%= 'active' if controller.class.to_s == 'Admin::OrdersController' %>"><%= link_to Order.model_name.human, admin_orders_path %></li>
         <li class="<%= 'active' if controller.class.to_s == 'Admin::CreditLineItemsController' %>"><%= link_to CreditLineItem.model_name.human, admin_credit_line_items_path %></li>
+        <li class="<%= 'active' if controller.class.to_s == 'Admin::UsersController' %>"><%= link_to User.model_name.human, admin_users_path %></li>
+
       </ul>
       <ul class="nav pull-right">
         <% if user_signed_in? %>

@@ -13,10 +13,10 @@ class User < ActiveRecord::Base
   # attr_accessible :title, :body
   attr_accessor :login
 
-  validates :username,
-    :uniqueness => {
-      :case_sensitive => false
-    }
+  # validates :username,
+  #   :uniqueness => {
+  #     :case_sensitive => false
+  #   }
 
   has_many :user_questions
   has_many :questions, through: :user_questions

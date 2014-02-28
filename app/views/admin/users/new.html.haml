@@ -1,0 +1,9 @@
+- content_for :title_bar do
+  %h1= t("creating", scope: "crud", model: User.model_name.human)
+  .toolbar
+    = link_to t("back", scope: "crud"), admin_users_path, class: 'btn'
+= render 'form'
+
+
+= javascript_include_tag "admin/users"
+= stylesheet_link_tag "admin/users"
