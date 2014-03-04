@@ -4,13 +4,14 @@ class Question < ActiveRecord::Base
   has_many :question_line_items
   has_one :user_question
   has_one :user, through: :user_question
+  belongs_to :question_level
   
   amoeba do
     enable
   end
-  attr_accessible :hint, :level, :subject, :image, :image_cache
+  attr_accessible :hint, :subject, :image, :image_cache, :question_level_id
 
-  validates :subject, :level, presence: true
+  validates :subject, :question_level_id, presence: true
 
   scope :not_in_unit, lambda { |unit| unit.question_ids.blank? ? scoped : where('id NOT IN (?)', unit.question_ids) }
   scope :only_owner, lambda { |user| user.question_ids.blank? ? where('id is null') : where('id IN (?)', user.question_ids) }
@@ -43,7 +44,7 @@ class Question < ActiveRecord::Base
   end
 
   def human_level
-    I18n.t(level.to_s, scope: 'question_level')
+    self.question_level.name
   end
 end
 

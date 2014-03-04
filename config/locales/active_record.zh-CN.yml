@@ -113,6 +113,7 @@ zh-CN:
     models:
       user: 用户
       question: 题目
+      question_level: 难度
       question/brief: '问答题'
       question/single_choice: '单选题'
       question/multiple_choice: '多选题'

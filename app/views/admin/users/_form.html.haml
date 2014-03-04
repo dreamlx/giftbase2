@@ -1,0 +1,21 @@
+= simple_form_for [:admin, @user], html:{name:"user"}do |f|
+  = f.error_notification
+  %table.table.center.table-bordered
+    = f.input :email
+    = f.input :username
+    = f.input :password
+    - if action_name == "edit"
+      %div{style:"color: #D8AC83"} 如果保持原来密码请留空
+    = f.input :password_confirmation
+    %p 角色
+    %select#user_role.select.required{name: "user[role]"}
+      %option{value: "admin"} 管理员
+      %option{selected: "selected", value: "student"} 学生
+      %option{value: "teacher"} 老师
+      %option{value: "parents"} 家长
+
+
+
+  .actions
+    = f.submit '保存', :class => 'btn'
+    %input{type: "reset", value: "取消", class:"btn", id:"form_cancle"}

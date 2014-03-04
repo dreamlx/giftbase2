@@ -1,0 +1,7 @@
+- content_for :title_bar do
+  %h1= t("creating", scope: "crud", model: QuestionLevel.model_name.human)
+  .toolbar
+    = link_to t("back", scope: "crud"), admin_question_levels_path, class: 'btn'
+
+= render 'form'
+

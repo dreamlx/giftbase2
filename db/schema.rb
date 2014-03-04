@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20131223032150) do
+ActiveRecord::Schema.define(:version => 20140225051802) do
 
   create_table "answers", :force => true do |t|
     t.integer  "exam_id"
@@ -158,6 +158,13 @@ ActiveRecord::Schema.define(:version => 20131223032150) do
   add_index "orders", ["state"], :name => "index_orders_on_state"
   add_index "orders", ["user_id"], :name => "index_orders_on_user_id"
 
+  create_table "parents_childrens", :force => true do |t|
+    t.integer  "parent_id"
+    t.integer  "child_id"
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
+  end
+
   create_table "pictures", :force => true do |t|
     t.string   "name"
     t.string   "version"
@@ -182,6 +189,12 @@ ActiveRecord::Schema.define(:version => 20131223032150) do
   add_index "question_groups", ["position"], :name => "index_question_groups_on_position"
   add_index "question_groups", ["unit_id"], :name => "index_question_groups_on_unit_id"
 
+  create_table "question_levels", :force => true do |t|
+    t.string   "name"
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
+  end
+
   create_table "question_line_items", :force => true do |t|
     t.integer  "question_id"
     t.integer  "question_group_id"
@@ -199,10 +212,10 @@ ActiveRecord::Schema.define(:version => 20131223032150) do
     t.string   "type"
     t.text     "subject"
     t.text     "hint"
-    t.integer  "level"
-    t.datetime "created_at", :null => false
-    t.datetime "updated_at", :null => false
+    t.datetime "created_at",        :null => false
+    t.datetime "updated_at",        :null => false
     t.string   "image"
+    t.integer  "question_level_id"
   end
 
   add_index "questions", ["type"], :name => "index_questions_on_type"

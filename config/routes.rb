@@ -103,6 +103,10 @@ Giftbase::Application.routes.draw do
   end
 
   namespace :admin do
+    resources :users
+    
+    resources :question_levels, except: [:show]
+
     resources :grades do
       resources :pictures, only: [:new, :create, :destroy]
     end
@@ -185,9 +189,9 @@ Giftbase::Application.routes.draw do
     registrations: 'registrations'
   }
 
-  scope "/admin" do
-    resources :users
-  end
+  # scope "/admin" do
+  #   resources :users
+  # end
   
   root :to => 'home#index'
 end

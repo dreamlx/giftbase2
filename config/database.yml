@@ -5,8 +5,7 @@ development:
   database: giftbase_development
   pool: 5
   username: root
-  password: root
-  socket: /Applications/MAMP/tmp/mysql/mysql.sock
+  password: "123"
 
 test:
   adapter: mysql2
@@ -15,15 +14,12 @@ test:
   database: giftbase_test
   pool: 5
   username: root
-  password: root
-  socket: /Applications/MAMP/tmp/mysql/mysql.sock
+  password: "123"
 
 production:
   adapter: mysql2
   encoding: utf8
   reconnect: false
   database: giftbase_development
-  pool: 5
   username: root
-  password: root
-  socket: /Applications/MAMP/tmp/mysql/mysql.sock
+  password: "123"

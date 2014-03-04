@@ -1,0 +1,23 @@
+- content_for :title_bar do
+  %h1= t("listing", scope: "crud", model: User.model_name.human)
+  .toolbar
+    = link_to t("new", scope: "crud"), new_admin_user_path, class: 'btn btn-primary'
+%table.table.center.table-bordered
+  %thead
+    %tr
+      %td 邮箱
+      %td 用户名
+      %td 角色
+      %td 操作
+  %tbody
+  - @users.each do |user|
+    %tr
+      %td= user.email
+      %td= user.username
+      %td= user.role
+      %td
+        = link_to t(:edit, scope: "crud"), edit_admin_user_path(user)
+        - if current_user.id != user.id 
+          = link_to t(:destroy, scope: "crud"), admin_user_path(user), :method => :delete, :data => { :confirm => '确定?' }
+
+

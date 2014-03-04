@@ -20,9 +20,9 @@
 
   <div class="controls-row">
     <%= f.label :level, class: 'span3' %>
-    <%= f.select :level_gteq, options_for_question_level, { selected: @question_level_gteq }, { class: 'span4' } %>
+    <%= f.select :question_level_id_gteq, options_for_question_level, { selected: @question_level_gteq }, { class: 'span4' } %>
     <div class="text span1 text-center">-</div>
-    <%= f.select :level_lteq, options_for_question_level, { selected: @question_level_lteq }, { class: 'span4' } %>
+    <%= f.select :question_level_id_lteq, options_for_question_level, { selected: @question_level_lteq }, { class: 'span4' } %>
   </div>
   <div class="controls-row">
     <%= f.label Question.human_attribute_name(:id), class: 'span3' %>

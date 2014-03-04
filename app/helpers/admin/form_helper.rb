@@ -17,6 +17,6 @@ module Admin::FormHelper
   end
 
   def options_for_question_level
-    (1..4).map { |index| [t(index.to_s, scope: 'question_level'), index] }
+    QuestionLevel.all.map{|question| [question.name ,question.id]}
   end
 end
