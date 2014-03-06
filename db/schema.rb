@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20140225051802) do
+ActiveRecord::Schema.define(:version => 20140304085513) do
 
   create_table "answers", :force => true do |t|
     t.integer  "exam_id"
@@ -315,6 +315,7 @@ ActiveRecord::Schema.define(:version => 20140225051802) do
     t.datetime "confirmed_at"
     t.string   "confirmation_token"
     t.string   "unconfirmed_email"
+    t.string   "class_no"
   end
 
   add_index "users", ["authentication_token"], :name => "index_users_on_authentication_token", :unique => true
