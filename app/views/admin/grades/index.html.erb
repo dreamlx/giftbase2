@@ -21,9 +21,11 @@
         <td><%= grade.name %></td>
         <td><%= grade.description %></td>
         <td class="control span2">
-          <%= link_to t("show", scope: "crud"), admin_grade_path(grade) %>
-          <%= link_to t("edit", scope: "crud"), edit_admin_grade_path(grade) %>
-          <%= link_to t("ranking",scope: "ranking_type"), ranking_admin_ranks_path(grade_id: grade.id) %>
+          <% if can? :manage, Grade %>
+            <%= link_to t("show", scope: "crud"), admin_grade_path(grade) %>
+            <%= link_to t("edit", scope: "crud"), edit_admin_grade_path(grade) %>
+            <%= link_to t("ranking",scope: "ranking_type"), ranking_admin_ranks_path(grade_id: grade.id) %>
+          <% end %>
         </td>
       </tr>
     <% end %>

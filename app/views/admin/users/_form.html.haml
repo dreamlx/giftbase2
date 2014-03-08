@@ -9,6 +9,7 @@
     = f.input :password_confirmation
     %p 角色
     %select#user_role.select.required{name: "user[role]"}
+      %option{value: "superadmin"} 超级管理员
       %option{value: "admin"} 管理员
       %option{selected: "selected", value: "student"} 学生
       %option{value: "teacher"} 老师

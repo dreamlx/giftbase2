@@ -22,20 +22,22 @@
         <td><%= stage.description %></td>
         <td><%= stage.price %></td>
         <td class="control span2">
-          <%= link_to t("show", scope: "crud"), admin_stage_path(stage) %>
-          <%= link_to t("edit", scope: "crud"), edit_admin_stage_path(stage) %>
-          <%= link_to t("ranking",scope: "ranking_type"), ranking_admin_ranks_path(stage_id: stage.id) %>
-          <div class="btn-group">
-            <% if stage.first? %>
-              <%= link_to t("move_higher", scope: "crud"), '#', class: 'btn disabled' %>
-            <% else %>
-              <%= link_to t("move_higher", scope: "crud"), move_higher_admin_stage_path(stage), method: :post, class: 'btn' %>
-            <% end -%>
+          <% if can? :manage, Stage %>
+            <%= link_to t("show", scope: "crud"), admin_stage_path(stage) %>
+            <%= link_to t("edit", scope: "crud"), edit_admin_stage_path(stage) %>
+            <%= link_to t("ranking",scope: "ranking_type"), ranking_admin_ranks_path(stage_id: stage.id) %>
+            <div class="btn-group">
+              <% if stage.first? %>
+                <%= link_to t("move_higher", scope: "crud"), '#', class: 'btn disabled' %>
+              <% else %>
+                <%= link_to t("move_higher", scope: "crud"), move_higher_admin_stage_path(stage), method: :post, class: 'btn' %>
+              <% end -%>
 
-            <% if stage.last? %>
-              <%= link_to t("move_lower", scope: "crud"), '#', class: 'btn disabled' %>
-            <% else %>
-              <%= link_to t("move_lower", scope: "crud"), move_lower_admin_stage_path(stage), method: :post, class: 'btn' %>
+              <% if stage.last? %>
+                <%= link_to t("move_lower", scope: "crud"), '#', class: 'btn disabled' %>
+              <% else %>
+                <%= link_to t("move_lower", scope: "crud"), move_lower_admin_stage_path(stage), method: :post, class: 'btn' %>
+              <% end -%>
             <% end -%>
           </div>
         </td>
