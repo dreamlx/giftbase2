@@ -2,6 +2,10 @@
   %h1= t("listing", scope: "crud", model: User.model_name.human)
   .toolbar
     = link_to t("new", scope: "crud"), new_admin_user_path, class: 'btn btn-primary'
+= search_form_for([:admin, @q], html: { class: 'well' }) do |f|
+  .controls-row
+    = f.text_field :email_cont, placeholder: t('search_by', attr_name: Unit.human_attribute_name(:email)), class: 'span5'
+    .text-right= f.submit t('search'), class: 'btn btn-primary'
 %table.table.center.table-bordered
   %thead
     %tr
@@ -19,5 +23,5 @@
         = link_to t(:edit, scope: "crud"), edit_admin_user_path(user)
         - if current_user.id != user.id 
           = link_to t(:destroy, scope: "crud"), admin_user_path(user), :method => :delete, :data => { :confirm => '确定?' }
-
+= paginate @users
 

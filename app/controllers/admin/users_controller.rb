@@ -1,7 +1,9 @@
 module Admin
   class UsersController < Admin::BaseController
     def index
-      @users = User.all
+      @q = User.search(params[:q])
+      @users = @q.result(distinct: true).page(params[:page])
+
     end
 
     def new
