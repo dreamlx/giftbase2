@@ -2,11 +2,7 @@ module Admin
   class UnitsController < Admin::BaseController
     def index
       @stages = Stage.all
-      @units = if current_user.role == 'admin'
-        Unit.scoped
-      else
-        Unit.only_owner(current_user)
-      end
+      @units = (current_user.role == 'superadmin' ? Unit.scoped : Unit.only_owner(current_user))
       @q = @units.search(params[:q])
       @units = @q.result(distinct: true).order("updated_at DESC").page(params[:page])
     end
@@ -19,8 +15,7 @@ module Admin
       unit = Unit.find(params[:id])
       unit2 = unit.amoeba_dup
       unit2.name += '=>copy'
-      
-      
+
       if unit2.save
         unit2.belong_user(current_user)
         redirect_to admin_unit_path(unit2), 
@@ -32,7 +27,7 @@ module Admin
                         notice: t("failure", 
                         scope: "flash.controller.copy", 
                         model: Unit.model_name.human)
-      end      
+      end
     end
 
     def new

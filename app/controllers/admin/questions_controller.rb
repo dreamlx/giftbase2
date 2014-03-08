@@ -3,11 +3,12 @@ module Admin
     def index
       @question_level_gteq = (params[:q] && params[:q][:question_level_id_gteq]) ? params[:q][:question_level_id_gteq].to_i : QuestionLevel.first.id
       @question_level_lteq = (params[:q] && params[:q][:question_level_id_lteq]) ? params[:q][:question_level_id_lteq].to_i : QuestionLevel.last.id
-      @q = Question.only_owner(current_user).search(params[:q])
-      if !params[:question_id].blank?
-        @questions = Question.where("id = #{params[:question_id]}").page(params[:page])
+      @questions = (current_user.role == 'superadmin' ? Question.scoped : Question.only_owner(current_user))
+      @q = @questions.only_owner(current_user).search(params[:q])
+      if params[:question_id].blank?
+        @questions = @q.result(distinct: true).order("questions.updated_at DESC").page(params[:page])
       else
-        @questions = @q.result(distinct: true).order("updated_at DESC").page(params[:page])
+        @questions = Question.where("id = #{params[:question_id]}").page(params[:page])
       end
     end
 

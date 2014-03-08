@@ -3,10 +3,16 @@ class Ability
 
   def initialize(user)
     user ||= User.new # guest user (not logged in)
-    if user.role == 'admin'
-      can :manage, :all
+    if user.role == 'superadmin'
+        can :manage, :all
+    elsif user.role == 'admin'
+        can :read, Grade
+        can :read, Stage
+        can :manage, Unit
+        #can :manage, Unit, user: { id: 0 }
+        #can :read, :all
     else
-      can :manage, :all
+      #can :manage, :all
       #can :manage, Unit,  Unit.only_owner
     end
 

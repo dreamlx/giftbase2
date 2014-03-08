@@ -2,10 +2,10 @@
 <center>
   <h1>欢迎访问天才训练营</h1>
   <p>
-    <%= link_to User.human_attribute_name(:student), grades_path(:user_role => "student"), class: 'btn' %>
-    <%= link_to User.human_attribute_name(:parents), grades_path(:user_role => "parents"), class: 'btn' %>
-    <%= link_to User.human_attribute_name(:teacher), '#', class: 'btn' %>
-    <%= link_to User.human_attribute_name(:admin), admin_path(:user_role => "admin"), class: 'btn' %>
+    <%#= link_to User.human_attribute_name(:student), grades_path(:user_role => "student"), class: 'btn' %>
+    <%#= link_to User.human_attribute_name(:parents), grades_path(:user_role => "parents"), class: 'btn' %>
+    <%#= link_to User.human_attribute_name(:teacher), '#', class: 'btn' %>
+    <%= link_to User.human_attribute_name(:admin), admin_path(:user_role => "admin"), class: 'btn' if user_signed_in? and (current_user.role == 'admin' or current_user.role == 'superadmin') %>
   </p>
   <%= image_tag '2012121918030436.jpg'%>
 </center>

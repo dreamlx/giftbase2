@@ -8,12 +8,19 @@
             = link_to t('home'),root_path
           %li{:class => ('active' if params[:action] == 'privacy')}
             = link_to t('privacy'), home_privacy_path
+          
           - if user_signed_in?
-            %li{:class => ('active' if controller.class.to_s == 'GradesController' && params[:action] == 'my_exams')}
-              = link_to t('my_exams'), grades_path
-            - if current_user.role == 'father' || current_user.role == 'mother'
+            - if current_user.role == 'admin' or current_user.role == 'superadmin'
+              %li 
+                = link_to User.human_attribute_name(:admin), admin_path(:user_role => "admin")
+            - else
+              %li{:class => ('active' if controller.class.to_s == 'GradesController' && params[:action] == 'my_exams')}
+                = link_to t('my_exams'), grades_path
               %li{:class => ('active' if controller.class.to_s == 'GradesController' && params[:action] == 'index')}
                 = link_to t('purchase_exams'), grades_path
+          - else
+            %li{:class => ('active' if params[:action] == 'privacy')}
+            = link_to '登录',  new_user_session_path
         %ul.nav.pull-right
           - if user_signed_in?
             %li.dropdown
@@ -34,3 +41,4 @@
                   %li
                     = link_to t("set_up_child"), parent_user_path(current_user)
                 %li= link_to t('sign_out'), destroy_user_session_path, :method => :delete, :id => "sign-out"
+
