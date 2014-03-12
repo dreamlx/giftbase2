@@ -4,12 +4,9 @@ module Admin
 
     def show
       @question_group = @unit.question_groups.find(params[:id])
-
-      #@question_level_gteq = (params[:q] && params[:q][:level_gteq]) ? params[:q][:level_gteq].to_i : 1
-      #@question_level_lteq = (params[:q] && params[:q][:level_lteq]) ? params[:q][:level_lteq].to_i : 4
-      grade = ''
-      grade = @unit.stage.grade if !@unit.stage.blank? and !@unit.stage.grade.blank?
-      @q = Question.not_in_unit(@unit).in_same_grade(grade).only_owner(current_user).search(params[:q])
+      #grade = ''
+      #grade = @unit.stage.grade if !@unit.stage.blank? and !@unit.stage.grade.blank?
+      @q = Question.not_in_unit(@unit).only_owner(current_user).search(params[:q])
       @questions = @q.result(distinct: true).order("updated_at DESC").limit(10)
     end
 

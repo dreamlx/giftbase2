@@ -13,7 +13,7 @@ class Question < ActiveRecord::Base
 
   validates :subject, :question_level_id, presence: true
 
-  scope :in_same_grade, lambda { |grade| grade.question_ids.blank? ? scoped : where('id NOT IN (?)', grade.question_ids) }
+  #scope :in_same_grade, lambda { |grade| grade.question_ids.blank? ? scoped : where('id NOT IN (?)', grade.question_ids) }
   scope :not_in_unit, lambda { |unit| unit.question_ids.blank? ? scoped : where('id NOT IN (?)', unit.question_ids) }
   scope :only_owner, lambda { |user| user.question_ids.blank? ? where('id is null') : where('id IN (?)', user.question_ids) }
   
