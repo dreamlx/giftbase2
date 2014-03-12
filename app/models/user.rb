@@ -30,7 +30,7 @@ class User < ActiveRecord::Base
   has_many :grades, through: :user_grades
 
   has_one :credit
-  before_validation :generate_calss_no, on: :create
+  before_validation :generate_class_no, on: :create
   before_save :ensure_authentication_token
   after_create :create_its_credit
 
@@ -85,7 +85,7 @@ class User < ActiveRecord::Base
       record = true
       while record
         random = rand(1000000000).to_s.rjust(9, '0')
-        record = self.class.where(number: random).first
+        record = self.class.where(class_no: random).first
       end
       self.class_no = random
     end

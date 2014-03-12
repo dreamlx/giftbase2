@@ -7,7 +7,7 @@ class Ability
         can :manage, :all
     elsif user.role == 'admin'
         can :read, Grade
-        can :read, Stage
+        can :manage, Stage
         can :manage, Unit
         #can :manage, Unit, user: { id: 0 }
         #can :read, :all
