@@ -17,6 +17,7 @@ class Stage < ActiveRecord::Base
     :position
 
   validates :name, :price, presence: true
+  validates_presence_of :grade
 
   acts_as_list scope: :grade
 
