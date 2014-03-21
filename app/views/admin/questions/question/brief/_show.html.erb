@@ -1,1 +1,8 @@
 <%= simple_format(h(question.brief_solution.content)) %>
+
+<div>
+  <hr/>
+  <% if question.brief_solution.image? %>
+    <%= link_to image_tag(question.brief_solution.image_url(:thumb)), question.brief_solution.image_url%>
+  <% end -%>
+</div>

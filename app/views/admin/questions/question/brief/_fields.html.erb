@@ -7,4 +7,19 @@
       <%= t('asciimath_preview') %>
     </div>
   </div>
+
+  <div class="control-group question_image">
+    <label class="control-label" for="question_image"><%= t("activerecord.attributes.question.image") %></label>
+    <div class="controls">
+      <div class="image">
+        <% if b.object.image? %>
+          <%= image_tag(b.object.image_url(:thumb)) %>
+        <% end -%>
+        <span class="upload-image">
+          <%= b.file_field :image %>
+        </span>
+        <%= b.hidden_field :image_cache %>
+      </div>
+    </div>
+  </div>
 </fieldset>
