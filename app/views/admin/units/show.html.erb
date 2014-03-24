@@ -16,7 +16,11 @@
 <% end %>
 
 <%= @unit.description %>
-
+<div>
+  <% if @unit.image? %>
+    <%= link_to image_tag(@unit.image_url(:thumb)), @unit.image_url %>
+  <% end -%>
+</div>
 <% @unit.question_groups.each do |question_group| %>
   <%= render 'question_group', { unit: @unit, question_group: question_group } %>
 <% end -%>

@@ -4,12 +4,14 @@ class Unit < ActiveRecord::Base
   has_many :questions, through: :question_line_items
   has_many :exams, dependent: :destroy
   belongs_to :stage
+  
+  mount_uploader :image, ImageUploader
 
   amoeba do
     enable
   end
 
-  attr_accessible :description, :exam_minutes, :name, :stage_id
+  attr_accessible :description, :exam_minutes, :name, :stage_id, :image, :image_cache
 
   validates :name, :exam_minutes, presence: true
   validates_presence_of :stage

@@ -9,6 +9,21 @@
     <%= f.input :exam_minutes %>
   </div>
 
+  <div class="control-group question_image">
+    <label class="control-label" for="unit_image"><%= '图片' %></label>
+    <div class="controls">
+      <div class="image">
+        <% if f.object.image? %>
+          <%= image_tag(f.object.image_url(:thumb)) %>
+        <% end -%>
+        <span class="upload-image">
+          <%= f.file_field :image %>
+        </span>
+        <%= f.hidden_field :image_cache %>
+      </div>
+    </div>
+  </div>
+
   <div class="form-actions">
     <%= f.button :submit, class: 'btn btn-primary' %>
   </div>

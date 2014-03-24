@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20140320235602) do
+ActiveRecord::Schema.define(:version => 20140321013658) do
 
   create_table "answers", :force => true do |t|
     t.integer  "exam_id"
@@ -251,6 +251,7 @@ ActiveRecord::Schema.define(:version => 20140320235602) do
     t.datetime "updated_at",   :null => false
     t.integer  "stage_id"
     t.integer  "position"
+    t.string   "image"
   end
 
   add_index "units", ["stage_id"], :name => "index_units_on_stage_id"
