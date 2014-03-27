@@ -1,7 +1,7 @@
 class Question < ActiveRecord::Base
   mount_uploader :image, ImageUploader
 
-  has_many :question_line_items
+  has_many :question_line_items, dependent: :destroy
   has_one :user_question
   has_one :user, through: :user_question
   belongs_to :question_level
