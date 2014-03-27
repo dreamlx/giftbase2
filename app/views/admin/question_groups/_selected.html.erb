@@ -1,7 +1,7 @@
 <ul class="selectable-question-list">
-  <% question_line_items.compact!.each do |question_line_item| %>
+  <% question_line_items.each do |question_line_item| %>
     <li>
-      <%= render '/admin/questions/item', { unit: unit, question_group: question_group, question_line_item: question_line_item, question: question_line_item.question, actions: { remove_from_unit: true } } %>
+      <%= render '/admin/questions/item', { unit: unit, question_group: question_group, question_line_item: question_line_item, question: question_line_item.question, actions: { remove_from_unit: true } } unless question_line_item.question.nil? %>
     </li>
   <% end -%>
 </ul>
