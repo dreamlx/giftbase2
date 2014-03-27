@@ -1,3 +1,4 @@
+# coding: UTF-8
 module Api
   class GradesController < Api::BaseController
     def index
