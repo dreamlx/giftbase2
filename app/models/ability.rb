@@ -6,7 +6,7 @@ class Ability
     if user.role == 'superadmin'
         can :manage, :all
     elsif user.role == 'admin'
-        can :read, Grade
+        can :manage, Grade
         can :manage, Stage
         can :manage, Unit
         #can :manage, Unit, user: { id: 0 }

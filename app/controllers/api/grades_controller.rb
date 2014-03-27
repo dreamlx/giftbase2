@@ -3,7 +3,7 @@ module Api
     def index
       grades = Grade.order("position").all
       @grades = []
-      
+      # todo: 改为status处理
       grades.each {|g| @grades << g if g.pictures.size > 0 }
 
       return @grades
