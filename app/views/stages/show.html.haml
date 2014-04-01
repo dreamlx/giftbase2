@@ -20,7 +20,12 @@
   %dd= @stage.price
 = simple_format(h(@stage.description))
 - if @stage.video?
-  %link{:href => "http://vjs.zencdn.net/4.0/video-js.css", :rel => "stylesheet"}/
-  %script{:src => "http://vjs.zencdn.net/4.0/video.js"}
-  = video_tag(@stage.video_url, controls: true, poster: @stage.video_poster_url, class: 'video-js vjs-default-skin')
+  %script{:src => "http://jwpsrv.com/library/YC3U+LiOEeOgdSIACi0I_Q.js"}
+  %div{:id => 'myElement'}
+  :javascript
+       jwplayer("myElement").setup({
+          file: "#{@stage.video_url}"
+      });
+  /= video_tag(@stage.video_url, controls: true, poster: @stage.video_poster_url, class: 'video-js vjs-default-skin')
+%br
 = render '/units/list', { units: @stage.units }
