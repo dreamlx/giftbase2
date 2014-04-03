@@ -27,9 +27,13 @@
 
 <% if @stage.video? %>
   <div class="clearfix">
-    <link href="http://vjs.zencdn.net/4.0/video-js.css" rel="stylesheet">
-    <script src="http://vjs.zencdn.net/4.0/video.js"></script>
-    <%= video_tag(@stage.video_url, controls: true, preload: 'auto', class: 'video-js vjs-default-skin') %>
+    <script src="http://jwpsrv.com/library/YC3U+LiOEeOgdSIACi0I_Q.js"></script>
+    <div id='myElement'></div>
+    <script>
+       jwplayer("myElement").setup({
+          file: "<%= @stage.video_url %>"
+      });
+    </script>
   </div>
 <% end -%>
 
