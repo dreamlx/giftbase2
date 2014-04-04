@@ -55,4 +55,6 @@ class Unit < ActiveRecord::Base
       self.question_line_items.where("question_line_items.position > ?", position).order("question_line_items.position").first
     end
   end
+#
+  attr_accessor :lock_state
 end
