@@ -1,23 +1,23 @@
 module Api
   class StagesController < Api::BaseController
-    before_filter :authenticate_user!, only: [:mine, :purchase]
+    before_filter :authenticate_user!, only: [:mine, :purchase, :show]
 
     def index
       @stages = Stage.order(:position).all
     end
 
     def show
-     @stage = Stage.find(params[:id])
+      @stage = Stage.find(params[:id])
 
-     #
-     user = User.find(params[:user_id])
-     @stage.units.each { |u| u.lock_state = :lock }
-     
-     #first
-     @stage.units.first.lock_state = :unlock
-     #examed
-     @stage.units.each { |u| u.lock_state = :unock if user.exams.any? {|exam| exam.unit.id == u.id} }
-     #last passed
+      #
+      user = User.find(current_user)
+      @stage.units.each { |u| u.lock_state = :lock }
+
+      #first
+      @stage.units.first.lock_state = :unlock
+      #examed
+      @stage.units.each { |u| u.lock_state = :unock if user.exams.any? {|exam| exam.unit.id == u.id} }
+      #last passed
      
     end
 
