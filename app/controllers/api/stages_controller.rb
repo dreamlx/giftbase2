@@ -16,7 +16,7 @@ module Api
       #first
       @stage.units.first.lock_state = :unlock
       #examed
-      @stage.units.each { |u| u.lock_state = :unock if user.exams.any? {|exam| exam.unit.id == u.id} }
+      @stage.units.each { |u| u.lock_state = :unlock if user.exams.any? {|exam| exam.unit.id == u.id} }
       #last passed
      
     end
