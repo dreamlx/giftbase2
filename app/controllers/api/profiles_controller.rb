@@ -18,6 +18,8 @@ module Api
       @user.school_address  = params[:school_address] unless params[:school_address].blank?
       @user.parent_name     = params[:parent_name] unless params[:parent_name].blank?
       @user.email     = params[:email] unless params[:email].blank?
+      @user.username  = params[:username] unless params[:username].blank?
+      @user.gender    = params[:gender] unless params[:gender].blank?
       if @user.save!
         render json: @user
       else
