@@ -19,4 +19,8 @@ module Admin::FormHelper
   def options_for_question_level
     QuestionLevel.all.map{|question| [question.name ,question.id]}
   end
+
+  def options_for_stage
+    Stage.find(:all, order: :grade_id).map{|s| [s.name ,s.id]}
+  end  
 end
