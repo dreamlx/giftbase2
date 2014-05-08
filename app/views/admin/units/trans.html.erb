@@ -1,0 +1,93 @@
+<% content_for :title_bar do %>
+  <h1>
+    <%= '转移：' + @unit.name %>
+    <small><%= @unit.stage.try(:name) %> <%= @unit.exam_minutes %></small>
+  </h1>
+  <div class="toolbar">
+    <%= link_to t("edit", scope: "crud"), edit_admin_unit_path(@unit), class: 'btn btn-primary' %>
+    <%= link_to t("转移", scope: "crud"), trans_admin_unit_path(@unit), class: 'btn btn-primary' %>
+    <div class="btn-group">
+      <button class="btn dropdown-toggle" data-toggle="dropdown"><%= t("more", scope: "crud") %> <span class="caret"></span></button>
+      <ul class="dropdown-menu pull-right">
+        <li><%= link_to t("destroy", scope: "crud"), admin_unit_path(@unit), confirm: t("destroy", scope: "crud.confirmation"), method: :delete %></li>
+      </ul>
+    </div>
+    <%= link_to t("back", scope: "crud"), admin_units_path, class: 'btn' %>
+  </div>
+<% end %>
+
+<%= @unit.description %>
+<div>
+  <% if @unit.image? %>
+  <%= link_to image_tag(@unit.image_url(:thumb)), @unit.image_url %>
+  <% end -%>
+</div>
+
+<%= form_for(@unit, url: { action: :trans_do }, method: :post) do |f| %>
+  转移到：
+  <%= select_tag "stage",options_for_select(options_for_stage), prompt: "套装",
+    onchange: "get_unit(value)" %>
+
+  <%= select_tag "unit",options_for_select([]), prompt: "试卷",
+    onchange: "get_group(value)", id: :sel_unit %>
+
+  <%= select_tag "question_group",options_for_select([]),
+    prompt: "问题组",  :onchange =>"", id: :sel_group %>
+
+  <br/>
+
+  <% @unit.question_groups.each do |qg| %>
+    <% qg.question_line_items.each do |qli| %>
+      <input type='checkbox' name='qlis[]' value='<%= qli.id %>'/>  
+      &nbsp;<%= qli.question.subject %>
+      <hr/>
+    <% end %>
+  <% end -%>
+
+  <br/>
+  <%= f.submit "提交" %>
+<% end %>
+
+
+
+<script>
+
+function ajax_sync(url){
+  return $.ajax({url: url, async:false}).responseText
+}
+
+
+function get_unit(value){
+  resu = JSON.parse(ajax_sync('/admin/units/ajax_unit?stage=' + value));
+  $('#sel_unit').find('option').remove();
+  $('#sel_group').find('option').remove();
+  for (e in resu){
+    $("#sel_unit").append(String.format("<option value='{0}'>{1}</option>", resu[e][0], resu[e][1]));   
+  }
+}
+
+function get_group(value){
+  resu = JSON.parse(ajax_sync('/admin/units/ajax_group?unit=' + value));
+  if(resu.length==0){
+    alert('没有问题组，请先建立。');
+    return;
+  }
+  $('#sel_group').find('option').remove();
+  for (e in resu){
+    $("#sel_group").append(String.format("<option value='{0}'>{1}</option>", resu[e][0], resu[e][1]));   
+  }
+}
+
+if (!String.format) {
+  String.format = function(format) {
+    var args = Array.prototype.slice.call(arguments, 1);
+    return format.replace(/{(\d+)}/g, function(match, number) { 
+      return typeof args[number] != 'undefined'
+        ? args[number] 
+        : match
+      ;
+    });
+  };
+}
+
+</script>

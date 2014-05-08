@@ -165,9 +165,16 @@ Giftbase::Application.routes.draw do
         end
       end
 
+      collection do
+        get 'ajax_group'
+        get 'ajax_unit'
+      end
+      
       member do
         post 'update_by_ajax'
         post 'copy'
+        get 'trans'
+        post 'trans_do'
       end
 
       resources :map_places, only: [:new, :create, :destroy]

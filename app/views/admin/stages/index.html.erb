@@ -7,7 +7,7 @@
 
 <%= search_form_for([:admin, @q], html: { class: 'well' }) do |f| %>
   <div class="controls-row">
-    <%= f.select :grade_id_eq, [[t('all'), '']] + Grade.all.map { |s| [s.name, s.id] }, {}, { class: 'span3' } %>
+    <%= f.select :grade_id_eq, [[t('all'), '']] + Grade.order('position asc').map { |s| [s.name, s.id] }, {}, { class: 'span3' } %>
     <%= f.text_field :name_cont, placeholder: t('search_by', attr_name: Unit.human_attribute_name(:name)), class: 'span6' %>
     <div class="text-right">
       <%= f.submit t('search'), class: 'btn btn-primary' %>
