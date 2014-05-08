@@ -1,18 +1,31 @@
-# SQLite version 3.x
-#   gem install sqlite3
-#
-#   Ensure the SQLite 3 gem is defined in your Gemfile
-#   gem 'sqlite3'
-
 development:
-  adapter: sqlite3
-  database: db/development.sqlite3
-  timeout: 5000
+  adapter: mysql2
+  encoding: utf8
+  reconnect: false
+  database: giftbase_development
+  pool: 5
+  username: root
+  password: root
+  socket: /Applications/MAMP/tmp/mysql/mysql.sock
+
+
 test:
-  adapter: sqlite3
-  database: db/test.sqlite3
-  timeout: 5000
+  adapter: mysql2
+  encoding: utf8
+  reconnect: false
+  database: giftbase_test
+  pool: 5
+  username: root
+  password: root
+  socket: /Applications/MAMP/tmp/mysql/mysql.sock
+
+
 production:
-  adapter: sqlite3
-  database: db/production.sqlite3
-  timeout: 5000
+  adapter: mysql2
+  encoding: utf8
+  reconnect: false
+  database: giftbase_development
+  username: root
+  password: root
+  socket: /Applications/MAMP/tmp/mysql/mysql.sock
+
