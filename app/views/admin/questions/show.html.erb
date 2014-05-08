@@ -39,6 +39,8 @@
   <dd><%= @question.hint %></dd>
   <dt><%= Question.human_attribute_name(:level) %></dt>
   <dd><%= @question.human_level %></dd>
+  <dt><%= Question.human_attribute_name(:stage) %></dt>
+  <dd><%= @question.stage.name if @question.stage%></dd>
 </dl>
 
 <%= javascript_include_tag "asciimathml" %>
