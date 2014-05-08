@@ -80,5 +80,44 @@ module Admin
         render action: "edit"
       end
     end
+
+    #
+    def trans
+      @unit = Unit.find(params[:id])
+    end
+
+    def ajax_unit
+      stage = params[:stage]
+      units = Stage.find(stage).units.map{|u| [u.id, u.name]}
+      respond_to do |format|
+          format.json { render json: units.to_s }
+      end
+    end
+
+    def ajax_group
+      unit = params[:unit]
+      groups = Unit.find(unit).question_groups.map{|g| [g.id, g.name]}
+      respond_to do |format|
+          #format.json { render json: "[]" } #for test
+          format.json { render json: groups.to_s }
+      end
+    end
+
+    def trans_do
+      qli_ids = params[:qlis]
+      qlis = []
+      qli_ids.each{|x| qlis << QuestionLineItem.find(x)}
+
+      qg = params[:question_group]
+      qlis.each do |e|
+        e.question_group_id = qg
+        if !e.save
+          render text: "false:" + e.to_s
+          return
+        end
+      end
+    end
+
+
   end
 end

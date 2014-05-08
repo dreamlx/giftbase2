@@ -5,6 +5,7 @@
   </h1>
   <div class="toolbar">
     <%= link_to t("edit", scope: "crud"), edit_admin_unit_path(@unit), class: 'btn btn-primary' %>
+    <%= link_to t("转移", scope: "crud"), trans_admin_unit_path(@unit), class: 'btn btn-primary' %>
     <div class="btn-group">
       <button class="btn dropdown-toggle" data-toggle="dropdown"><%= t("more", scope: "crud") %> <span class="caret"></span></button>
       <ul class="dropdown-menu pull-right">

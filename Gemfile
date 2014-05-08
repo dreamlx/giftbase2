@@ -23,23 +23,24 @@ gem 'yaml_db'
 gem 'memcache-client'
 gem 'amoeba'  #copy active record deep
 # on default
-gem 'mysql2'
+#gem 'mysql2'
+gem 'sqlite3'
 gem "haml-rails" #erb简化模板
 gem 'html2haml'
 # on heroku
 gem 'thin'
-gem 'pg'
+#gem 'pg'
 #gem 'heroku'
 gem 'pry-nav'
 gem 'pry'
-gem 'html2haml'
+#gem 'html2haml'
 
 gem 'chart-js-rails'
 
 group :assets do
   gem 'sass-rails',   '~> 3.2'
   gem 'coffee-rails', '~> 3.2.2'
-  gem 'therubyracer', '~> 0.10.0'
+  #gem 'therubyracer', '~> 0.10.0'
   gem 'uglifier', '>= 1.2.4'
   gem 'bootstrap-sass', '~> 2.3.0.1'
   gem 'font-awesome-sass-rails', '~> 3.0.2.2'
@@ -67,7 +68,7 @@ end
 
 group :test do
   gem 'factory_girl_rails', '4.2.1'
-  gem 'rspec-rails', '2.13.1'
+  #gem 'rspec-rails', '2.13.1'
   gem 'capybara', '2.1.0'
   gem 'libnotify', '0.8.0'
 end

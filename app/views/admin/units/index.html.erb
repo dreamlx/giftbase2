@@ -1,19 +1,19 @@
 <% content_for :title_bar do %>
-  <h1><%= t("listing", scope: "crud", model: Unit.model_name.human) %></h1>
-  <div class="toolbar">
-    <%= link_to t("new", scope: "crud"), new_admin_unit_path, class: 'btn btn-primary' %>
-  </div>
+<h1><%= t("listing", scope: "crud", model: Unit.model_name.human) %></h1>
+<div class="toolbar">
+  <%= link_to t("new", scope: "crud"), new_admin_unit_path, class: 'btn btn-primary' %>
+</div>
 <% end %>
 
 <%= search_form_for([:admin, @q], html: { class: 'well' }) do |f| %>
-  <div class="controls-row">
-    <%= f.select :stage_grade_id_eq, [[t('all'), '']] + Grade.all.map { |g| [g.name, g.id] }, {}, { class: 'span3' } %>
-        <%= f.select :stage_id_eq, [[t('all'), '']] + Stage.all.map { |s| [s.name, s.id] }, {}, { class: 'span3' } %>
-    <%= f.text_field :name_cont, placeholder: t('search_by', attr_name: Unit.human_attribute_name(:name)), class: 'span5' %>
-    <div class="text-right">
-      <%= f.submit t('search'), class: 'btn btn-primary' %>
-    </div>
+<div class="controls-row">
+  <%= f.select :stage_grade_id_eq, [[t('all'), '']] + Grade.order('position asc').map { |g| [g.name, g.id] }, {}, { class: 'span3' } %>
+  <%= f.select :stage_id_eq, [[t('all'), '']] + Stage.all.map { |s| [s.name, s.id] }, {}, { class: 'span3' } %>
+  <%= f.text_field :name_cont, placeholder: t('search_by', attr_name: Unit.human_attribute_name(:name)), class: 'span5' %>
+  <div class="text-right">
+    <%= f.submit t('search'), class: 'btn btn-primary' %>
   </div>
+</div>
 <% end %>
 
 

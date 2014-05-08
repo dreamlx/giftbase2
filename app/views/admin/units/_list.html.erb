@@ -11,25 +11,27 @@
   </thead>
   <tbody>
     <% units.each do |unit| %>
-      <tr>
-        <td><%= unit.position unless unit.position.blank? %></td>
-        <% if unit.stage_id.nil?%>
-        <td><%= select_tag "unit_#{unit.id}",options_for_select(@stages.collect{ |s| [s.name,s.id]}),prompt: "试卷套装", :onchange =>"$.post('#{update_by_ajax_admin_unit_path(unit)}',{'stage_id': this.value})" %>
-                          </td>
-        <% else %>
-        <td><%= unit.stage.try(:name)%></td>
-        <% end%>
-        <td><%= unit.name %></td>
-        <td><%= unit.exam_minutes %></td>
-        <td><%= unit.user.try(:email) %></td>
-        <td class="control span2">
-          <% if can? :manage, Unit %>
-            <%= link_to t("show", scope: "crud"), admin_unit_path(unit) %>
-            <%= link_to t("edit", scope: "crud"), edit_admin_unit_path(unit), target: '_blank' %>
-            <%= link_to t("copy", scope: "crud"), copy_admin_unit_path(unit), method:'post' %>
-          <% end -%>
-        </td>
-      </tr>
+    <tr>
+      <td><%= unit.position unless unit.position.blank? %></td>
+
+      <% if unit.stage_id.nil?%>
+      <td><%= select_tag "unit_#{unit.id}",options_for_select(@stages.collect{ |s| [s.name,s.id]}),prompt: "试卷套装", :onchange =>"$.post('#{update_by_ajax_admin_unit_path(unit)}',{'stage_id': this.value})" %>
+      </td>
+      <% else %>
+      <td><%= unit.stage.try(:name)%></td>
+      <% end%>
+
+      <td><%= unit.name %></td>
+      <td><%= unit.exam_minutes %></td>
+      <td><%= unit.user.try(:email) %></td>
+      <td class="control span2">
+        <% if can? :manage, Unit %>
+        <%= link_to t("show", scope: "crud"), admin_unit_path(unit) %>
+        <%= link_to t("edit", scope: "crud"), edit_admin_unit_path(unit), target: '_blank' %>
+        <%= link_to t("copy", scope: "crud"), copy_admin_unit_path(unit), method:'post' %>
+        <% end -%>
+      </td>
+    </tr>
     <% end %>
   </tbody>
 </table>
