@@ -56,8 +56,8 @@ Giftbase::Application.routes.draw do
 
     resources :credit_line_items
 
-    resource :profiles do
-      collection do 
+    resources :profiles do
+      collection do
         post :upload_avatar
       end
     end
