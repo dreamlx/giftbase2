@@ -131,6 +131,7 @@ Giftbase::Application.routes.draw do
       member do
         post 'move_higher'
         post 'move_lower'
+        post :random
       end
     end
 

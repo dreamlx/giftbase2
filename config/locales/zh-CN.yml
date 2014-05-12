@@ -23,7 +23,11 @@ zh-CN:
     add: "添加更多%{model}"
     save: 保存
     upload: 上传 
-    
+  
+  stage:
+    random: 随机试卷 
+  unit:
+    trans: 转移
 
   ranking_type:
     ranking: 排名
@@ -40,6 +44,7 @@ zh-CN:
   wrong_answer: 错题
 
   flash: 
+    success: '操作正确完成'
     controller: 
       create: 
         failure: "新建%{model}失败"
@@ -73,6 +78,9 @@ zh-CN:
           finish_review:
             failure: "结算失败，可能还有回答没有批阅"
             success: "结算完成"
+        stage:
+          random:
+            repeat: "不要重复"
 
   all: 全部
   dashboard: 信息中心
