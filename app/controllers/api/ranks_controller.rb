@@ -13,8 +13,7 @@ module ExamRanking
         user_id = item.first
         exams = item.last
         exams.each do |exam|
-          exam.total_point = 0 if exam.total_point.nil?
-          total_point += exam.total_point
+          total_point += exam.total_point unless exam.total_point.nil?
           sum_duration += exam.duration
         end
         user_rankings.push(
