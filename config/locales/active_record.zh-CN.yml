@@ -23,6 +23,7 @@ zh-CN:
         hint: 解题提示
         level: 难度
         image: 附图
+        stage: 套装
       question/brief:
         brief_solution: 解答
       question/single_choice:

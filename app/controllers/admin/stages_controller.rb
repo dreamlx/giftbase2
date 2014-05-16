@@ -59,6 +59,50 @@ module Admin
 
       redirect_to admin_stages_path
     end
+
+    #
+    def random
+      random_name = t("random", scope: "stage")
+      stage_id = params[:id]
+
+      if Unit.where(stage_id: stage_id, name: random_name).size > 0 
+
+        flash[:notice] = t('repeat', scope: 'flash')
+
+      else
+
+        random_count = 10
+        qid_array = Question.select('id').where(stage_id: stage_id).map{|x| x.id}
+
+        Unit.transaction  do
+          #unit new
+          unit = Unit.new
+          unit.stage_id = stage_id
+          unit.name = random_name
+          unit.exam_minutes = 30
+          unit.save!
+          #group new
+          group = QuestionGroup.new
+          group.name = random_name
+          group.unit = unit
+          group.save!
+          #qli
+          qid_a2 = qid_array.shuffle[0...random_count]
+          qid_a2.each{|q|
+            qli = QuestionLineItem.new
+            qli.question_id = q
+            qli.question_group = group
+            qli.save!
+          }
+        end
+
+        flash[:notice] = t('success', scope: 'flash') 
+
+      end
+      
+      redirect_to admin_stage_path
     
+    end
+
   end
 end

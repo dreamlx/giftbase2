@@ -36,10 +36,11 @@ class Exam < ActiveRecord::Base
     wrong_counts = (answers.map{|a| a.point == 0 ? true : nil}.compact).size
     point = math_rule["sum_point"] - math_rule["deduct_point"]*wrong_counts
     point = 0 if point < 0
+    80
   end
 
   def max_point
-    answers.map(&:max_point).sum
+    answers.map(&:max_point).compact.sum
   end
 
   def unreviewed_count

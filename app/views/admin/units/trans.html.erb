@@ -38,8 +38,12 @@
 
   <% @unit.question_groups.each do |qg| %>
     <% qg.question_line_items.each do |qli| %>
-      <input type='checkbox' name='qlis[]' value='<%= qli.id %>'/>  
-      &nbsp;<%= qli.question.subject %>
+      <input type='checkbox' name='qlis[]' value='<%= qli.id %>'/>&nbsp;<%= qli.question.subject %>
+
+      <% if !qli.question.image.blank? %>
+        <img src='<%= qli.question.image %>'/>
+      <% end %>
+
       <hr/>
     <% end %>
   <% end -%>

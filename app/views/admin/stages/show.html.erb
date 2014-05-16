@@ -2,6 +2,7 @@
   <h1><%= Stage.model_name.human %></h1>
   <div class="toolbar">
     <%= link_to t("edit", scope: "crud"), edit_admin_stage_path(@stage), class: 'btn btn-primary' %>
+    <%= link_to t("random", scope: "stage"), random_admin_stage_path(@stage), class: 'btn btn-primary',method: 'post' %>
     <div class="btn-group">
       <button class="btn dropdown-toggle" data-toggle="dropdown"><%= t("more", scope: "crud") %> <span class="caret"></span></button>
       <ul class="dropdown-menu pull-right">

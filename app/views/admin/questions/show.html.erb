@@ -15,7 +15,7 @@
     <%= Unit.model_name.human %>
     
     <% @units.each do |unit| %>
-      |<span><%=link_to h(unit.name), admin_unit_path(unit) %></span>
+      |<span><%= link_to h(unit.try(:name)), admin_units_path(unit) %></span>
     <% end %>
 </div>
 <% end %>
@@ -39,6 +39,8 @@
   <dd><%= @question.hint %></dd>
   <dt><%= Question.human_attribute_name(:level) %></dt>
   <dd><%= @question.human_level %></dd>
+  <dt><%= Question.human_attribute_name(:stage) %></dt>
+  <dd><%= @question.stage.name if @question.stage%></dd>
 </dl>
 
 <%= javascript_include_tag "asciimathml" %>

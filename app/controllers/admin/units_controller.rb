@@ -20,13 +20,13 @@ module Admin
         unit2.belong_user(current_user)
         redirect_to admin_unit_path(unit2), 
                         notice: t("success", 
-                        scope: "flash.controller.copy", 
-                        model: Unit.model_name.human)
+                          scope: "flash.controller.copy", 
+                          model: Unit.model_name.human)
       else
         redirect_to admin_unit_path(unit), 
                         notice: t("failure", 
-                        scope: "flash.controller.copy", 
-                        model: Unit.model_name.human)
+                          scope: "flash.controller.copy", 
+                          model: Unit.model_name.human)
       end
     end
 
@@ -98,24 +98,32 @@ module Admin
       unit = params[:unit]
       groups = Unit.find(unit).question_groups.map{|g| [g.id, g.name]}
       respond_to do |format|
-          #format.json { render json: "[]" } #for test
           format.json { render json: groups.to_s }
       end
     end
 
     def trans_do
       qli_ids = params[:qlis]
+
       qlis = []
-      qli_ids.each{|x| qlis << QuestionLineItem.find(x)}
+      qli_ids.try(:each){|x| qlis << QuestionLineItem.find(x)}
 
       qg = params[:question_group]
-      qlis.each do |e|
-        e.question_group_id = qg
-        if !e.save
-          render text: "false:" + e.to_s
-          return
+      if qg.blank?
+
+          flash[:notice] = t(:trans_select_group, scope: 'flash.question')
+
+      else
+
+        qlis.each do |e|
+          e.question_group_id = qg
+          if ! e.save!
+            flash[:notice] = t(:false_id, scope: 'flash.question') + e.id.to_s
+          end
         end
+
       end
+      redirect_to trans_admin_unit_path
     end
 
 

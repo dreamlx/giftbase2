@@ -5,11 +5,14 @@ class Question < ActiveRecord::Base
   has_one :user_question
   has_one :user, through: :user_question
   belongs_to :question_level
+
+   #
+  belongs_to :stage
   
   amoeba do
     enable
   end
-  attr_accessible :hint, :subject, :image, :image_cache, :question_level_id
+  attr_accessible :hint, :subject, :image, :image_cache, :question_level_id, :stage_id
 
   validates :subject, :question_level_id, presence: true
 

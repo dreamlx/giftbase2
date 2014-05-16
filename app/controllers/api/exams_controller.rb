@@ -1,14 +1,16 @@
 module WrongItem
   private 
-  def wrong_item(exams)
-    wrong_answers = Array.new
-    exams.each do |exam|
-      exam.answers.each do |answer|
-        wrong_answers.push(answer) if answer.point < answer.question_line_item.point
+    def wrong_item(exams)
+      wrong_answers = Array.new
+      exams.each do |exam|
+        exam.answers.each do |answer|
+          #wrong_answers.push(answer) if answer.point < answer.question_line_item.point
+          id = answer.data[:option_id]
+          wrong_answers.push(answer) if SingleChoiceOption.find(id).correct == false
+        end
       end
+      return wrong_answers
     end
-    return wrong_answers
-  end
 end
 
 module Api
@@ -47,12 +49,14 @@ module Api
     end
 
     def wrong_answers
+
       #试卷，单元，年级所有错题
       exams = Exam.where("id = #{params[:exam_id]}")    unless params[:exam_id].blank?
       exams = Unit.find(params[:unit_id]).exams    unless params[:unit_id].blank?
       exams = Stage.find(params[:stage_id]).exams  unless params[:stage_id].blank?
       exams = Grade.find(params[:grade_id]).exams  unless params[:grade_id].blank?
       # 我的错题
+
       exams.map!{ |e| e.user_id == current_user.id ? e : nil }
       exams.compact!
       

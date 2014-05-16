@@ -22,3 +22,8 @@
   <dt><%= Exam.human_attribute_name(:unreviewed_count) %></dt>
   <dd><%= @exam.unreviewed_count %></dd>
 </dl>
+
+<% @exam.answers.each do |a| %>
+  <p><%= a.point %>
+  <p><%= 'i'+a.question_line_item.try(:point).to_s %>
+<% end %>

@@ -1,6 +1,8 @@
 # api用法：
+    
+    !!!注意： 除了注册，登录用户外，所有api都需要 auth_token（注册或者登录会返回这个token）
+
     api 是restful格式
-    除了注册，登录用户外，所有api都需要 auth_token（注册或者登录会返回这个token）
     #因为我用的zsh，所以有的时候会在url上加上转义'/'，比如在问号或者等号前加‘/’,请根据自己sh情况修改demo url
      => profiles.json\?auth_token\=q1d9skvy7yPqUajzhj4V
 
@@ -89,5 +91,6 @@
     action: GET
     result: 看id号为1的考试结果           
                                                                                             
-
-
+## wrong answer
+    get /api/exams/wrong_answers.json?exam_id=473
+    unit,stage,grade的id也可以
