@@ -20,7 +20,7 @@ class Answer < ActiveRecord::Base
   before_save :fix_point
 
   def max_point
-    question_line_item.point
+    10#question_line_item.try(point)
   end
 
   def max_point?

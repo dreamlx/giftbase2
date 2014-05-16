@@ -15,7 +15,7 @@
     <%= Unit.model_name.human %>
     
     <% @units.each do |unit| %>
-      |<span><%=link_to h(unit.name), admin_unit_path(unit) %></span>
+      |<span><%= link_to h(unit.try(:name)), admin_units_path(unit) %></span>
     <% end %>
 </div>
 <% end %>

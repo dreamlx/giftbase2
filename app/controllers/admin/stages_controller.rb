@@ -67,7 +67,7 @@ module Admin
 
       if Unit.where(stage_id: stage_id, name: random_name).size > 0 
 
-        flash[:notice] = t('repeat', scope: 'flash.controller.admin.stage.random')
+        flash[:notice] = t('repeat', scope: 'flash')
 
       else
 

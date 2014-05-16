@@ -45,6 +45,10 @@ zh-CN:
 
   flash: 
     success: '操作正确完成'
+    repeat: "不要重复"
+    question:
+      trans_select_group: "需要选择问题组"
+      false_id: "错误的问题item id:"
     controller: 
       create: 
         failure: "新建%{model}失败"
@@ -78,9 +82,8 @@ zh-CN:
           finish_review:
             failure: "结算失败，可能还有回答没有批阅"
             success: "结算完成"
-        stage:
-          random:
-            repeat: "不要重复"
+
+            
 
   all: 全部
   dashboard: 信息中心
