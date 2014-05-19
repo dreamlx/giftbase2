@@ -50,7 +50,7 @@ API无需注销，因为是无会话的，登录后，iOS App 获得auth_token�
 iOS App 注销的时候，把本地保存的 auth_token 清除，就算注销了。
 
 ##My profile
-    curl http://0.0.0.0:3000/api/profiles.json\?auth_token\=q1d9skvy7yPqUajzhj4V
+    curl http://0.0.0.0:3000/api/profiles.json/about_me\?auth_token\=q1d9skvy7yPqUajzhj4V
     
     => {"id":2,"email":"test@kingaxis.com"}
 
