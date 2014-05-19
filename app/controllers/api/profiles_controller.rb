@@ -2,9 +2,18 @@
 module Api
   class ProfilesController < Api::BaseController
     before_filter :authenticate_user!
+    def index
+      @users = User.all
+      render json: @users
+    end
+
+    def about_me
+      @user = current_user
+      render json: @user
+    end
 
     def show
-      @user = current_user
+      @user = User.find(params[:id])
       render json: @user
     end
 

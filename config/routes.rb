@@ -59,6 +59,7 @@ Giftbase::Application.routes.draw do
     resources :profiles do
       collection do
         post :upload_avatar
+        get :about_me
       end
     end
     
