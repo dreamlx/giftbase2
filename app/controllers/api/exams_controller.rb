@@ -63,5 +63,30 @@ module Api
       @wrong_answers = wrong_item(exams)
       render "/api/exams/wrong_answers"
     end
+
+    def redo
+      exam = Exam.new(params[:exam])
+      exam.answers.each do |answer|
+        id = answer.data[:option_id]
+        option = SingleChoiceOption.find(id)
+        if option.correct == true
+          qid = option.question_id
+          user_id = current_user.id
+          sql = "select a.id from answers a, question_line_items q, exams e
+                  where 
+                   e.user_id = ? and
+                   e.id = a.exam_id and 
+                   a.question_line_item_id = q.id and 
+                   q.question_id = ? "
+          past_answers = Answer.find_by_sql [sql, user_id, qid]
+          past_answers.each do |a|
+            past_answer = Answer.find a.id
+            past_answer.data = answer.data
+            past_answer.save!
+          end
+        end
+      end      
+      render json: {}
+    end
   end
 end
