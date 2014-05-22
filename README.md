@@ -1,3 +1,8 @@
+### updated 2014-5-21
+## wrong answer redo
+post api/exams/redo
+类似于做题后提交。题目做对后，就不再出现了。
+
 ### updated 2014-2-25
 ## add task, set_default_question_level
 rake utils:set_default_question_level
@@ -15,9 +20,6 @@ rake utils:confirm_admin_email
     url: api/stages/id/purchase.json #id 是stage的id，数字
     action: POST
     返回结果：success、failed
-
-
-
 
 ###updated 2013-09-10
 ##unit,stage,grade错题统计

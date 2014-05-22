@@ -88,6 +88,7 @@ Giftbase::Application.routes.draw do
       end
       collection do
         get  :wrong_answers 
+        post :redo
       end
       resources :answers, only: [:update, :show]
     end
