@@ -1,3 +1,10 @@
+### udated 2014-5-25
+## grade.json
+get api/grades.json
+
+如果没有参数就是返回状态为publish的年级
+如果参数 state=all 返回所有年级，可以用于测试
+
 ### updated 2014-5-21
 ## wrong answer redo
 post api/exams/redo
