@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20140417074236) do
+ActiveRecord::Schema.define(:version => 20140526052640) do
 
   create_table "answers", :force => true do |t|
     t.integer  "exam_id"
@@ -63,10 +63,10 @@ ActiveRecord::Schema.define(:version => 20140417074236) do
 
   create_table "credits", :force => true do |t|
     t.integer  "user_id"
-    t.decimal  "start_balance"
-    t.decimal  "balance"
-    t.datetime "created_at",    :null => false
-    t.datetime "updated_at",    :null => false
+    t.decimal  "start_balance", :precision => 10, :scale => 0
+    t.decimal  "balance",       :precision => 10, :scale => 0
+    t.datetime "created_at",                                   :null => false
+    t.datetime "updated_at",                                   :null => false
   end
 
   add_index "credits", ["user_id"], :name => "index_credits_on_user_id"
@@ -102,6 +102,7 @@ ActiveRecord::Schema.define(:version => 20140417074236) do
     t.datetime "created_at",  :null => false
     t.datetime "updated_at",  :null => false
     t.integer  "position"
+    t.string   "state"
   end
 
   create_table "map_places", :force => true do |t|
@@ -147,12 +148,12 @@ ActiveRecord::Schema.define(:version => 20140417074236) do
 
   create_table "orders", :force => true do |t|
     t.string   "number"
-    t.decimal  "credit_quantity"
-    t.decimal  "total",           :precision => 8, :scale => 2
+    t.decimal  "credit_quantity", :precision => 10, :scale => 0
+    t.decimal  "total",           :precision => 8,  :scale => 2
     t.string   "state"
     t.integer  "user_id"
-    t.datetime "created_at",                                    :null => false
-    t.datetime "updated_at",                                    :null => false
+    t.datetime "created_at",                                     :null => false
+    t.datetime "updated_at",                                     :null => false
   end
 
   add_index "orders", ["number"], :name => "index_orders_on_number"
@@ -170,6 +171,31 @@ ActiveRecord::Schema.define(:version => 20140417074236) do
   end
 
   add_index "pictures", ["imageable_id", "imageable_type"], :name => "index_pictures_on_imageable_id_and_imageable_type"
+
+  create_table "question2_line_items", :force => true do |t|
+    t.integer  "question_id"
+    t.integer  "question_group_id"
+    t.integer  "position"
+    t.decimal  "point",             :precision => 8, :scale => 1
+    t.datetime "created_at",                                      :null => false
+    t.datetime "updated_at",                                      :null => false
+  end
+
+  add_index "question2_line_items", ["position"], :name => "index_question_line_items_on_position"
+  add_index "question2_line_items", ["question_group_id"], :name => "index_question_line_items_on_question_group_id"
+  add_index "question2_line_items", ["question_id"], :name => "index_question_line_items_on_question_id"
+
+  create_table "question2s", :force => true do |t|
+    t.string   "type"
+    t.text     "subject"
+    t.text     "hint"
+    t.datetime "created_at",        :null => false
+    t.datetime "updated_at",        :null => false
+    t.string   "image"
+    t.integer  "question_level_id"
+  end
+
+  add_index "question2s", ["type"], :name => "index_questions_on_type"
 
   create_table "question_groups", :force => true do |t|
     t.string   "name"
@@ -214,6 +240,21 @@ ActiveRecord::Schema.define(:version => 20140417074236) do
   end
 
   add_index "questions", ["type"], :name => "index_questions_on_type"
+
+  create_table "single_choice_option2s", :force => true do |t|
+    t.integer  "question_id"
+    t.text     "content"
+    t.integer  "position"
+    t.string   "sequence"
+    t.boolean  "correct"
+    t.datetime "created_at",  :null => false
+    t.datetime "updated_at",  :null => false
+    t.string   "image"
+  end
+
+  add_index "single_choice_option2s", ["correct"], :name => "index_single_choice_options_on_correct"
+  add_index "single_choice_option2s", ["position"], :name => "index_single_choice_options_on_position"
+  add_index "single_choice_option2s", ["question_id"], :name => "index_single_choice_options_on_question_id"
 
   create_table "single_choice_options", :force => true do |t|
     t.integer  "question_id"

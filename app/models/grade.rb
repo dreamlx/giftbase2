@@ -8,7 +8,7 @@ class Grade < ActiveRecord::Base
   has_many :user_grades
   has_many :user, through: :user_grades
 
-  attr_accessible :description, :name, :position
+  attr_accessible :description, :name, :position, :state
 
   def purchase(user)
     if (!user.grades.include?(self)) && user.credit.balance > self.stages.sum(:price)

@@ -2,7 +2,7 @@
 module Api
   class GradesController < Api::BaseController
     def index
-      grades = Grade.order("position").all
+      grades = Grade.order("position").where(state: 'publish')
       @grades = []
       # todo: 改为status处理
       grades.each {|g| @grades << g if g.pictures.size > 0 }
