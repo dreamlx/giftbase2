@@ -9,7 +9,7 @@
     </div>
 
     <div class="actions pull-right">
-      <%= link_to t("edit", scope: "crud"), edit_admin_question_path(question), class: 'btn btn-small btn-primary', target: '_blank' %>
+      <%= link_to t("edit", scope: "crud"), edit_admin_question_path(question), class: 'btn btn-small btn-primary', target: '_blank' if question.question_line_items.size == 1 %>
 
       <div class="btn-group">
         <% if actions[:add_to_unit] %>
