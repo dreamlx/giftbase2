@@ -1,3 +1,12 @@
+### updated 2014-8-6
+api user
+
+### create users by api
+    curl -d 'user[username]=amo2&user[password]=11111111&user[email]=c@gmail.com' http://127.0.0.1:3000/api/users.json
+
+### get user token
+    curl -d 'user[login]=aa&user[password]=11111111' http://127.0.0.1:3000/api/tokens.json
+
 ### updated 2013-09-22
 ## purchase 支付api
 前提要求账号内有现金
