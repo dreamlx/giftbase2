@@ -19,7 +19,9 @@ Giftbase::Application.routes.draw do
 
 
   namespace :api do
+    resources :users
     resource :credit
+    resource :tokens
 
     resources :credit_line_items
 
