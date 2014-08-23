@@ -19,8 +19,8 @@
               %li{:class => ('active' if controller.class.to_s == 'GradesController' && params[:action] == 'index')}
                 = link_to t('purchase_exams'), grades_path
           - else
-            %li{:class => ('active' if params[:action] == 'privacy')}
-            = link_to '登录',  new_user_session_path
+            %li{:class => ('active' if controller.class.to_s == 'SessionsController' and params[:action] == 'new')}
+              = link_to '登录',  new_user_session_path
         %ul.nav.pull-right
           - if user_signed_in?
             %li.dropdown
