@@ -15,8 +15,6 @@
 /log/*.log
 /tmp
 
-/config/deploy.rb
-/config/deploy
 /public/uploads
 
 /.rvmrc
