@@ -73,5 +73,7 @@ module Giftbase
       g.javascripts = false
       g.helper = false
     end
+
+    I18n.enforce_available_locales = false
   end
 end
