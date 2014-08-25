@@ -6,7 +6,7 @@ class Grade < ActiveRecord::Base
   has_many :answers, through: :exams
   has_many :pictures, as: :imageable, dependent: :destroy
   has_many :user_grades
-  has_many :user, through: :user_grades
+  has_many :users, through: :user_grade
 
   attr_accessible :description, :name, :position, :state
 

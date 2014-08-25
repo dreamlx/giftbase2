@@ -13,8 +13,7 @@ class Unit < ActiveRecord::Base
 
   attr_accessible :description, :exam_minutes, :name, :stage_id, :image, :image_cache
 
-  validates :name, :exam_minutes, presence: true
-  validates_presence_of :stage
+  validates :name, :exam_minutes, :stage, presence: true
   has_one :user_unit
   has_one :user, through: :user_unit
   has_many :map_places, as: :placeable, dependent: :destroy

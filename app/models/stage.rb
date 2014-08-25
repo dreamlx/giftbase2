@@ -8,16 +8,15 @@ class Stage < ActiveRecord::Base
   has_many :answers, through: :exams
   has_many :map_places, as: :placeable, dependent: :destroy
   
-  has_many :user_stage
-  has_many :user, through: :user_stage
+  has_many :user_stages
+  has_many :users, through: :user_stage
   attr_accessible :description, 
     :name, :price, 
     :video, :video_cache, :video_poster, 
     :video_poster_cache, :grade_id,
     :position
 
-  validates :name, :price, presence: true
-  validates_presence_of :grade
+  validates :name, :price, :grade, presence: true
 
   acts_as_list scope: :grade
 
