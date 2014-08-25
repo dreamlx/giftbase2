@@ -36,4 +36,7 @@ RSpec.configure do |config|
   #     --seed 1234
   config.order = "random"
   config.include FactoryGirl::Syntax::Methods
+  config.include Devise::TestHelpers, type: :controller
+  config.extend ControllerMacros, :type => :controller
+  config.include Requests::JsonHelpers, type: :controller
 end
