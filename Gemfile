@@ -47,7 +47,6 @@ group :development do
   gem 'quiet_assets', '~> 1.0.1'
   gem 'awesome_print', '~> 1.1.0'
   gem 'letter_opener', '~> 1.1.0'
-  gem 'better_errors', '~> 0.7.0'
   gem 'binding_of_caller', '~> 0.7.1'
   gem "rvm-capistrano"
   gem 'capistrano', '~> 2.12.0'
