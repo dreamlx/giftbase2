@@ -102,6 +102,14 @@ Giftbase::Application.routes.draw do
         resources :question_line_items, only: [:index, :show]
       end
     end
+
+    resources :users do
+      post :edit_avatar,        on: :member
+      post :edit_username,      on: :member
+      post :edit_gender,        on: :member
+      post :edit_phone,         on: :member
+      post :edit_school_name,   on: :member
+    end
   end
 
   namespace :admin do
