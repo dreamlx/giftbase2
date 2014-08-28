@@ -42,8 +42,9 @@ describe "users" do
   describe "POST edit user info" do
     it "should edit the username" do
       user = create(:user)
+      sign_in user
 
-      post "/api/users/#{user.id}/edit_username?username=newname"
+      post "/api/users/#{user.id}/edit_username?username=newname", {auth_token: user.authentication_token}
 
       json = JSON.parse(response.body)["user"]
       json["username"].should eq "newname"

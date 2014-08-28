@@ -103,6 +103,8 @@ Giftbase::Application.routes.draw do
       end
     end
 
+    resources :user_tokens, only: [:show, :create, :destroy]
+
     resources :users do
       post :edit_avatar,        on: :member
       post :edit_username,      on: :member

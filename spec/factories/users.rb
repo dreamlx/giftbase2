@@ -16,6 +16,10 @@ FactoryGirl.define do
     phone             "this is a phone number"
     unconfirmed_email "this is a user unconfirm email"
     class_no          "this is a user class number"
+
+    factory :user_without_call_back do
+      after(:build) { |user| user.class.skip_callback( :save, :before, :ensure_authentication_token)}
+    end
   end
 
   factory :admin do
