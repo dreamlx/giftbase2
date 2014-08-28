@@ -28,7 +28,7 @@ namespace :deploy do
   desc "Symlink shared resources on each release - not used"
   task :symlink_shared, :roles => :app do
     run "rm -rf #{current_path}/public/uploads"
-    run "mv #{current_path}/config/database.yml #{current_path}/config/database.yml.old"
+    # run "mv #{current_path}/config/database.yml #{current_path}/config/database.yml.old"
     run "ln -sf #{shared_path}/uploads #{current_path}/public/"
     run "ln -sf #{shared_path}/database.yml #{current_path}/config/"
     run "rm #{current_path}/config/locales/appname.zh-CN.yml"

@@ -18,5 +18,5 @@ set :scm, :git
 set :scm_username, "dreamlx"
 set :scm_passphrase, "github2melx"
 set :repository,  "git@github.com:dreamlx/giftbase2.git"
-set :branch, "master"
+set :branch, "questions"
 set :deploy_via, :remote_cache
