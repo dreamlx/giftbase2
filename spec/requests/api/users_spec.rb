@@ -1,6 +1,16 @@
 require 'spec_helper'
 
 describe "users" do
+
+  let(:valid_params) {
+    {
+      "user" => {
+        "username"  => "amo2",
+        "password"  => "11111111",
+        "email"     => "c@gmail.com"
+      }
+    }
+  }
   describe "GET show" do
     it "should get the request user" do
       user = create(:user)
@@ -19,7 +29,7 @@ describe "users" do
 
   describe "POST create" do
     it "should create a new user" do
-      post "/api/users", {"user" => {"username" => "amo2", "password" => "11111111", "email" => "c@gmail.com"}}
+      post "/api/users", valid_params
 
       json = JSON.parse(response.body)
       json["user"]["username"].should eq "amo2"
