@@ -17,6 +17,18 @@ describe "users" do
     end
   end
 
+  describe "POST create" do
+    it "should create a new user" do
+      post "/api/users", {"user" => {"username" => "amo2", "password" => "11111111", "email" => "c@gmail.com"}}
+
+      json = JSON.parse(response.body)
+      json["user"]["username"].should eq "amo2"
+      # json["user"]["password"].should eq "password"
+      json["user"]["email"].should    eq "c@gmail.com"
+      json["user"]["id"].should_not   be_nil
+    end
+  end
+
   describe "POST edit user info" do
     it "should edit the username" do
       user = create(:user)

@@ -1,8 +1,21 @@
 module Api
   class UsersController < Api::BaseController
+    respond_to :json
     def show
       user = User.find(params[:id])
       render json: {user: user}
+    end
+
+    def create
+      user = User.new()
+      user.username = params[:user][:username]
+      user.email    = params[:user][:email]
+      user.password = params[:user][:password]
+      if user.save
+        render json: { user: user}
+      else
+        render json: { user: user}
+      end
     end
 
     def edit_username
