@@ -105,13 +105,7 @@ Giftbase::Application.routes.draw do
 
     resources :user_tokens, only: [:show, :create, :destroy]
 
-    resources :users do
-      post :edit_avatar,        on: :member
-      post :edit_username,      on: :member
-      post :edit_gender,        on: :member
-      post :edit_phone,         on: :member
-      post :edit_school_name,   on: :member
-    end
+    resources :users, only: [:create, :update, :show]
   end
 
   namespace :admin do

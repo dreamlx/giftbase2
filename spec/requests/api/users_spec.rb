@@ -60,13 +60,13 @@ describe "users" do
     end
   end
 
-  describe "POST edit user info" do
+  describe "PUT update" do
     it "should edit the username" do
       user = create(:user)
       user.reset_authentication_token
       user.save
 
-      post "/api/users/#{user.id}/edit_username?username=newname", {auth_token: user.authentication_token}
+      put "/api/users/#{user.id}", {auth_token: user.authentication_token, "user" => { "username" => "newname"}}
 
       json = JSON.parse(response.body)["user"]
       json["username"].should eq "newname"
@@ -74,7 +74,7 @@ describe "users" do
 
     it "should edit the gender" do
       user = create(:user, gender: "man")
-      post "/api/users/#{user.id}/edit_gender?gender=woman"
+      put "/api/users/#{user.id}", {auth_token: user.authentication_token, "user" => { "gender" => "woman"}} 
 
       json = JSON.parse(response.body)["user"]
       json["gender"].should eq "woman"     
@@ -82,7 +82,7 @@ describe "users" do
 
     it "should edit the phone" do
       user = create(:user, phone: "12345678900")
-      post "/api/users/#{user.id}/edit_phone?phone=12345678901"
+      put "/api/users/#{user.id}", {auth_token: user.authentication_token, "user" => { "phone" => "12345678901"}}
 
       json = JSON.parse(response.body)["user"]
       json["phone"].should eq "12345678901"     
@@ -90,7 +90,7 @@ describe "users" do
 
     it "should edit the school_name" do
       user = create(:user, school_name: "eastfly")
-      post "/api/users/#{user.id}/edit_school_name?school_name=westfly"
+      put "/api/users/#{user.id}", {auth_token: user.authentication_token, "user" => { "school_name" => "westfly"}}
 
       json = JSON.parse(response.body)["user"]
       json["school_name"].should eq "westfly"     
