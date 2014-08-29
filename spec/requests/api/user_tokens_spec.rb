@@ -6,9 +6,15 @@ describe 'user_tokens' do
     it "should get the request user_token" do
       user = create(:user)
 
+      if user.authentication_token.nil?
+        user.reset_authentication_token 
+        user.save
+      end
+
       get "/api/user_tokens/#{ user.authentication_token }"
 
       json = JSON.parse(response.body)
+      response.status.should        eq 200
       json["user"]["id"].should     eq user.id
       json["auth_token"].should     eq user.authentication_token
       json["message"].should        eq 'user.authentication_token'
@@ -18,8 +24,13 @@ describe 'user_tokens' do
   describe "DELETE destroy" do
     it "should destroy the requested user token" do
       user = create(:user)
+
+      if user.authentication_token.nil?
+        user.reset_authentication_token 
+        user.save
+      end
+
       user_token = user.authentication_token
-      pp user_token
       delete "/api/user_tokens/#{ user.authentication_token }"
 
       response.status.should eq 204
@@ -34,6 +45,12 @@ describe 'user_tokens' do
 
     it "the request user to destroyed not found" do
       user = create(:user)
+
+      if user.authentication_token.nil?
+        user.reset_authentication_token 
+        user.save
+      end
+      
       user_token = user.authentication_token
 
       delete "/api/user_tokens/#{user_token + "hello"}"
@@ -47,12 +64,31 @@ describe 'user_tokens' do
   end
 
   describe 'POST create' do
-    it "should create a new user_token" do
+    it "should create a new user_token, login as email" do
       user = FactoryGirl.create(:user_without_call_back)
       user.authentication_token.should be_nil
 
-      post "/api/user_tokens", {user_token: { email: user.email, password: user.password, username: user.username}}
+      post "/api/user_tokens", {user: { login: user.email, password: user.password}}
 
+      response.status.should                eq 201
+      json              = JSON.parse(response.body)
+      user_token_json  = json["user_token"]
+      user_json        = json["users"].first
+
+      user_token_json["token"].should_not    be_nil
+      user_token_json["user_id"].should      eq user.id
+      user_json["id"].should                 eq user.id
+      user_json["email"].should              eq user.email
+      user_json["username"].should           eq user.username
+    end
+
+    it "should create a new user_token, login as username" do
+      user = FactoryGirl.create(:user_without_call_back)
+      user.authentication_token.should be_nil
+
+      post "/api/user_tokens", {user: { login: user.username, password: user.password}}
+
+      response.status.should                eq 201
       json              = JSON.parse(response.body)
       user_token_json  = json["user_token"]
       user_json        = json["users"].first
@@ -66,31 +102,36 @@ describe 'user_tokens' do
 
     it "should return error when no email" do
       user = create(:user)
-      post "/api/user_tokens", {user_token: { email: nil, password: user.password, name: user.username}}
+      post "/api/user_tokens", {user: { login: nil, password: user.password}}
 
+      response.status.should eq 400
       json = JSON.parse(response.body)
       json["error"].should eq "The request must contain the user email and password."
     end
 
     it "should return error when no password" do
       user = create(:user)
-      post "/api/user_tokens", {user_token: { email: user.email, password: nil, name: user.username}}
+      post "/api/user_tokens", {user: { login: user.email, password: nil}}
 
+      response.status.should eq 400
       json = JSON.parse(response.body)
       json["error"].should eq "The request must contain the user email and password."
     end
 
     it "should return error when no user found" do
-      post "/api/user_tokens", {user_token: { email: "admin@gmail.com", password: "email.password", name: "user.username"}}
+      post "/api/user_tokens", {user: { login: "admin@gmail.com", password: "email.password"}}
 
+      response.status.should        eq 401
       json = JSON.parse(response.body)
       json["errors"]["user"].should eq ["用户不存在"]
     end
 
     it "should return error with wrong password" do
       user = create(:user)
-      post "/api/user_tokens", {user_token: { email: user.email, password: "wrongpassword", name: user.username}}
 
+      post "/api/user_tokens", {user: { login: user.email, password: "wrongpassword"}}
+
+      response.status.should            eq 401
       json = JSON.parse(response.body)
       json["errors"]["password"].should eq ["密码错误"]      
     end

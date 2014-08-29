@@ -4,15 +4,15 @@ module Api
     respond_to :json
     def show
       user = User.find(params[:id])
-      render json: {user: user}
+      render json: {user: user}, status: 200
     end
 
     def create
       user = User.new(params[:user])
       if user.save
-        render json: { user: user}
+        render json: { user: user}, status: 201
       else
-        render json: { user: user}
+        render json: {errors: user.errors}, status: 401
       end
     end
 
@@ -21,7 +21,7 @@ module Api
       if user.update_attribute(:username, params[:username])
         render json: {user: user}
       else
-        render json: {user: user}
+        render json: {errors: user.errors}, status: 401
       end
     end
 

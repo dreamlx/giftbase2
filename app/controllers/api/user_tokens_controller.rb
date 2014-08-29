@@ -9,20 +9,20 @@ module Api
         user: user, 
         auth_token: user.authentication_token, 
         message: 'user.authentication_token'
-      }
+      }, status: 200
     end
 
     def create
-      email     = params[:user_token][:email]
-      password  = params[:user_token][:password]
-      nickname  = params[:user_token][:nick_name]
+      email     = params[:user][:login]
+      password  = params[:user][:password]
+      username  = params[:user][:login]
 
       if email.nil? or password.nil?
         render :status=>400, :json=>{:error=>"The request must contain the user email and password."}
         return
       end
       
-      user=User.find_by_email(email.downcase)
+      user=User.find_by_email(email.downcase) || User.find_by_username(username)
       
       if user.nil?
         logger.info("User #{email} failed signin, user cannot be found.")
@@ -46,10 +46,10 @@ module Api
             username:   user.username
             }
           ]
-        }
+        }, status: 201
       else
         logger.info("User #{email} failed signin, password \"#{password}\" is invalid")
-        render :status=> :unauthorized, :json => {:errors => {password: ['密码错误']} }
+        render :status=> 401, :json => {:errors => {password: ['密码错误']} }
       end
     end
 
