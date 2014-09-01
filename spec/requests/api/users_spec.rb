@@ -26,7 +26,7 @@ describe "users" do
     it "should get the request user" do
       user = create(:user)
 
-      get "/api/users/#{user.id}"
+      get "/api/users/#{user.id}", { auth_token: user.authentication_token}
 
       response.status.should        eq 200
       json = JSON.parse(response.body)["user"]

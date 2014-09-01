@@ -1,6 +1,6 @@
 module Api
   class UsersController < Api::BaseController
-    # before_filter :authenticate_user_from_token!, only: [:destroy, :update]
+    before_filter :authenticate_user_from_token!, only: [:show, :update]
     respond_to :json
     def show
       user = User.find(params[:id])

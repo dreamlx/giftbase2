@@ -1,6 +1,6 @@
 FactoryGirl.define do
   factory :question do
-    # type                "Question::SingleChoice"
+    type                "Question::SingleChoice"
     sequence(:subject)  { |n| "subject #{n}"}
     hint                ""
     image               nil

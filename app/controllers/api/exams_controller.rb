@@ -15,7 +15,7 @@ end
 
 module Api
   class ExamsController < Api::BaseController
-    # before_filter :authenticate_user!
+    before_filter :authenticate_user_from_token!
 
     include WrongItem
 
@@ -47,7 +47,7 @@ module Api
         item_json[:options] = item.single_choice_options.as_json
         question_group_json << item_json
       end
-      render json: {question_group: question_group_json}
+      render json: {question_group: question_group_json}, status: 200
     end
 
     def finish_uploading
