@@ -83,6 +83,7 @@ Giftbase::Application.routes.draw do
     end
     
     resources :exams do
+      get :question_group, on: :collection
       member do
         post :finish_uploading
       end

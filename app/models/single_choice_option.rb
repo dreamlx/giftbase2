@@ -1,5 +1,5 @@
 class SingleChoiceOption < ActiveRecord::Base
-  belongs_to :question, class_name: 'Question::SingleChoice'
+  belongs_to :question #, class_name: 'Question::SingleChoice'
 
   mount_uploader :image, ImageUploader
   
