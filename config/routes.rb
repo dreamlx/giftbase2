@@ -97,7 +97,7 @@ Giftbase::Application.routes.draw do
     resources :units, only: [:index, :show] do
       collection do
         get 'mine'
-      end
+      end 
       
       resources :question_groups, only: [:index, :show] do
         resources :question_line_items, only: [:index, :show]
@@ -106,7 +106,10 @@ Giftbase::Application.routes.draw do
 
     resources :user_tokens, only: [:show, :create, :destroy]
 
-    resources :users, only: [:create, :update, :show]
+    resources :users, only: [:create, :update, :show] do
+      get :profile, on: :collection
+    end
+
   end
 
   namespace :admin do

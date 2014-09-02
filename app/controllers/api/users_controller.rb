@@ -7,6 +7,11 @@ module Api
       render json: {user: user}, status: 200
     end
 
+    def profile
+      user = User.find_by_authentication_token(params[:auth_token])
+      render json: {user: user}, status: 200
+    end
+
     def create
       user = User.new(params[:user])
       if user.save

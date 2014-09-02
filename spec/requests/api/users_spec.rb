@@ -41,6 +41,24 @@ describe "users" do
     end
   end
 
+  describe "GET profile" do
+    it "should get the request user according to authen_token" do
+      user = create(:user)
+
+      get "/api/users/profile", { auth_token: user.authentication_token}
+
+      response.status.should        eq 200
+      json = JSON.parse(response.body)["user"]
+      # json.should eq ""
+      json["avatar"]["url"].should  eq user.avatar.url
+      json["username"].should       eq user.username
+      json["gender"].should         eq user.gender
+      json["phone"].should          eq user.phone
+      json["email"].should          eq user.email
+      json["school_name"].should    eq user.school_name
+    end
+  end
+
   describe "POST create" do
     it "should create a new user" do
       post "/api/users", valid_params
