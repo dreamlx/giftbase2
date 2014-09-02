@@ -10,7 +10,7 @@ module Api
     def create
       user = User.new(params[:user])
       if user.save
-        render json: { user: user}, status: 201
+        render json: { user: user, auth_token: user.authentication_token}, status: 201
       else
         render json: {errors: user.errors}, status: 401
       end
