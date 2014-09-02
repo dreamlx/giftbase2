@@ -7,7 +7,7 @@ describe 'exams' do
 
     it "should get 250 question when show" do
       user = create(:user)
-      get "/api/exams/question_group", { auth_token: user.authentication_token}
+      get "/api/exams/question_group" #, { auth_token: user.authentication_token}
 
       json = JSON.parse(response.body)
       json["question_group"].count.should eq 250

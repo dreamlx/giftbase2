@@ -15,7 +15,7 @@ end
 
 module Api
   class ExamsController < Api::BaseController
-    before_filter :authenticate_user_from_token!
+    # before_filter :authenticate_user_from_token!
 
     include WrongItem
 
