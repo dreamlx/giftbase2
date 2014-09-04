@@ -33,6 +33,7 @@ gem 'pg'
 gem 'pry-nav'
 gem 'pry'
 gem 'chart-js-rails', '0.0.4'
+gem 'carrierwave-qiniu'
 
 group :assets do
   gem 'sass-rails',   '~> 3.2'

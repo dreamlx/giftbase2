@@ -1,16 +1,12 @@
-CarrierWave.configure do |config|
-  config.storage = :aliyun
-  config.aliyun_access_id = 'Ev9TuOn9iXVT3WWL'
-  config.aliyun_access_key = 'MSdy0ScnTZFqZbMWChknGJl8XAxfMq'
-  config.aliyun_bucket = 'giftbase'
-
-  # true - access from LAN, false - access from WAN
-  config.aliyun_internal = false
-
-  # Custom domain to you_bucket_name.oss.aliyuncs.com
-  config.aliyun_host = "giftbase.oss.aliyuncs.com" 
-
-  #test
+::CarrierWave.configure do |config|
+  config.storage             = :qiniu
+  config.qiniu_access_key    = "93vlzlK9UlO6UhZaVlrZ4RyVanIv5f1meAX_ofK2"
+  config.qiniu_secret_key    = "7UGe9arh_jrxTQGa1WLba3D8xDZ-FbXOJSVYAJt7"
+  config.qiniu_bucket        = "maifeiji"
+  config.qiniu_bucket_domain = "maifeiji.qiniudn.com"
+  # config.qiniu_bucket_private= true #default is false
+  config.qiniu_block_size    = 4*1024*1024
+  config.qiniu_protocol      = "http"
 end
 
 if Rails.env.test? || Rails.env.cucumber?
@@ -35,7 +31,7 @@ if Rails.env.test? || Rails.env.cucumber?
   end
 else
   ::CarrierWave.configure do |config|
-    config.storage :aliyun
+    config.storage :qiniu
   end
   ImageUploader
   PosterUploader
