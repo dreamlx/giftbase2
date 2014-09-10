@@ -30,6 +30,7 @@ class User < ActiveRecord::Base
   has_many :stages, through: :user_stages
   has_many :user_grades
   has_many :grades, through: :user_grades
+  has_many :scores
 
   has_one :credit
   before_validation :generate_class_no, on: :create

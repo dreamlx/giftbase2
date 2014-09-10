@@ -25,6 +25,8 @@ describe "users" do
   describe "GET show" do
     it "should get the request user" do
       user = create(:user)
+      user.reset_authentication_token
+      user.save
 
       get "/api/users/#{user.id}", { auth_token: user.authentication_token}
 
@@ -44,6 +46,8 @@ describe "users" do
   describe "GET profile" do
     it "should get the request user according to authen_token" do
       user = create(:user)
+      user.reset_authentication_token
+      user.save
 
       get "/api/users/profile", { auth_token: user.authentication_token}
 
@@ -93,6 +97,9 @@ describe "users" do
 
     it "should edit the gender" do
       user = create(:user, gender: "man")
+      user.reset_authentication_token
+      user.save
+
       put "/api/users/#{user.id}", {auth_token: user.authentication_token, "user" => { "gender" => "woman"}} 
 
       json = JSON.parse(response.body)["user"]
@@ -101,6 +108,9 @@ describe "users" do
 
     it "should edit the phone" do
       user = create(:user, phone: "12345678900")
+      user.reset_authentication_token
+      user.save
+
       put "/api/users/#{user.id}", {auth_token: user.authentication_token, "user" => { "phone" => "12345678901"}}
 
       json = JSON.parse(response.body)["user"]
@@ -109,6 +119,9 @@ describe "users" do
 
     it "should edit the school_name" do
       user = create(:user, school_name: "eastfly")
+      user.reset_authentication_token
+      user.save
+
       put "/api/users/#{user.id}", {auth_token: user.authentication_token, "user" => { "school_name" => "westfly"}}
 
       json = JSON.parse(response.body)["user"]
@@ -117,6 +130,9 @@ describe "users" do
 
     it "should change the avatar pic" do
       user = create(:user)
+      user.reset_authentication_token
+      user.save
+
       url = user.avatar.url
       put "/api/users/#{user.id}", {auth_token: user.authentication_token, "user" => { "avatar" => Rack::Test::UploadedFile.new(File.open(File.join(Rails.root, 'spec/fixtures/images/rails_copy.png')))}}
 

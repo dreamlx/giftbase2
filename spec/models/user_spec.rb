@@ -36,6 +36,7 @@ describe User do
   it { should respond_to(:children)}
   it { should respond_to(:reverse_child_parents)}
   it { should respond_to(:parents)}
+  it { should respond_to(:scores)}
   
   it { should be_valid }
 
