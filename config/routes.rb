@@ -110,6 +110,10 @@ Giftbase::Application.routes.draw do
       get :profile, on: :collection
     end
 
+    resources :scores do
+      get :topten,  on: :collection
+    end
+
   end
 
   namespace :admin do

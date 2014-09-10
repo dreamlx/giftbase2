@@ -4,7 +4,7 @@ FactoryGirl.define do
     role              "admin"
     avatar            File.open(File.join(Rails.root, 'spec/fixtures/images/rails.png')) 
     gender            "man"
-    username          "this is a user name"
+    sequence(:username) { |n| "this is a user name#{n}"}          
     avatar_id         10
     birthday          Time.now
     home_address      "this is user home address"
