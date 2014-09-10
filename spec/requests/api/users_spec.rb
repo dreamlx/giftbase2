@@ -72,7 +72,7 @@ describe "users" do
       # json["user"]["password"].should eq "password"
       json["user"]["email"].should    eq "c@gmail.com"
       json["user"]["id"].should_not   be_nil
-      json["auth_token"].should_not  be_nil
+      # json["auth_token"].should_not  be_nil
     end
 
     it "should not create a new user when email is nil" do

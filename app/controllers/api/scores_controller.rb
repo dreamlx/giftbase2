@@ -1,10 +1,10 @@
 module Api
   class ScoresController < Api::BaseController
-    before_filter :authenticate_user!, only: [:index]
+    before_filter :authenticate_user!, only: [:index, :create]
 
     def index
       user = User.find_by_authentication_token(params[:auth_token])
-      scores = Score.where(user_id: user.id)
+      scores = Score.where(user_id: user.id).order("created_at DESC")
 
       render json: {scores: scores}
     end
@@ -29,7 +29,7 @@ module Api
       if score.save
         render json: {score: score}, status: :created
       else
-        render score.errors, status: :unprocessable_entity
+        render json: score.errors, status: :unprocessable_entity
       end
     end
   end

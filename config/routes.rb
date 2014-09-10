@@ -110,7 +110,7 @@ Giftbase::Application.routes.draw do
       get :profile, on: :collection
     end
 
-    resources :scores do
+    resources :scores, only: [:create, :index] do
       get :topten,  on: :collection
     end
 
