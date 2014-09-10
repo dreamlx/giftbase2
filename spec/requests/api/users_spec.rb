@@ -116,13 +116,12 @@ describe "users" do
     end
 
     it "should change the avatar pic" do
-      # user = create(:user)
-      # post "/api/users/#{user.id}/edit_avatar?avatar=westfly"
+      user = create(:user)
+      url = user.avatar.url
+      put "/api/users/#{user.id}", {auth_token: user.authentication_token, "user" => { "avatar" => Rack::Test::UploadedFile.new(File.open(File.join(Rails.root, 'spec/fixtures/images/rails_copy.png')))}}
 
-      # json = JSON.parse(response.body)["user"]
-      # json["avatar"]["url"].should eq "westfly" 
-
-      # TODO change the avatar pic
+      json = JSON.parse(response.body)["user"]
+      json["avatar"]["url"].should_not eq url
     end
   end
 end

@@ -40,7 +40,7 @@ module Api
     end
 
     def question_group
-      question_group = Question.all.sample(250)
+      question_group = Question.all.sample(80)
       question_group_json = Array.new
       question_group.each do |item|
         item_json           = item.as_json
