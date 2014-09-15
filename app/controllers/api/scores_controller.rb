@@ -1,7 +1,7 @@
 module Api
   class ScoresController < Api::BaseController
     before_filter :authenticate_user!, only: [:index, :create]
-
+    respond_to :json
     def index
       user = User.find_by_authentication_token(params[:auth_token])
       scores = Score.where(user_id: user.id).order("created_at DESC")

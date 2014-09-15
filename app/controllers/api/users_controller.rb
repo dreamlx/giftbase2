@@ -9,7 +9,9 @@ module Api
 
     def profile
       user = User.find_by_authentication_token(params[:auth_token])
-      render json: {user: user}, status: 200
+      user_json  = user.as_json
+      user_json[:topscore] = user.scores.maximum(:number)
+      render json: {user: user_json}, status: 200
     end
 
     def create

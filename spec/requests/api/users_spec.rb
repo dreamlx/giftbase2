@@ -46,6 +46,9 @@ describe "users" do
   describe "GET profile" do
     it "should get the request user according to authen_token" do
       user = create(:user)
+      score1 = create(:score, user: user)
+      score2 = create(:score, user: user)
+      score3 = create(:score, user: user)
       user.reset_authentication_token
       user.save
 
@@ -60,6 +63,7 @@ describe "users" do
       json["phone"].should          eq user.phone
       json["email"].should          eq user.email
       json["school_name"].should    eq user.school_name
+      json["topscore"].should       eq Score.maximum(:number)
     end
   end
 
