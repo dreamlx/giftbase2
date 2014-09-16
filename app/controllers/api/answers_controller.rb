@@ -8,7 +8,7 @@ module Api
       if @answer.update_attributes(params[:answer])
         head :no_content
       else
-        render json: @answer.errors, status: :unprocessable_entity
+        render json: @answer.errors #, status: :unprocessable_entity
       end
     end
 

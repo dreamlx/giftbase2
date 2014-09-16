@@ -27,9 +27,9 @@ module Api
       score = Score.new(params[:score])
 
       if score.save
-        render json: {score: score}, status: :created
+        render json: {score: score} #, status: :created
       else
-        render json: score.errors, status: :unprocessable_entity
+        render json: score.errors #, status: :unprocessable_entity
       end
     end
   end

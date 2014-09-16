@@ -27,11 +27,11 @@ module Api
       @exam = Exam.new(params[:exam])
       @exam.user = current_user
       if @exam.unit_id.nil? or @exam.unit_id.blank?
-        render json: {:errors =>"unit id can't null"}, status: :unprocessable_entity
+        render json: {:errors =>"unit id can't null"} #, status: :unprocessable_entity
       elsif @exam.save
-        render json: @exam, status: :created, location: api_exam_path(@exam)
+        render json: @exam #, status: :created, location: api_exam_path(@exam)
       else
-        render json: @exam.errors, status: :unprocessable_entity
+        render json: @exam.errors #, status: :unprocessable_entity
       end
     end
 
@@ -47,7 +47,7 @@ module Api
         item_json[:options] = item.single_choice_options.as_json
         question_group_json << item_json
       end
-      render json: {question_group: question_group_json}, status: 200
+      render json: {question_group: question_group_json} #, status: 200
     end
 
     def finish_uploading

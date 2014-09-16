@@ -30,9 +30,9 @@ module Api
     def purchase
       @stage = Stage.find(params[:id])
       if @stage.purchase(current_user)
-        render json: "success", status: 200
+        render json: "success" #, status: 200
       else
-        render json: "failed, no enough money or have paid", status: :unprocessable_entity
+        render json: "failed, no enough money or have paid" #, status: :unprocessable_entity
       end
     end
   end
