@@ -15,8 +15,10 @@ describe "scores" do
 
       get "/api/scores", {"auth_token" => user1.authentication_token}
 
-      json = JSON.parse(response.body)["scores"]
-      json.count.should eq 1
+      json = JSON.parse(response.body)
+      json["error"].should        eq 1
+      json["msg"].should          eq "succeed"
+      json["scores"].count.should eq 1
     end
   end
 
@@ -27,11 +29,13 @@ describe "scores" do
 
       get "/api/scores/topten"
 
-      json                              = JSON.parse(response.body)["scores"]
-      json.count.should                 eq 10
-      json.first["username"].should_not be_nil
-      json.first["time"].should_not     be_nil
-      json.first["number"].should_not   be_nil
+      json                              = JSON.parse(response.body)
+      json["error"].should                        eq 1
+      json["msg"].should                          eq "succeed"
+      json["scores"].count.should                 eq 10
+      json["scores"].first["username"].should_not be_nil
+      json["scores"].first["time"].should_not     be_nil
+      json["scores"].first["number"].should_not   be_nil
     end
   end
 
@@ -41,11 +45,13 @@ describe "scores" do
       user.reset_authentication_token
       user.save
       post "/api/scores", {"auth_token" => user.authentication_token, "score" => {"user_id" => user.id, "number" => 10}}
-      response.status.should        eq 201
-      json                          = JSON.parse(response.body)["score"]
-      json["user_id"].should        eq user.id
-      json["number"].should         eq 10
-      json["created_at"].should_not be_nil
+      # response.status.should        eq 201
+      json                          = JSON.parse(response.body)
+      json["error"].should                    eq 1
+      json["msg"].should                      eq "succeed"
+      json["score"]["user_id"].should         eq user.id
+      json["score"]["number"].should          eq 10
+      json["score"]["created_at"].should_not  be_nil
     end
 
     it "should get errors when param invalid: user nil" do
@@ -53,18 +59,20 @@ describe "scores" do
       user.reset_authentication_token
       user.save
       post "/api/scores", {"auth_token" => user.authentication_token, "score" => {"user_id" => nil, "number" => 10}}
-      response.status.should        eq 422
+      # response.status.should        eq 422
       json                          = JSON.parse(response.body)
-      json["user"].first.should eq "不能为空"
+      json["error"].should  eq 0
+      json["msg"].should    eq "user: 不能为空"
     end
     it "should get errors when param invalid: number nil" do
       user                          = create(:user)
       user.reset_authentication_token
       user.save
       post "/api/scores", {"auth_token" => user.authentication_token, "score" => {"user_id" => user.id, "number" => nil}}
-      response.status.should        eq 422
+      # response.status.should        eq 422
       json                          = JSON.parse(response.body)
-      json["number"].first.should eq "不能为空"
+      json["error"].should  eq 0
+      json["msg"].should    eq "number: 不能为空"
     end
   end
 end

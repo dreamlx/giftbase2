@@ -47,7 +47,7 @@ module Api
         item_json[:options] = item.single_choice_options.as_json
         question_group_json << item_json
       end
-      render json: {question_group: question_group_json} #, status: 200
+      render json: {question_group: question_group_json, error: 1, msg: "succeed"} #, status: 200
     end
 
     def finish_uploading

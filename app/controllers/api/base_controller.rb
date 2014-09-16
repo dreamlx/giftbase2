@@ -1,3 +1,4 @@
+include ApplicationHelper
 module Api
   class BaseController < ApplicationController
     private

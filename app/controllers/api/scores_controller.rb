@@ -6,7 +6,7 @@ module Api
       user = User.find_by_authentication_token(params[:auth_token])
       scores = Score.where(user_id: user.id).order("created_at DESC")
 
-      render json: {scores: scores}
+      render json: {scores: scores, error: 1, msg: "succeed"}
     end
 
 
@@ -20,16 +20,16 @@ module Api
         s["time"]      = os.created_at
         scores << s
       end
-      render json: {scores: scores}
+      render json: {scores: scores, error: 1, msg: "succeed"}
     end
 
     def create
       score = Score.new(params[:score])
 
       if score.save
-        render json: {score: score} #, status: :created
+        render json: {score: score, error: 1, msg: "succeed"} #, status: :created
       else
-        render json: score.errors #, status: :unprocessable_entity
+        render json: {error: 0, msg: format_error_message(score.errors) } #, status: :unprocessable_entity
       end
     end
   end

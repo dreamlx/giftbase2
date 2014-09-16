@@ -5,11 +5,7 @@ module Api
     def show
       user = User.find_by_authentication_token(params[:id])
 
-      render json: { 
-        user: user, 
-        auth_token: user.authentication_token, 
-        message: 'user.authentication_token'
-      } #, status: 200
+      render json: { user: user, auth_token: user.authentication_token, message: 'user.authentication_token', error: 1, msg: "succeed"} #, status: 200
     end
 
     def create
@@ -18,7 +14,7 @@ module Api
       username  = params[:user][:login]
 
       if email.nil? or password.nil?
-        render :json=>{:error=>"The request must contain the user email and password."}
+        render json: {error: 0, msg: "The request must contain the user email and password."}
         return
       end
       
@@ -26,7 +22,7 @@ module Api
       
       if user.nil?
         logger.info("User #{email} failed signin, user cannot be found.")
-        render :json => {:errors => { user: ['用户不存在']}  }
+        render json: {error: 0, msg:"user: 用户不存在"}
         return
       end
       
@@ -35,6 +31,8 @@ module Api
       
       if user.valid_password?(password)
         render json: {
+          error: 1,
+          msg: "succeed",
           user_token: {
             token: user.authentication_token,
             user_id: user.id
@@ -49,7 +47,7 @@ module Api
         } #, status: 201
       else
         logger.info("User #{email} failed signin, password \"#{password}\" is invalid")
-        render :json => {:errors => {password: ['密码错误']} }
+        render json: {error: 0, msg: "password: 密码错误"}
       end
     end
 
@@ -57,11 +55,11 @@ module Api
       user = User.find_by_authentication_token( params[:id])
       if user.nil?
         logger.info("Token not found.")
-        render :json => { :error=>"Invalid token" }
+        render json:{error: 0, msg: "Invalid token" }
       else
         user.reset_authentication_token
         user.save
-        render :json => { user: user, message: 'auth_token is empty now' }
+        render json: { user: user, error: 1, msg: 'succeed' }
       end
     end
   end

@@ -14,10 +14,11 @@ describe 'user_tokens' do
       get "/api/user_tokens/#{ user.authentication_token }"
 
       json = JSON.parse(response.body)
-      response.status.should        eq 200
+      # response.status.should        eq 200
+      json["error"].should              eq 1
+      json["msg"].should                eq "succeed"
       json["user"]["id"].should     eq user.id
       json["auth_token"].should     eq user.authentication_token
-      json["message"].should        eq 'user.authentication_token'
     end
   end
 
@@ -33,11 +34,14 @@ describe 'user_tokens' do
       user_token = user.authentication_token
       delete "/api/user_tokens/#{ user.authentication_token }"
 
-      response.status.should eq 204
-      # json = JSON.parse(response.body)
+      # response.status.should eq 204
+      json = JSON.parse(response.body)
       # json["user"]["id"].should                       eq user.id
       # json["user"]["authentication_token"].should_not eq user_token
       # json["message"].should                          eq "auth_token is empty now"
+
+      json["error"].should              eq 1
+      json["msg"].should                eq "succeed"
       user.reload
       user.authentication_token.should_not eq user_token
     end
@@ -55,9 +59,11 @@ describe 'user_tokens' do
 
       delete "/api/user_tokens/#{user_token + "hello"}"
 
-      response.status.should eq 404
-      # json = JSON.parse(response.body)
+      # response.status.should eq 404
+      json = JSON.parse(response.body)
       # json["error"].should                       eq "Invalid token"
+      json["error"].should              eq 0
+      json["msg"].should                eq "Invalid token"
       user.reload
       user.authentication_token.should eq user_token
     end
@@ -70,8 +76,11 @@ describe 'user_tokens' do
 
       post "/api/user_tokens", {user: { login: user.email, password: user.password}}
 
-      response.status.should                eq 201
+      # response.status.should                eq 201
       json              = JSON.parse(response.body)
+      json["error"].should              eq 1
+      json["msg"].should                eq "succeed"
+
       user_token_json  = json["user_token"]
       user_json        = json["users"].first
 
@@ -88,8 +97,10 @@ describe 'user_tokens' do
 
       post "/api/user_tokens", {user: { login: user.username, password: user.password}}
 
-      response.status.should                eq 201
+      # response.status.should                eq 201
       json              = JSON.parse(response.body)
+      json["error"].should              eq 1
+      json["msg"].should                eq "succeed"
       user_token_json  = json["user_token"]
       user_json        = json["users"].first
 
@@ -104,26 +115,29 @@ describe 'user_tokens' do
       user = create(:user)
       post "/api/user_tokens", {user: { login: nil, password: user.password}}
 
-      response.status.should eq 400
+      # response.status.should eq 400
       json = JSON.parse(response.body)
-      json["error"].should eq "The request must contain the user email and password."
+      json["error"].should              eq 0
+      json["msg"].should                eq "The request must contain the user email and password."
     end
 
     it "should return error when no password" do
       user = create(:user)
       post "/api/user_tokens", {user: { login: user.email, password: nil}}
 
-      response.status.should eq 400
+      # response.status.should eq 400
       json = JSON.parse(response.body)
-      json["error"].should eq "The request must contain the user email and password."
+      json["error"].should              eq 0
+      json["msg"].should                eq "The request must contain the user email and password."
     end
 
     it "should return error when no user found" do
       post "/api/user_tokens", {user: { login: "admin@gmail.com", password: "email.password"}}
 
-      response.status.should        eq 401
+      # response.status.should        eq 401
       json = JSON.parse(response.body)
-      json["errors"]["user"].should eq ["用户不存在"]
+      json["error"].should              eq 0
+      json["msg"].should                eq "user: 用户不存在"
     end
 
     it "should return error with wrong password" do
@@ -131,9 +145,10 @@ describe 'user_tokens' do
 
       post "/api/user_tokens", {user: { login: user.email, password: "wrongpassword"}}
 
-      response.status.should            eq 401
+      # response.status.should            eq 401
       json = JSON.parse(response.body)
-      json["errors"]["password"].should eq ["密码错误"]      
+      json["error"].should              eq 0
+      json["msg"].should                eq "password: 密码错误"
     end
   end
 end
