@@ -1,4 +1,5 @@
 # coding: utf-8
+require "cancan/matchers"
 require 'spec_helper'
 
 describe "users" do
@@ -22,6 +23,67 @@ describe "users" do
       }
     }
   }
+
+  describe "abilities" do
+    
+    let(:user){ nil }
+    subject(:ability){ Ability.new(user) }
+
+    context "when is an common user" do
+      let(:user){ create(:user) }
+
+      # user
+      it { should     be_able_to(:show, user) }
+      it { should_not be_able_to(:show, User.new) }
+      it { should     be_able_to(:profile, user) }
+      it { should_not be_able_to(:profile, User.new) }
+      it { should     be_able_to(:index, user) }
+      it { should_not be_able_to(:index, User.new) }
+      it { should     be_able_to(:create, User.new) }
+      it { should_not be_able_to(:destroy, User.new) }
+      it { should     be_able_to(:destroy, user) }
+      it { should_not be_able_to(:update, User.new) }
+      it { should     be_able_to(:update, user) }
+
+      # exam
+      it { should     be_able_to(:index, Exam.new)}
+      it { should     be_able_to(:show, Exam.new)}
+
+      # score
+      it { should     be_able_to(:index, Score.new)}
+      it { should     be_able_to(:show, Score.new)}
+      it { should     be_able_to(:create, Score.new(:user_id => user.id)) }
+      it { should_not be_able_to(:create, Score.new()) }
+    end
+
+    context "when is an admin user" do
+      let(:user){ create(:admin) }
+
+      # user
+      it { should     be_able_to(:show, user) }
+      it { should     be_able_to(:show, User.new) }
+      it { should     be_able_to(:profile, user) }
+      it { should     be_able_to(:profile, User.new) }
+      it { should     be_able_to(:index, user) }
+      it { should     be_able_to(:index, User.new) }
+      it { should     be_able_to(:create, User.new) }
+      it { should     be_able_to(:destroy, User.new) }
+      it { should     be_able_to(:destroy, user) }
+      it { should     be_able_to(:update, User.new) }
+      it { should     be_able_to(:update, user) }
+
+      # exam
+      it { should     be_able_to(:index, Exam.new)}
+      it { should     be_able_to(:show, Exam.new)}
+
+      # score
+      it { should     be_able_to(:index, Score.new)}
+      it { should     be_able_to(:show, Score.new)}
+      it { should     be_able_to(:create, Score.new(:user_id => user.id)) }
+      it { should     be_able_to(:create, Score.new()) }
+    end
+  end
+
   describe "GET show" do
     it "should get the request user" do
       user = create(:user)
@@ -83,7 +145,7 @@ describe "users" do
       json["user"]["username"].should   eq "amo2"
       json["user"]["email"].should      eq "c@gmail.com"
       json["user"]["id"].should_not     be_nil
-      json["auth_token"].should_not     be_nil
+      # json["auth_token"].should_not     be_nil
     end
 
     it "should not create a new user when email is nil" do

@@ -54,6 +54,7 @@ describe "posts" do
       url                               = post.image.url
 
       put "/api/posts/#{post.id}", valid_params
+      post.reload.image.url.should_not  be_nil
       post.reload.image.url.should_not  eq url
     end
 
