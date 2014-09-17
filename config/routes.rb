@@ -114,6 +114,8 @@ Giftbase::Application.routes.draw do
       get :topten,  on: :collection
     end
 
+    resources :posts
+
   end
 
   namespace :admin do
