@@ -210,6 +210,8 @@ describe "users" do
       json["user"]["school_name"].should eq "westfly"     
     end
 
+    # run this test singlarly, because the filename could be overwrite
+    # rspec spec/requests/api/users_spec.rb -e "should change the avatar pic"
     it "should change the avatar pic" do
       user = create(:user)
       user.reset_authentication_token
@@ -220,8 +222,10 @@ describe "users" do
 
       json                              = JSON.parse(response.body)
       json["error"].should              eq 1
-      json["msg"].should                eq "succeed"      
-      json["user"]["avatar"]["url"].should_not eq url
+      json["msg"].should                eq "succeed"
+      user_json                         = json["user"]
+      user_json["avatar"]["url"].should_not eq url
+      user_json["avatar"]["url"].should_not be_nil
     end
   end
 end
