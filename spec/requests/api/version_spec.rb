@@ -8,7 +8,7 @@ describe 'version' do
 
       json = JSON.parse(response.body)
 
-      json["version"] = 1.0
+      json["version"] = "1.0"
     end
   end
 end
