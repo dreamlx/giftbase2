@@ -115,6 +115,7 @@ Giftbase::Application.routes.draw do
     end
 
     resources :posts
+    match "/version" => "version#version"
 
   end
 
