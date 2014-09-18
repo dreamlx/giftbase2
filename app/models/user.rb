@@ -36,6 +36,7 @@ class User < ActiveRecord::Base
   before_validation :generate_class_no, on: :create
   before_save :ensure_authentication_token
   after_create :create_its_credit
+  after_save :remove_previously_stored_avatar
 
   has_many :orders
 
