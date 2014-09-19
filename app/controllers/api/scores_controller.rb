@@ -11,13 +11,13 @@ module Api
 
 
     def topten
-      order_scores  = Score.order("number DESC").limit(10)
+      user_ids  = Score.order("number DESC").uniq.pluck(:user_id).first(10)
       scores        = Array.new
-      order_scores.each do |os|
+      user_ids.each do |user_id|
         s = Hash.new
-        s["username"]  = User.find(os.user_id).username
-        s["number"]    = os.number
-        s["time"]      = os.created_at
+        s["username"]  = User.find(user_id).username
+        s["number"]    = Score.find_by_user_id(user_id).number
+        s["time"]      = Score.find_by_user_id(user_id).created_at
         scores << s
       end
       render json: {scores: scores, error: 1, msg: "succeed"}
