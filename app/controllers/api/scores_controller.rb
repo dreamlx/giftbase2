@@ -16,6 +16,7 @@ module Api
       user_ids.each do |user_id|
         scores << User.find(user_id).top_score
       end
+      sort_scores = scores.sort_by {|score| score[:number]}.reverse
       render json: {scores: scores, error: 1, msg: "succeed"}
     end
 
