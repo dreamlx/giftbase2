@@ -17,7 +17,7 @@ module Api
         scores << User.find(user_id).top_score
       end
       sort_scores = scores.sort_by {|score| score[:number]}.reverse
-      render json: {scores: scores, error: 1, msg: "succeed"}
+      render json: {scores: sort_scores, error: 1, msg: "succeed"}
     end
 
     def create
