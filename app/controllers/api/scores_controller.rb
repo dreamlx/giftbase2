@@ -14,11 +14,7 @@ module Api
       user_ids  = Score.order("number DESC").uniq.pluck(:user_id).first(10)
       scores        = Array.new
       user_ids.each do |user_id|
-        s = Hash.new
-        s["username"]  = User.find(user_id).username
-        s["number"]    = Score.order("number DESC").find_by_user_id(user_id).number
-        s["time"]      = Score.order("number DESC").find_by_user_id(user_id).created_at
-        scores << s
+        scores << User.find(user_id).top_score
       end
       render json: {scores: scores, error: 1, msg: "succeed"}
     end

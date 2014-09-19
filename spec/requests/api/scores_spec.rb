@@ -26,15 +26,14 @@ describe "scores" do
     it "should get topten" do
       user = create(:user)
       user1 = create(:user)
-      50.times { create(:score, user_id: user.id)}
-      50.times { create(:score, user_id: user1.id)}
+      3.times { create(:score, user_id: user.id)}
+      2.times { create(:score, user_id: user1.id)}
 
       get "/api/scores/topten"
 
       json                              = JSON.parse(response.body)
       json["error"].should                        eq 1
       json["msg"].should                          eq "succeed"
-      # json["scores"].should                       eq ""
       json["scores"].count.should                 eq 2
       json["scores"].first["username"].should_not be_nil
       json["scores"].first["time"].should_not     be_nil

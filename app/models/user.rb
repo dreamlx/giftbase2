@@ -48,6 +48,15 @@ class User < ActiveRecord::Base
 
   mount_uploader :avatar, ImageUploader
 
+  def top_score
+    top_score = Hash.new
+    score                 = Score.order("number DESC").where(user_id: self.id).first
+    top_score[:username]  = self.username
+    top_score[:number]    = score.number
+    top_score[:time]      = score.created_at
+    top_score
+  end
+
   def self.find_first_by_auth_conditions(warden_conditions)
     conditions = warden_conditions.dup
     if login = conditions.delete(:login)
