@@ -34,6 +34,7 @@ describe "scores" do
       json                              = JSON.parse(response.body)
       json["error"].should                        eq 1
       json["msg"].should                          eq "succeed"
+      # json["scores"].should                       eq ""
       json["scores"].count.should                 eq 2
       json["scores"].first["username"].should_not be_nil
       json["scores"].first["time"].should_not     be_nil
