@@ -74,7 +74,7 @@ module Giftbase
       g.helper = false
     end
 
-    config.VERSION = "1.0"
+    config.VERSION = "2.0"
 
     I18n.enforce_available_locales = false
   end
