@@ -64,7 +64,7 @@ describe "scores" do
       # response.status.should        eq 422
       json                          = JSON.parse(response.body)
       json["error"].should  eq 0
-      json["msg"].should    eq "user: 不能为空"
+      json["msg"].should    eq "用户: 不能为空"
     end
     it "should get errors when param invalid: number nil" do
       user                          = create(:user)
@@ -74,7 +74,7 @@ describe "scores" do
       # response.status.should        eq 422
       json                          = JSON.parse(response.body)
       json["error"].should  eq 0
-      json["msg"].should    eq "number: 不能为空"
+      json["msg"].should    eq "成绩: 不能为空"
     end
   end
 end

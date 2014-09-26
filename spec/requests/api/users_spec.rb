@@ -153,7 +153,43 @@ describe "users" do
       # response.status.should                eq 401
       json                              = JSON.parse(response.body)
       json["error"].should              eq 0
-      json["msg"].should                eq "email: 不能为空"
+      json["msg"].should                eq "邮箱: 不能为空"
+    end
+
+    it "should not create a new user when wrong email format" do
+      post "/api/users", {user: {username: "foobar", email: "worngemailformat", password: "11111111"}}
+      # response.status.should                eq 401
+      json                              = JSON.parse(response.body)
+      json["error"].should              eq 0
+      json["msg"].should                eq "邮箱: 是无效的"
+    end
+
+    it "should not create a new user when email duplicate" do
+      create(:user, email: valid_params["user"]["email"])
+
+      post "/api/users", valid_params
+
+      json                              = JSON.parse(response.body)
+      json["error"].should              eq 0
+      json["msg"].should                eq "邮箱: 已经被使用"
+    end
+
+    it "should not create a new user when username duplicate" do
+      create(:user, username: valid_params["user"]["username"])
+
+      post "/api/users", valid_params
+
+      json                              = JSON.parse(response.body)
+      json["error"].should              eq 0
+      json["msg"].should                eq "用户名: 已经被使用"
+    end
+
+    it "should not create a new user when password is too short" do
+      post "/api/users", {user: {username: "foobar", email: "foobar@example.com", password: "1111"}}
+
+      json                              = JSON.parse(response.body)
+      json["error"].should              eq 0
+      json["msg"].should                eq "密码: 过短（最短为 6 个字符）"
     end
   end
 

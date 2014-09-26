@@ -2,6 +2,14 @@
 # -*- coding: utf-8 -*-
 
 zh-CN:
+  user: 用户
+  email: 邮箱
+  number: 成绩
+  image: 图片
+  username: 用户名
+  password: 密码
+  login_or_password_not_nil: 登录和密码都不能为空
+  wrong_login_or_password: 登录或密码无效
   crud:
     take_exam:  做题 
     copy: 复制 
@@ -22,8 +30,7 @@ zh-CN:
     showing: "%{model}详细信息"
     add: "添加更多%{model}"
     save: 保存
-    upload: 上传 
-  
+    upload: 上传
   stage:
     random: 随机试卷 
   unit:
@@ -82,8 +89,6 @@ zh-CN:
           finish_review:
             failure: "结算失败，可能还有回答没有批阅"
             success: "结算完成"
-
-            
 
   all: 全部
   dashboard: 信息中心

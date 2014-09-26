@@ -6,7 +6,7 @@ module ApplicationHelper
   def format_error_message(errors)
     msg = String.new
     errors.each do |key, value|
-      msg.concat(key.to_s)
+      msg.concat(st(key.to_s))
       msg.concat(': ')
       msg.concat(value.to_s)
       msg.concat(' ')

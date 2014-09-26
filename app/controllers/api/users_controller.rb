@@ -19,7 +19,6 @@ module Api
       if user.save
         render json: { user: user, auth_token: user.authentication_token, error: 1, msg: "succeed"} #, status: 201
       else
-
         render json: {error: 0, msg: format_error_message(user.errors)} #, status: 401
       end
     end

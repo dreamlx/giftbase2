@@ -9,27 +9,18 @@ module Api
     end
 
     def create
-      email     = params[:user][:login]
-      password  = params[:user][:password]
-      username  = params[:user][:login]
 
-      if email.nil? or password.nil?
-        render json: {error: 0, msg: "The request must contain the user email and password."}
+      if params[:user][:login].nil? || params[:user][:password].nil?
+        render json: {error: 0, msg: t('login_or_password_not_nil')}
         return
       end
+      user=User.find_by_email(params[:user][:login].downcase) || User.find_by_username(params[:user][:login])
       
-      user=User.find_by_email(email.downcase) || User.find_by_username(username)
-      
-      if user.nil?
-        logger.info("User #{email} failed signin, user cannot be found.")
-        render json: {error: 0, msg:"user: 用户不存在"}
-        return
-      end
-      
-      # http://rdoc.info/github/plataformatec/devise/master/Devise/Models/TokenAuthenticatable
-      user.ensure_authentication_token
-      
-      if user.valid_password?(password)
+      if user && user.valid_password?(params[:user][:password])
+
+        # http://rdoc.info/github/plataformatec/devise/master/Devise/Models/TokenAuthenticatable
+        user.ensure_authentication_token
+
         render json: {
           error: 1,
           msg: "succeed",
@@ -46,8 +37,7 @@ module Api
           ]
         } #, status: 201
       else
-        logger.info("User #{email} failed signin, password \"#{password}\" is invalid")
-        render json: {error: 0, msg: "password: 密码错误"}
+        render json: {error: 0, msg: t('wrong_login_or_password')}
       end
     end
 

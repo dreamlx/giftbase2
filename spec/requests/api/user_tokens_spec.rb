@@ -118,7 +118,7 @@ describe 'user_tokens' do
       # response.status.should eq 400
       json = JSON.parse(response.body)
       json["error"].should              eq 0
-      json["msg"].should                eq "The request must contain the user email and password."
+      json["msg"].should                eq "登录和密码都不能为空"
     end
 
     it "should return error when no password" do
@@ -128,7 +128,7 @@ describe 'user_tokens' do
       # response.status.should eq 400
       json = JSON.parse(response.body)
       json["error"].should              eq 0
-      json["msg"].should                eq "The request must contain the user email and password."
+      json["msg"].should                eq "登录和密码都不能为空"
     end
 
     it "should return error when no user found" do
@@ -137,7 +137,7 @@ describe 'user_tokens' do
       # response.status.should        eq 401
       json = JSON.parse(response.body)
       json["error"].should              eq 0
-      json["msg"].should                eq "user: 用户不存在"
+      json["msg"].should                eq "登录或密码无效"
     end
 
     it "should return error with wrong password" do
@@ -148,7 +148,7 @@ describe 'user_tokens' do
       # response.status.should            eq 401
       json = JSON.parse(response.body)
       json["error"].should              eq 0
-      json["msg"].should                eq "password: 密码错误"
+      json["msg"].should                eq "登录或密码无效"
     end
   end
 end

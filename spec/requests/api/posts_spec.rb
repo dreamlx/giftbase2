@@ -44,7 +44,7 @@ describe "posts" do
     it "should not create a new post when image is invalid" do
       post "/api/posts", {post: {image: "invalid image"}}
       json                              = JSON.parse(response.body)
-      json["msg"].should                eq "image: 不能为空"
+      json["msg"].should                eq "图片: 不能为空"
     end
   end
 
