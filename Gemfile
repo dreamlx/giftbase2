@@ -19,7 +19,10 @@ gem 'mini_magick', '~> 3.5.0'
 gem 'ruby-hmac'
 gem 'activemerchant', '~> 1.21.0', require: "active_merchant"
 gem 'activemerchant_patch_for_china', '~> 0.2.0'
-gem 'yaml_db'
+
+# Use yaml_db to load or dump data
+gem 'yaml_db', github: 'jetthoughts/yaml_db', ref: 'fb4b6bd7e12de3cffa93e0a298a1e5253d7e92ba'
+
 gem 'memcache-client'
 gem 'amoeba'  #copy active record deep
 # on default
